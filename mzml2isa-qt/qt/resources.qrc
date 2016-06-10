@@ -1,0 +1,21 @@
+<RCC>
+  <qresource prefix="graphics">
+    <file>assets/graphics/ebi_icon.png</file>
+    <file>assets/graphics/add_icon.png</file>
+    <file>assets/graphics/ontologies_symbolic.png</file>
+    <file>assets/graphics/browse_icon.png</file>
+    <file>assets/graphics/ebi-logo.jpg</file>
+  </qresource>
+  <qresource prefix="fonts">
+    <file>assets/fonts/EBI-Conceptual.ttf</file>
+    <file>assets/fonts/EBI-Functional.ttf</file>
+    <file>assets/fonts/EBI-Generic.ttf</file>
+    <file>assets/fonts/EBI-SocialMedia.ttf</file>
+    <file>assets/fonts/EBI-Species.ttf</file>
+    <file>assets/fonts/HelveticaNeue.ttf</file>
+    <file>assets/fonts/HelveticaNeue-Bold.ttf</file>
+    <file>assets/fonts/HelveticaNeue-CondensedBlack.ttf</file>
+    <file>assets/fonts/HelveticaNeue-CondensedBold.ttf</file>
+    <file>assets/fonts/Verdana.ttf</file>
+  </qresource>
+</RCC>
