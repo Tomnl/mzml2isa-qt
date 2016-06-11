@@ -99,8 +99,8 @@ class MainWindow(QMainWindow):
 
     def checkArgs(self):
         """Check for arguments and displays errors if any"""
-        inputDir = self.ui.lineEdit_input.text()
-        outputDir = self.ui.lineEdit_output.text()
+        inputDir = os.path.expanduser(self.ui.lineEdit_input.text())
+        outputDir = os.path.expanduser(self.ui.lineEdit_output.text())
         studyName = self.ui.lineEdit_study.text()
         LEGIT = True
 
