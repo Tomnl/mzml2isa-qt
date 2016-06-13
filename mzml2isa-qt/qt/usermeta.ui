@@ -64,7 +64,7 @@
     </attribute>
     <widget class="QLineEdit" name="identifier">
      <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="geometry">
       <rect>
@@ -93,7 +93,7 @@
     </widget>
     <widget class="QLabel" name="label">
      <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="geometry">
       <rect>
@@ -104,7 +104,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Identifier *</string>
+      <string>Identifier</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_2">
@@ -142,6 +142,9 @@
        <height>25</height>
       </rect>
      </property>
+     <property name="calendarPopup">
+      <bool>true</bool>
+     </property>
     </widget>
     <widget class="QLabel" name="label_4">
      <property name="geometry">
@@ -164,6 +167,12 @@
        <width>201</width>
        <height>25</height>
       </rect>
+     </property>
+     <property name="showGroupSeparator" stdset="0">
+      <bool>false</bool>
+     </property>
+     <property name="calendarPopup">
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QLabel" name="label_5">
@@ -206,6 +215,9 @@
        <width>131</width>
        <height>25</height>
       </rect>
+     </property>
+     <property name="inputMethodHints">
+      <set>Qt::ImhDigitsOnly</set>
      </property>
      <property name="placeholderText">
       <string>e.g. 26496010</string>
@@ -281,34 +293,9 @@
       <rect>
        <x>20</x>
        <y>380</y>
-       <width>131</width>
+       <width>421</width>
        <height>25</height>
       </rect>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="status">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>170</x>
-       <y>380</y>
-       <width>271</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(0, 0, 0);</string>
-     </property>
-     <property name="inputMethodHints">
-      <set>Qt::ImhNone</set>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="readOnly">
-      <bool>true</bool>
      </property>
     </widget>
     <widget class="QLabel" name="label_10">
@@ -350,7 +337,7 @@
       <string notr="true">font: 12pt url(:/fonts/assets/fonts/Verdana.ttf);</string>
      </property>
      <property name="text">
-      <string>Study Contact</string>
+      <string>Study Contact *</string>
      </property>
     </widget>
     <widget class="QLineEdit" name="first_name">
@@ -437,6 +424,9 @@
        <height>25</height>
       </rect>
      </property>
+     <property name="inputMethodHints">
+      <set>Qt::ImhDialableCharactersOnly</set>
+     </property>
     </widget>
     <widget class="QLabel" name="label_16">
      <property name="geometry">
@@ -459,6 +449,9 @@
        <width>195</width>
        <height>25</height>
       </rect>
+     </property>
+     <property name="inputMethodHints">
+      <set>Qt::ImhEmailCharactersOnly</set>
      </property>
     </widget>
     <widget class="QLabel" name="label_17">
@@ -546,7 +539,7 @@
       </rect>
      </property>
     </widget>
-    <widget class="QTextEdit" name="textEdit">
+    <widget class="QTextEdit" name="description">
      <property name="geometry">
       <rect>
        <x>470</x>
@@ -564,6 +557,9 @@
        <width>195</width>
        <height>25</height>
       </rect>
+     </property>
+     <property name="inputMethodHints">
+      <set>Qt::ImhDialableCharactersOnly</set>
      </property>
     </widget>
     <widget class="QLabel" name="label_23">
@@ -589,22 +585,128 @@
       </rect>
      </property>
     </widget>
-    <widget class="QLineEdit" name="roles_url">
+    <widget class="QLabel" name="label_51">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>410</y>
+       <width>131</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Authors</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="authors_list">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>430</y>
+       <width>421</width>
+       <height>81</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="Line" name="line_3">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>200</y>
+       <width>861</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="status">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>370</y>
+       <width>401</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="roles">
      <property name="enabled">
       <bool>false</bool>
      </property>
      <property name="geometry">
       <rect>
        <x>470</x>
-       <y>460</y>
-       <width>195</width>
-       <height>25</height>
+       <y>435</y>
+       <width>190</width>
+       <height>16</height>
       </rect>
      </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(0, 0, 0);</string>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
      </property>
     </widget>
+    <zorder>roles</zorder>
+    <zorder>identifier</zorder>
+    <zorder>title</zorder>
+    <zorder>label</zorder>
+    <zorder>label_2</zorder>
+    <zorder>label_3</zorder>
+    <zorder>submission_date</zorder>
+    <zorder>label_4</zorder>
+    <zorder>release_date</zorder>
+    <zorder>label_5</zorder>
+    <zorder>label_6</zorder>
+    <zorder>pubmed_id</zorder>
+    <zorder>label_7</zorder>
+    <zorder>doi</zorder>
+    <zorder>label_8</zorder>
+    <zorder>pub_title</zorder>
+    <zorder>label_9</zorder>
+    <zorder>label_11</zorder>
+    <zorder>label_12</zorder>
+    <zorder>first_name</zorder>
+    <zorder>mid</zorder>
+    <zorder>last_name</zorder>
+    <zorder>label_13</zorder>
+    <zorder>label_14</zorder>
+    <zorder>label_15</zorder>
+    <zorder>telephone</zorder>
+    <zorder>label_16</zorder>
+    <zorder>mail</zorder>
+    <zorder>label_17</zorder>
+    <zorder>label_18</zorder>
+    <zorder>line</zorder>
+    <zorder>combo_roles</zorder>
+    <zorder>label_20</zorder>
+    <zorder>label_21</zorder>
+    <zorder>plainTextEdit_2</zorder>
+    <zorder>description</zorder>
+    <zorder>fax</zorder>
+    <zorder>label_23</zorder>
+    <zorder>affiliation</zorder>
+    <zorder>label_51</zorder>
+    <zorder>authors_list</zorder>
+    <zorder>line_3</zorder>
+    <zorder>status</zorder>
+    <zorder>combo_status</zorder>
+    <zorder>label_10</zorder>
    </widget>
    <widget class="QWidget" name="tab_investigation">
     <attribute name="title">
@@ -685,7 +787,7 @@
       <string/>
      </property>
     </widget>
-    <widget class="QTextEdit" name="textEdit_2">
+    <widget class="QTextEdit" name="description_2">
      <property name="geometry">
       <rect>
        <x>470</x>
@@ -782,7 +884,7 @@
        <x>445</x>
        <y>260</y>
        <width>20</width>
-       <height>241</height>
+       <height>251</height>
       </rect>
      </property>
      <property name="orientation">
@@ -876,7 +978,7 @@
     </widget>
     <widget class="QLineEdit" name="status_2">
      <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="geometry">
       <rect>
@@ -887,7 +989,7 @@
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(0, 0, 0);</string>
+      <string notr="true"/>
      </property>
      <property name="inputMethodHints">
       <set>Qt::ImhNone</set>
@@ -1118,9 +1220,9 @@
       <string>Mail</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="roles_url_2">
+    <widget class="QLineEdit" name="roles_2">
      <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="geometry">
       <rect>
@@ -1172,6 +1274,48 @@
      <property name="text">
       <string>Same as Study</string>
      </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_52">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>410</y>
+       <width>131</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Authors</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="authors_list_2">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>430</y>
+       <width>421</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:disabled rgb(0,0,0);</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton">
+     <property name="geometry">
+      <rect>
+       <x>370</x>
+       <y>20</y>
+       <width>91</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>PushButton</string>
+     </property>
     </widget>
    </widget>
    <widget class="QWidget" name="tab_misc">
@@ -1194,7 +1338,7 @@
       <string notr="true">font: 12pt url(:/fonts/assets/fonts/Verdana.ttf);</string>
      </property>
      <property name="text">
-      <string>Characteristics</string>
+      <string>Characteristics *</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_45">
@@ -1274,6 +1418,11 @@
      </item>
      <item>
       <property name="text">
+       <string>VTO</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
        <string>EFO</string>
       </property>
      </item>
@@ -1329,6 +1478,11 @@
        <string>EFO</string>
       </property>
      </item>
+     <item>
+      <property name="text">
+       <string>UBERON</string>
+      </property>
+     </item>
     </widget>
     <widget class="QLabel" name="label_47">
      <property name="geometry">
@@ -1346,7 +1500,7 @@
     <widget class="QLabel" name="label_48">
      <property name="geometry">
       <rect>
-       <x>710</x>
+       <x>690</x>
        <y>50</y>
        <width>131</width>
        <height>16</height>
@@ -1359,14 +1513,14 @@
     <widget class="QLabel" name="label_49">
      <property name="geometry">
       <rect>
-       <x>710</x>
+       <x>690</x>
        <y>70</y>
        <width>181</width>
        <height>171</height>
       </rect>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If you do not know the ontology for your organism / variant / part, try looking for it at the &lt;a href=&quot;http://www.ebi.ac.uk/ols/v2/browse.do?ontName=EFO&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Experimental Factor Ontology&lt;/span&gt;&lt;/a&gt;. Once the right ontology found, the ID can be copied and pasted in the field. Do not forget to change the selection to the proper Ontology you used !&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If you do not know the ontology for your organism / variant / part, try looking for it at the &lt;a href=&quot;http://www.ebi.ac.uk/ols/index&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Experimental Factor Ontology&lt;/span&gt;&lt;/a&gt;. Once the right ontology found, the ID can be copied and pasted in the field. Do not forget to change the selection to the proper Ontology you used !&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="textFormat">
       <enum>Qt::RichText</enum>
@@ -1604,12 +1758,12 @@
     <rect>
      <x>30</x>
      <y>610</y>
-     <width>251</width>
+     <width>311</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
-    <string>*: Fields required by MetaboLights </string>
+    <string>*: Fields required by a MetaboLights study</string>
    </property>
   </widget>
   <widget class="QDialogButtonBox" name="buttonBox">
@@ -1626,6 +1780,64 @@
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>identifier</tabstop>
+  <tabstop>title</tabstop>
+  <tabstop>submission_date</tabstop>
+  <tabstop>release_date</tabstop>
+  <tabstop>description</tabstop>
+  <tabstop>pubmed_id</tabstop>
+  <tabstop>doi</tabstop>
+  <tabstop>pub_title</tabstop>
+  <tabstop>combo_status</tabstop>
+  <tabstop>authors_list</tabstop>
+  <tabstop>first_name</tabstop>
+  <tabstop>mid</tabstop>
+  <tabstop>last_name</tabstop>
+  <tabstop>telephone</tabstop>
+  <tabstop>mail</tabstop>
+  <tabstop>fax</tabstop>
+  <tabstop>affiliation</tabstop>
+  <tabstop>combo_roles</tabstop>
+  <tabstop>plainTextEdit_2</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>identifier_2</tabstop>
+  <tabstop>title_2</tabstop>
+  <tabstop>submission_date_2</tabstop>
+  <tabstop>release_date_2</tabstop>
+  <tabstop>description_2</tabstop>
+  <tabstop>pub_sameas</tabstop>
+  <tabstop>pubmed_id_2</tabstop>
+  <tabstop>doi_2</tabstop>
+  <tabstop>pub_title_2</tabstop>
+  <tabstop>combo_status_2</tabstop>
+  <tabstop>authors_list_2</tabstop>
+  <tabstop>contact_sameas</tabstop>
+  <tabstop>first_name_2</tabstop>
+  <tabstop>mid_2</tabstop>
+  <tabstop>last_name_2</tabstop>
+  <tabstop>telephone_2</tabstop>
+  <tabstop>mail_2</tabstop>
+  <tabstop>fax_2</tabstop>
+  <tabstop>affiliation_2</tabstop>
+  <tabstop>combo_roles_2</tabstop>
+  <tabstop>plainTextEdit_3</tabstop>
+  <tabstop>combo_organism</tabstop>
+  <tabstop>identifier_3</tabstop>
+  <tabstop>combo_variant</tabstop>
+  <tabstop>identifier_4</tabstop>
+  <tabstop>combo_part</tabstop>
+  <tabstop>identifier_5</tabstop>
+  <tabstop>tabWidget_2</tabstop>
+  <tabstop>textEdit_4</tabstop>
+  <tabstop>textEdit_5</tabstop>
+  <tabstop>textEdit_6</tabstop>
+  <tabstop>textEdit_7</tabstop>
+  <tabstop>textEdit_8</tabstop>
+  <tabstop>status_2</tabstop>
+  <tabstop>roles_2</tabstop>
+  <tabstop>textEdit_3</tabstop>
+ </tabstops>
  <resources>
   <include location="resources.qrc"/>
  </resources>

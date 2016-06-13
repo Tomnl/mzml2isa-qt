@@ -584,6 +584,9 @@ font: 24pt url(:/fonts/assets/fonts/HelveticaNeue.ttf);</string>
     </widget>
    </widget>
    <widget class="QToolButton" name="toolButton_metadata">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>430</x>
@@ -598,6 +601,12 @@ Metadata</string>
     </property>
     <property name="checkable">
      <bool>false</bool>
+    </property>
+    <property name="autoRepeatInterval">
+     <number>100</number>
+    </property>
+    <property name="popupMode">
+     <enum>QToolButton::DelayedPopup</enum>
     </property>
     <property name="autoRaise">
      <bool>false</bool>

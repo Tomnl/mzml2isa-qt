@@ -86,6 +86,12 @@ class Ui_Dialog(object):
 "color: rgb(255,255,255);")
         self.textEdit_filename.setTextInteractionFlags(QtCore.Qt.NoTextInteraction)
         self.textEdit_filename.setObjectName("textEdit_filename")
+        self.frame = QtWidgets.QFrame(Dialog)
+        self.frame.setGeometry(QtCore.QRect(620, 0, 20, 140))
+        self.frame.setStyleSheet("background: rgb(11,123,125);")
+        self.frame.setFrameShape(QtWidgets.QFrame.Box)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Plain)
+        self.frame.setObjectName("frame")
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
