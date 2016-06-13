@@ -49,7 +49,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>120</y>
+      <y>140</y>
       <width>620</width>
       <height>22</height>
      </rect>
@@ -71,7 +71,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>142</y>
+      <y>162</y>
       <width>180</width>
       <height>18</height>
      </rect>
@@ -105,7 +105,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>180</y>
+      <y>200</y>
       <width>620</width>
       <height>22</height>
      </rect>
@@ -130,7 +130,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>240</y>
+      <y>260</y>
       <width>620</width>
       <height>22</height>
      </rect>
@@ -149,7 +149,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>202</y>
+      <y>222</y>
       <width>180</width>
       <height>18</height>
      </rect>
@@ -180,7 +180,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>262</y>
+      <y>282</y>
       <width>180</width>
       <height>18</height>
      </rect>
@@ -211,7 +211,7 @@
     <property name="geometry">
      <rect>
       <x>530</x>
-      <y>142</y>
+      <y>162</y>
       <width>90</width>
       <height>25</height>
      </rect>
@@ -249,7 +249,7 @@
     <property name="geometry">
      <rect>
       <x>530</x>
-      <y>202</y>
+      <y>222</y>
       <width>90</width>
       <height>25</height>
      </rect>
@@ -274,12 +274,12 @@
      <enum>Qt::ToolButtonTextOnly</enum>
     </property>
    </widget>
-   <widget class="QCheckBox" name="cBox_overwrite">
+   <widget class="QCheckBox" name="cBox_separate">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>340</y>
-      <width>280</width>
+      <y>380</y>
+      <width>291</width>
       <height>22</height>
      </rect>
     </property>
@@ -302,14 +302,17 @@
      <string notr="true">font: 10pt url(:/fonts/assets/fonts/Verdana.ttf);</string>
     </property>
     <property name="text">
-     <string>Overwrite existing files</string>
+     <string>Separate positive and negative assays</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QCheckBox" name="cBox_multiple">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>362</y>
+      <y>360</y>
       <width>280</width>
       <height>22</height>
      </rect>
@@ -340,7 +343,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>384</y>
+      <y>400</y>
       <width>340</width>
       <height>22</height>
      </rect>
@@ -374,9 +377,9 @@
     <property name="geometry">
      <rect>
       <x>530</x>
-      <y>340</y>
+      <y>370</y>
       <width>90</width>
-      <height>35</height>
+      <height>51</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -395,8 +398,8 @@
    <widget class="QToolButton" name="toolButton_help">
     <property name="geometry">
      <rect>
-      <x>530</x>
-      <y>380</y>
+      <x>330</x>
+      <y>370</y>
       <width>90</width>
       <height>25</height>
      </rect>
@@ -412,7 +415,7 @@
     <property name="geometry">
      <rect>
       <x>150</x>
-      <y>142</y>
+      <y>162</y>
       <width>370</width>
       <height>18</height>
      </rect>
@@ -444,7 +447,7 @@ font: 10pt url(:/fonts/assets/fonts/Verdana.ttf);</string>
     <property name="geometry">
      <rect>
       <x>150</x>
-      <y>202</y>
+      <y>222</y>
       <width>370</width>
       <height>18</height>
      </rect>
@@ -476,7 +479,7 @@ font: 10pt url(:/fonts/assets/fonts/Verdana.ttf);</string>
     <property name="geometry">
      <rect>
       <x>150</x>
-      <y>262</y>
+      <y>282</y>
       <width>370</width>
       <height>18</height>
      </rect>
@@ -579,6 +582,42 @@ font: 24pt url(:/fonts/assets/fonts/HelveticaNeue.ttf);</string>
       <string>mzML to ISA-Tab </string>
      </property>
     </widget>
+   </widget>
+   <widget class="QToolButton" name="toolButton_metadata">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>370</y>
+      <width>90</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add 
+Metadata</string>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+    <property name="autoRaise">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton_about">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>395</y>
+      <width>90</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 10pt url(:/fonts/assets/fonts/Verdana.ttf);</string>
+    </property>
+    <property name="text">
+     <string>About</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

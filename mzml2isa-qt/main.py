@@ -4,6 +4,7 @@
 import sys
 import os
 import glob
+import json
 import textwrap
 import time
 
@@ -19,6 +20,8 @@ from PyQt5.QtGui import QPalette
 from qt.main import Ui_MainWindow
 from qt.progress import Ui_Dialog as Ui_Progress
 
+from usermeta import UserMetaDialog
+
 
 
 class MainWindow(QMainWindow):
@@ -33,10 +36,12 @@ class MainWindow(QMainWindow):
         self.ui.PushBut_convert.clicked.connect(self.launchParser)
         self.ui.toolButton_input_explore.clicked.connect(self.explore_input)
         self.ui.toolButton_output_explore.clicked.connect(self.explore_output)
+        self.ui.toolButton_metadata.clicked.connect(self.getUserMeta)
 
         # Connect up the checkboxes
         self.ui.cBox_multiple.stateChanged.connect(self.toggleMultiple)
         self.ui.cBox_export.stateChanged.connect(self.toggleExport)
+
 
 
     def toggleMultiple(self, int):
@@ -75,9 +80,9 @@ class MainWindow(QMainWindow):
 
         LEGIT, inputDir, outputDir, studyName = self.checkArgs()
         if not LEGIT: return
-        
+                
         # Open the progress window
-        self.progress = ParserProgress(inputDir, outputDir, studyName)
+        self.progress = ParserProgress(inputDir, outputDir, studyName, self.userMeta)
         self.progress.exec_()
 
         # Resets field after parser was launched
@@ -151,8 +156,17 @@ class MainWindow(QMainWindow):
         return LEGIT, inputDir, outputDir, studyName
 
 
+    def getUserMeta(self):
+        if not hasattr(self, 'useMeta'):
+            self.userMeta = {}
 
+        userMetaDialog = UserMetaDialog(self, self.userMeta)
+        userMetaDialog.SigUpdateMetadata.connect(self.updateMetadata)
+        userMetaDialog.exec_()
 
+    def updateMetadata(self, json_metadata):
+        self.metadata = json.loads(json_metadata)
+        print(self.metadata)
 
 
 
@@ -167,7 +181,7 @@ class MainWindow(QMainWindow):
 
 class ParserProgress(QDialog):
 
-    def __init__(self, inputDir, outputDir, studyName):
+    def __init__(self, inputDir, outputDir, studyName, userMeta):
         super(ParserProgress, self).__init__()
         self.ui = Ui_Progress()
         self.ui.setupUi(self)
@@ -175,15 +189,16 @@ class ParserProgress(QDialog):
         self.inputDir = inputDir
         self.outputDir = outputDir
         self.studyName = studyName
+        self.userMeta = userMeta
       
         if studyName or ('MZML' in [x[-4:].upper() for x in os.listdir(inputDir)]) :
             self.ui.label_study.setText(studyName)
             self.ui.pBar_studies.hide()
-            self.parse_thread = ParserThread(inputDir, outputDir, studyName, True)
+            self.parse_thread = ParserThread(inputDir, outputDir, studyName, True, userMeta)
 
         else:
             self.ui.label_study.hide()
-            self.parse_thread = ParserThread(inputDir, outputDir, studyName, False)
+            self.parse_thread = ParserThread(inputDir, outputDir, studyName, False, userMeta)
         
         self.parse_thread.maxFileBar.connect(self.setFilesMaximum)
         self.parse_thread.maxStudyBar.connect(self.setStudiesMaximum)
@@ -253,12 +268,13 @@ class ParserThread(QThread):
     ErrorSig = pyqtSignal('QString')
 
 
-    def __init__(self, inputDir, outputDir, studyName, single=True):
+    def __init__(self, inputDir, outputDir, studyName, single=True, userMeta = {}):
         super(QThread, self).__init__()
         self.inputDir = inputDir
         self.outputDir = outputDir
         self.studyName = studyName
         self.single = single
+        self.userMeta = userMeta
 
         self.ForceQuitSig.connect(self.forceQuit)
 
@@ -322,7 +338,7 @@ class ParserThread(QThread):
 
             # Create the isa Tab
             try:
-                isa_tab_create = mzml2isa.isa.ISA_Tab(metalist, self.outputDir, study)
+                isa_tab_create = mzml2isa.isa.ISA_Tab(metalist, self.outputDir, study, self.userMeta)
             except Exception as e:
                 self.ErrorSig.emit('An error was encountered while writing ISA-Tab (study {}):\n\n{}'.format(study, 
                                                                                                              str(type(e).__name__)+" "+str(e)
@@ -377,7 +393,7 @@ class ParserThread(QThread):
         # Create the isa Tab
         self.Console.emit("> Creating ISA-Tab files")
         #try:
-        isa_tab_create = mzml2isa.isa.ISA_Tab(metalist, self.outputDir, self.studyName)
+        isa_tab_create = mzml2isa.isa.ISA_Tab(metalist, self.outputDir, self.studyName, self.userMeta)
         #except Exception as e:
         #    self.ErrorSig.emit('An error was encountered while writing ISA-Tab in {}:\n\n{}'.format(self.outputDir, 
         #                                                                                            str(type(e).__name__)+" "+str(e)
