@@ -168,10 +168,7 @@ class MainWindow(QMainWindow):
 
 
 if __name__ == '__main__':   
-    try: 
-        app = QApplication(sys.argv)
-        mainwindow = MainWindow()
-        mainwindow.show()
-        sys.exit(app.exec_())
-    except KeyboardInterrupt:
-        sys.exit()
+    app = QApplication(sys.argv)
+    mainwindow = MainWindow()
+    mainwindow.show()
+    sys.exit(app.exec_())

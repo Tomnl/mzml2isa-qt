@@ -44,7 +44,7 @@
     <enum>QTabWidget::Rounded</enum>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>2</number>
    </property>
    <property name="usesScrollButtons">
     <bool>true</bool>
@@ -64,7 +64,7 @@
     </attribute>
     <widget class="QLineEdit" name="identifier">
      <property name="enabled">
-      <bool>true</bool>
+      <bool>false</bool>
      </property>
      <property name="geometry">
       <rect>
@@ -74,8 +74,14 @@
        <height>25</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">font: italic 10pt url(:/fonts/assets/fonts/Verdana.ttf);</string>
+     </property>
      <property name="text">
       <string/>
+     </property>
+     <property name="placeholderText">
+      <string>will use study identifier name from main window</string>
      </property>
     </widget>
     <widget class="QLineEdit" name="title">
@@ -93,7 +99,7 @@
     </widget>
     <widget class="QLabel" name="label">
      <property name="enabled">
-      <bool>true</bool>
+      <bool>false</bool>
      </property>
      <property name="geometry">
       <rect>
@@ -142,6 +148,9 @@
        <height>25</height>
       </rect>
      </property>
+     <property name="displayFormat">
+      <string>yyyy-MM-dd</string>
+     </property>
      <property name="calendarPopup">
       <bool>true</bool>
      </property>
@@ -171,6 +180,9 @@
      <property name="showGroupSeparator" stdset="0">
       <bool>false</bool>
      </property>
+     <property name="displayFormat">
+      <string>yyyy-MM-dd</string>
+     </property>
      <property name="calendarPopup">
       <bool>true</bool>
      </property>
@@ -181,7 +193,7 @@
        <x>20</x>
        <y>20</y>
        <width>261</width>
-       <height>16</height>
+       <height>31</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -190,6 +202,9 @@
      <property name="text">
       <string>Study</string>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
     </widget>
     <widget class="QLabel" name="label_6">
      <property name="geometry">
@@ -197,7 +212,7 @@
        <x>20</x>
        <y>230</y>
        <width>261</width>
-       <height>16</height>
+       <height>31</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -205,6 +220,9 @@
      </property>
      <property name="text">
       <string>Study Publication</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
      </property>
     </widget>
     <widget class="QLineEdit" name="pubmed_id">
@@ -289,6 +307,9 @@
      </property>
     </widget>
     <widget class="QComboBox" name="combo_status">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -297,6 +318,11 @@
        <height>25</height>
       </rect>
      </property>
+     <item>
+      <property name="text">
+       <string>connecting to PSO &lt;sparontologies.net/ontologies/pso&gt;</string>
+      </property>
+     </item>
     </widget>
     <widget class="QLabel" name="label_10">
      <property name="geometry">
@@ -330,7 +356,7 @@
        <x>470</x>
        <y>230</y>
        <width>261</width>
-       <height>16</height>
+       <height>31</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -339,13 +365,16 @@
      <property name="text">
       <string>Study Contact *</string>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
     </widget>
     <widget class="QLineEdit" name="first_name">
      <property name="geometry">
       <rect>
        <x>470</x>
        <y>280</y>
-       <width>131</width>
+       <width>130</width>
        <height>25</height>
       </rect>
      </property>
@@ -353,9 +382,9 @@
     <widget class="QLineEdit" name="mid">
      <property name="geometry">
       <rect>
-       <x>610</x>
+       <x>620</x>
        <y>280</y>
-       <width>51</width>
+       <width>45</width>
        <height>25</height>
       </rect>
      </property>
@@ -415,7 +444,7 @@
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QLineEdit" name="telephone">
+    <widget class="QLineEdit" name="phone">
      <property name="geometry">
       <rect>
        <x>470</x>
@@ -494,33 +523,41 @@
      </property>
     </widget>
     <widget class="QComboBox" name="combo_roles">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>470</x>
-       <y>430</y>
+       <y>480</y>
        <width>195</width>
        <height>25</height>
       </rect>
      </property>
+     <item>
+      <property name="text">
+       <string>connecting to PRO &lt;...&gt;</string>
+      </property>
+     </item>
     </widget>
     <widget class="QLabel" name="label_20">
      <property name="geometry">
       <rect>
        <x>470</x>
-       <y>410</y>
+       <y>460</y>
        <width>131</width>
        <height>25</height>
       </rect>
      </property>
      <property name="text">
-      <string>Roles</string>
+      <string>Role</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_21">
      <property name="geometry">
       <rect>
        <x>685</x>
-       <y>410</y>
+       <y>360</y>
        <width>131</width>
        <height>25</height>
       </rect>
@@ -529,13 +566,13 @@
       <string>Adress</string>
      </property>
     </widget>
-    <widget class="QPlainTextEdit" name="plainTextEdit_2">
+    <widget class="QPlainTextEdit" name="adress">
      <property name="geometry">
       <rect>
        <x>685</x>
-       <y>430</y>
+       <y>379</y>
        <width>195</width>
-       <height>80</height>
+       <height>131</height>
       </rect>
      </property>
     </widget>
@@ -565,8 +602,8 @@
     <widget class="QLabel" name="label_23">
      <property name="geometry">
       <rect>
-       <x>685</x>
-       <y>360</y>
+       <x>470</x>
+       <y>410</y>
        <width>131</width>
        <height>25</height>
       </rect>
@@ -578,8 +615,8 @@
     <widget class="QLineEdit" name="affiliation">
      <property name="geometry">
       <rect>
-       <x>685</x>
-       <y>380</y>
+       <x>470</x>
+       <y>430</y>
        <width>195</width>
        <height>25</height>
       </rect>
@@ -608,61 +645,40 @@
       </rect>
      </property>
     </widget>
-    <widget class="Line" name="line_3">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>200</y>
-       <width>861</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-    </widget>
-    <widget class="QTextEdit" name="status">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
+    <widget class="QLineEdit" name="status">
      <property name="geometry">
       <rect>
        <x>20</x>
        <y>370</y>
-       <width>401</width>
+       <width>421</width>
        <height>41</height>
       </rect>
      </property>
-     <property name="frameShape">
-      <enum>QFrame::NoFrame</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Plain</enum>
+     <property name="frame">
+      <bool>false</bool>
      </property>
     </widget>
-    <widget class="QTextEdit" name="roles">
+    <widget class="QLineEdit" name="roles">
      <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="geometry">
       <rect>
        <x>470</x>
-       <y>435</y>
-       <width>190</width>
-       <height>16</height>
+       <y>480</y>
+       <width>195</width>
+       <height>25</height>
       </rect>
      </property>
-     <property name="frameShape">
-      <enum>QFrame::NoFrame</enum>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(0, 0, 0);</string>
      </property>
-     <property name="frameShadow">
-      <enum>QFrame::Plain</enum>
-     </property>
-     <property name="readOnly">
-      <bool>true</bool>
+     <property name="frame">
+      <bool>false</bool>
      </property>
     </widget>
     <zorder>roles</zorder>
+    <zorder>status</zorder>
     <zorder>identifier</zorder>
     <zorder>title</zorder>
     <zorder>label</zorder>
@@ -687,7 +703,7 @@
     <zorder>label_13</zorder>
     <zorder>label_14</zorder>
     <zorder>label_15</zorder>
-    <zorder>telephone</zorder>
+    <zorder>phone</zorder>
     <zorder>label_16</zorder>
     <zorder>mail</zorder>
     <zorder>label_17</zorder>
@@ -696,15 +712,13 @@
     <zorder>combo_roles</zorder>
     <zorder>label_20</zorder>
     <zorder>label_21</zorder>
-    <zorder>plainTextEdit_2</zorder>
+    <zorder>adress</zorder>
     <zorder>description</zorder>
     <zorder>fax</zorder>
     <zorder>label_23</zorder>
     <zorder>affiliation</zorder>
     <zorder>label_51</zorder>
     <zorder>authors_list</zorder>
-    <zorder>line_3</zorder>
-    <zorder>status</zorder>
     <zorder>combo_status</zorder>
     <zorder>label_10</zorder>
    </widget>
@@ -734,6 +748,9 @@
        <height>25</height>
       </rect>
      </property>
+     <property name="displayFormat">
+      <string>yyyy-MM-dd</string>
+     </property>
     </widget>
     <widget class="QDateEdit" name="release_date_2">
      <property name="geometry">
@@ -743,6 +760,9 @@
        <width>201</width>
        <height>25</height>
       </rect>
+     </property>
+     <property name="displayFormat">
+      <string>yyyy-MM-dd</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_24">
@@ -764,7 +784,7 @@
        <x>20</x>
        <y>20</y>
        <width>261</width>
-       <height>16</height>
+       <height>21</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -773,8 +793,14 @@
      <property name="text">
       <string>Investigation</string>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
     </widget>
     <widget class="QLineEdit" name="identifier_2">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -783,8 +809,14 @@
        <height>25</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">font: italic 10pt url(:/fonts/assets/fonts/Verdana.ttf);</string>
+     </property>
      <property name="text">
       <string/>
+     </property>
+     <property name="placeholderText">
+      <string>will use study identifier name from main window</string>
      </property>
     </widget>
     <widget class="QTextEdit" name="description_2">
@@ -811,6 +843,9 @@
      </property>
     </widget>
     <widget class="QLabel" name="label_27">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -855,7 +890,7 @@
        <x>470</x>
        <y>230</y>
        <width>261</width>
-       <height>16</height>
+       <height>31</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -863,6 +898,9 @@
      </property>
      <property name="text">
       <string>Investigation Contact</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
      </property>
     </widget>
     <widget class="QLineEdit" name="pubmed_id_2">
@@ -923,8 +961,8 @@
     <widget class="QLineEdit" name="affiliation_2">
      <property name="geometry">
       <rect>
-       <x>685</x>
-       <y>380</y>
+       <x>470</x>
+       <y>430</y>
        <width>195</width>
        <height>25</height>
       </rect>
@@ -954,14 +992,31 @@
      </property>
     </widget>
     <widget class="QComboBox" name="combo_status_2">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>20</x>
        <y>380</y>
-       <width>131</width>
+       <width>421</width>
        <height>25</height>
       </rect>
      </property>
+     <property name="currentText">
+      <string>connecting to PSO &lt;sparontologies.net/ontologies/pso&gt;</string>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <property name="maxVisibleItems">
+      <number>10</number>
+     </property>
+     <item>
+      <property name="text">
+       <string>connecting to PSO &lt;sparontologies.net/ontologies/pso&gt;</string>
+      </property>
+     </item>
     </widget>
     <widget class="QLabel" name="label_32">
      <property name="geometry">
@@ -976,38 +1031,13 @@
       <string>Status</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="status_2">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>170</x>
-       <y>380</y>
-       <width>271</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
-     <property name="inputMethodHints">
-      <set>Qt::ImhNone</set>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-    </widget>
     <widget class="QLabel" name="label_33">
      <property name="geometry">
       <rect>
        <x>20</x>
        <y>230</y>
        <width>261</width>
-       <height>16</height>
+       <height>21</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -1016,21 +1046,24 @@
      <property name="text">
       <string>Investigation Publication</string>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
     </widget>
     <widget class="QLabel" name="label_34">
      <property name="geometry">
       <rect>
        <x>470</x>
-       <y>410</y>
+       <y>460</y>
        <width>131</width>
        <height>25</height>
       </rect>
      </property>
      <property name="text">
-      <string>Roles</string>
+      <string>Role</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="telephone_2">
+    <widget class="QLineEdit" name="phone_2">
      <property name="geometry">
       <rect>
        <x>470</x>
@@ -1044,7 +1077,7 @@
      <property name="geometry">
       <rect>
        <x>685</x>
-       <y>410</y>
+       <y>360</y>
        <width>131</width>
        <height>25</height>
       </rect>
@@ -1056,9 +1089,9 @@
     <widget class="QLineEdit" name="mid_2">
      <property name="geometry">
       <rect>
-       <x>610</x>
+       <x>620</x>
        <y>280</y>
-       <width>51</width>
+       <width>45</width>
        <height>25</height>
       </rect>
      </property>
@@ -1079,8 +1112,8 @@
     <widget class="QLabel" name="label_37">
      <property name="geometry">
       <rect>
-       <x>685</x>
-       <y>360</y>
+       <x>470</x>
+       <y>410</y>
        <width>131</width>
        <height>25</height>
       </rect>
@@ -1161,13 +1194,13 @@
       <string>Title</string>
      </property>
     </widget>
-    <widget class="QPlainTextEdit" name="plainTextEdit_3">
+    <widget class="QPlainTextEdit" name="adress_2">
      <property name="geometry">
       <rect>
        <x>685</x>
-       <y>430</y>
+       <y>379</y>
        <width>195</width>
-       <height>80</height>
+       <height>131</height>
       </rect>
      </property>
     </widget>
@@ -1185,14 +1218,22 @@
      </property>
     </widget>
     <widget class="QComboBox" name="combo_roles_2">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>470</x>
-       <y>430</y>
+       <y>480</y>
        <width>195</width>
        <height>25</height>
       </rect>
      </property>
+     <item>
+      <property name="text">
+       <string>connecting to PRO &lt;...&gt;</string>
+      </property>
+     </item>
     </widget>
     <widget class="QLabel" name="label_41">
      <property name="geometry">
@@ -1227,13 +1268,16 @@
      <property name="geometry">
       <rect>
        <x>470</x>
-       <y>460</y>
+       <y>480</y>
        <width>195</width>
        <height>25</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">color: rgb(0, 0, 0);</string>
+     </property>
+     <property name="frame">
+      <bool>false</bool>
      </property>
     </widget>
     <widget class="QLabel" name="label_43">
@@ -1292,6 +1336,9 @@
      </property>
     </widget>
     <widget class="QTextEdit" name="authors_list_2">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -1301,22 +1348,68 @@
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">color:disabled rgb(0,0,0);</string>
+      <string notr="true"/>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QLineEdit" name="status_2">
      <property name="geometry">
       <rect>
-       <x>370</x>
-       <y>20</y>
-       <width>91</width>
-       <height>26</height>
+       <x>20</x>
+       <y>370</y>
+       <width>421</width>
+       <height>41</height>
       </rect>
      </property>
-     <property name="text">
-      <string>PushButton</string>
+     <property name="frame">
+      <bool>false</bool>
      </property>
     </widget>
+    <zorder>roles_2</zorder>
+    <zorder>status_2</zorder>
+    <zorder>label_19</zorder>
+    <zorder>submission_date_2</zorder>
+    <zorder>release_date_2</zorder>
+    <zorder>label_24</zorder>
+    <zorder>label_25</zorder>
+    <zorder>identifier_2</zorder>
+    <zorder>description_2</zorder>
+    <zorder>label_26</zorder>
+    <zorder>label_27</zorder>
+    <zorder>title_2</zorder>
+    <zorder>label_28</zorder>
+    <zorder>label_29</zorder>
+    <zorder>pubmed_id_2</zorder>
+    <zorder>line_2</zorder>
+    <zorder>label_30</zorder>
+    <zorder>last_name_2</zorder>
+    <zorder>affiliation_2</zorder>
+    <zorder>first_name_2</zorder>
+    <zorder>label_31</zorder>
+    <zorder>combo_status_2</zorder>
+    <zorder>label_32</zorder>
+    <zorder>label_33</zorder>
+    <zorder>label_34</zorder>
+    <zorder>phone_2</zorder>
+    <zorder>label_35</zorder>
+    <zorder>mid_2</zorder>
+    <zorder>label_36</zorder>
+    <zorder>label_37</zorder>
+    <zorder>mail_2</zorder>
+    <zorder>doi_2</zorder>
+    <zorder>fax_2</zorder>
+    <zorder>label_38</zorder>
+    <zorder>pub_title_2</zorder>
+    <zorder>label_39</zorder>
+    <zorder>adress_2</zorder>
+    <zorder>label_40</zorder>
+    <zorder>combo_roles_2</zorder>
+    <zorder>label_41</zorder>
+    <zorder>label_42</zorder>
+    <zorder>label_43</zorder>
+    <zorder>contact_sameas</zorder>
+    <zorder>pub_sameas</zorder>
+    <zorder>label_52</zorder>
+    <zorder>authors_list_2</zorder>
    </widget>
    <widget class="QWidget" name="tab_misc">
     <property name="enabled">
@@ -1354,12 +1447,12 @@
       <string>Organism</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="identifier_3">
+    <widget class="QLineEdit" name="id_organism">
      <property name="geometry">
       <rect>
-       <x>150</x>
+       <x>190</x>
        <y>70</y>
-       <width>401</width>
+       <width>181</width>
        <height>25</height>
       </rect>
      </property>
@@ -1367,7 +1460,7 @@
       <string/>
      </property>
      <property name="placeholderText">
-      <string>e.g. http://purl.bioontology.org/ontology/NCBITAXON/10090</string>
+      <string>ID (numbers only)</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_46">
@@ -1383,12 +1476,12 @@
       <string>Organism variant</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="identifier_4">
+    <widget class="QLineEdit" name="id_organism_variant">
      <property name="geometry">
       <rect>
-       <x>150</x>
+       <x>190</x>
        <y>130</y>
-       <width>401</width>
+       <width>181</width>
        <height>25</height>
       </rect>
      </property>
@@ -1396,61 +1489,15 @@
       <string/>
      </property>
      <property name="placeholderText">
-      <string>e.g. http://www.ebi.ac.uk/efo/EFO_0005181</string>
+      <string>ID (numbers only)</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="combo_organism">
+    <widget class="QLineEdit" name="id_organism_part">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>70</y>
-       <width>111</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="currentText">
-      <string>NCBITAXON</string>
-     </property>
-     <item>
-      <property name="text">
-       <string>NCBITAXON</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>VTO</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>EFO</string>
-      </property>
-     </item>
-    </widget>
-    <widget class="QComboBox" name="combo_variant">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>130</y>
-       <width>110</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="currentText">
-      <string>EFO</string>
-     </property>
-     <item>
-      <property name="text">
-       <string>EFO</string>
-      </property>
-     </item>
-    </widget>
-    <widget class="QLineEdit" name="identifier_5">
-     <property name="geometry">
-      <rect>
-       <x>150</x>
+       <x>190</x>
        <y>190</y>
-       <width>401</width>
+       <width>181</width>
        <height>25</height>
       </rect>
      </property>
@@ -1458,31 +1505,8 @@
       <string/>
      </property>
      <property name="placeholderText">
-      <string>e.g. http://purl.bioontology.org/ontology/NCBITAXON/10090</string>
+      <string>ID (numbers only)</string>
      </property>
-    </widget>
-    <widget class="QComboBox" name="combo_part">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>190</y>
-       <width>110</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="currentText">
-      <string>EFO</string>
-     </property>
-     <item>
-      <property name="text">
-       <string>EFO</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>UBERON</string>
-      </property>
-     </item>
     </widget>
     <widget class="QLabel" name="label_47">
      <property name="geometry">
@@ -1497,57 +1521,13 @@
       <string>Organism part</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_48">
-     <property name="geometry">
-      <rect>
-       <x>690</x>
-       <y>50</y>
-       <width>131</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Hint:</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_49">
-     <property name="geometry">
-      <rect>
-       <x>690</x>
-       <y>70</y>
-       <width>181</width>
-       <height>171</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If you do not know the ontology for your organism / variant / part, try looking for it at the &lt;a href=&quot;http://www.ebi.ac.uk/ols/index&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Experimental Factor Ontology&lt;/span&gt;&lt;/a&gt;. Once the right ontology found, the ID can be copied and pasted in the field. Do not forget to change the selection to the proper Ontology you used !&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-     <property name="textFormat">
-      <enum>Qt::RichText</enum>
-     </property>
-     <property name="scaledContents">
-      <bool>false</bool>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignJustify|Qt::AlignVCenter</set>
-     </property>
-     <property name="wordWrap">
-      <bool>true</bool>
-     </property>
-     <property name="indent">
-      <number>0</number>
-     </property>
-     <property name="openExternalLinks">
-      <bool>true</bool>
-     </property>
-    </widget>
     <widget class="QLabel" name="label_50">
      <property name="geometry">
       <rect>
        <x>20</x>
        <y>250</y>
        <width>261</width>
-       <height>16</height>
+       <height>31</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -1555,6 +1535,9 @@
      </property>
      <property name="text">
       <string>Protocols description *</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
      </property>
     </widget>
     <widget class="QTabWidget" name="tabWidget_2">
@@ -1567,13 +1550,13 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>5</number>
+      <number>0</number>
      </property>
-     <widget class="QWidget" name="sample_collection">
+     <widget class="QWidget" name="sample_collect">
       <attribute name="title">
        <string>Sample collection</string>
       </attribute>
-      <widget class="QTextEdit" name="textEdit_3">
+      <widget class="QTextEdit" name="sample_collect_desc">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -1596,11 +1579,11 @@
        </property>
       </widget>
      </widget>
-     <widget class="QWidget" name="tab_2">
+     <widget class="QWidget" name="extraction">
       <attribute name="title">
        <string>Extraction</string>
       </attribute>
-      <widget class="QTextEdit" name="textEdit_4">
+      <widget class="QTextEdit" name="extraction_desc">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -1623,11 +1606,11 @@
        </property>
       </widget>
      </widget>
-     <widget class="QWidget" name="tab">
+     <widget class="QWidget" name="chroma">
       <attribute name="title">
        <string>Chromatography</string>
       </attribute>
-      <widget class="QTextEdit" name="textEdit_5">
+      <widget class="QTextEdit" name="chroma_desc">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -1650,11 +1633,11 @@
        </property>
       </widget>
      </widget>
-     <widget class="QWidget" name="tab_3">
+     <widget class="QWidget" name="mass_spec">
       <attribute name="title">
        <string>Mass spectrometry</string>
       </attribute>
-      <widget class="QTextEdit" name="textEdit_6">
+      <widget class="QTextEdit" name="mass_spec_desc">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -1677,11 +1660,11 @@
        </property>
       </widget>
      </widget>
-     <widget class="QWidget" name="tab_4">
+     <widget class="QWidget" name="data_trans">
       <attribute name="title">
        <string>Data transformation</string>
       </attribute>
-      <widget class="QTextEdit" name="textEdit_7">
+      <widget class="QTextEdit" name="data_trans_desc">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -1704,11 +1687,11 @@
        </property>
       </widget>
      </widget>
-     <widget class="QWidget" name="tab_5">
+     <widget class="QWidget" name="metabo_id">
       <attribute name="title">
        <string>Metabolite identification</string>
       </attribute>
-      <widget class="QTextEdit" name="textEdit_8">
+      <widget class="QTextEdit" name="metabo_id_desc">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -1731,6 +1714,114 @@
        </property>
       </widget>
      </widget>
+    </widget>
+    <widget class="QPushButton" name="search_organism">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>70</y>
+       <width>41</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>EBI-Conceptual</family>
+       <pointsize>14</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 14pt &quot;:/fonts/assets/fonts/EBI-Conceptual.ttf&quot;;
+font-family: &quot;EBI-Conceptual&quot;;</string>
+     </property>
+     <property name="text">
+      <string>o</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="search_organism_variant">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>130</y>
+       <width>41</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>EBI-Conceptual</family>
+       <pointsize>14</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 14pt &quot;:/fonts/assets/fonts/EBI-Conceptual.ttf&quot;;
+font-family: &quot;EBI-Conceptual&quot;;</string>
+     </property>
+     <property name="text">
+      <string>o</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="search_organism_part">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>190</y>
+       <width>41</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>EBI-Conceptual</family>
+       <pointsize>14</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 14pt &quot;:/fonts/assets/fonts/EBI-Conceptual.ttf&quot;;
+font-family: &quot;EBI-Conceptual&quot;;</string>
+     </property>
+     <property name="text">
+      <string>o</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>70</y>
+       <width>161</width>
+       <height>25</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_2">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>130</y>
+       <width>161</width>
+       <height>25</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_3">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>190</y>
+       <width>161</width>
+       <height>25</height>
+      </rect>
+     </property>
     </widget>
    </widget>
   </widget>
@@ -1794,12 +1885,12 @@
   <tabstop>first_name</tabstop>
   <tabstop>mid</tabstop>
   <tabstop>last_name</tabstop>
-  <tabstop>telephone</tabstop>
+  <tabstop>phone</tabstop>
   <tabstop>mail</tabstop>
   <tabstop>fax</tabstop>
   <tabstop>affiliation</tabstop>
   <tabstop>combo_roles</tabstop>
-  <tabstop>plainTextEdit_2</tabstop>
+  <tabstop>adress</tabstop>
   <tabstop>tabWidget</tabstop>
   <tabstop>identifier_2</tabstop>
   <tabstop>title_2</tabstop>
@@ -1816,27 +1907,23 @@
   <tabstop>first_name_2</tabstop>
   <tabstop>mid_2</tabstop>
   <tabstop>last_name_2</tabstop>
-  <tabstop>telephone_2</tabstop>
+  <tabstop>phone_2</tabstop>
   <tabstop>mail_2</tabstop>
   <tabstop>fax_2</tabstop>
   <tabstop>affiliation_2</tabstop>
   <tabstop>combo_roles_2</tabstop>
-  <tabstop>plainTextEdit_3</tabstop>
-  <tabstop>combo_organism</tabstop>
-  <tabstop>identifier_3</tabstop>
-  <tabstop>combo_variant</tabstop>
-  <tabstop>identifier_4</tabstop>
-  <tabstop>combo_part</tabstop>
-  <tabstop>identifier_5</tabstop>
+  <tabstop>adress_2</tabstop>
+  <tabstop>id_organism</tabstop>
+  <tabstop>id_organism_variant</tabstop>
+  <tabstop>id_organism_part</tabstop>
   <tabstop>tabWidget_2</tabstop>
-  <tabstop>textEdit_4</tabstop>
-  <tabstop>textEdit_5</tabstop>
-  <tabstop>textEdit_6</tabstop>
-  <tabstop>textEdit_7</tabstop>
-  <tabstop>textEdit_8</tabstop>
-  <tabstop>status_2</tabstop>
+  <tabstop>extraction_desc</tabstop>
+  <tabstop>chroma_desc</tabstop>
+  <tabstop>mass_spec_desc</tabstop>
+  <tabstop>data_trans_desc</tabstop>
+  <tabstop>metabo_id_desc</tabstop>
   <tabstop>roles_2</tabstop>
-  <tabstop>textEdit_3</tabstop>
+  <tabstop>sample_collect_desc</tabstop>
  </tabstops>
  <resources>
   <include location="resources.qrc"/>
