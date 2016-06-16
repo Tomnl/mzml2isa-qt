@@ -226,25 +226,6 @@ color: rgb(255,255,255);</string>
     <set>Qt::NoTextInteraction</set>
    </property>
   </widget>
-  <widget class="QFrame" name="frame">
-   <property name="geometry">
-    <rect>
-     <x>620</x>
-     <y>0</y>
-     <width>20</width>
-     <height>140</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background: rgb(11,123,125);</string>
-   </property>
-   <property name="frameShape">
-    <enum>QFrame::Box</enum>
-   </property>
-   <property name="frameShadow">
-    <enum>QFrame::Plain</enum>
-   </property>
-  </widget>
  </widget>
  <resources>
   <include location="resources.qrc"/>

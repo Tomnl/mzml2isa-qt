@@ -46,6 +46,9 @@ class MainWindow(QMainWindow):
         self.ui.cBox_multiple.stateChanged.connect(self.toggleMultiple)
         self.ui.cBox_export.stateChanged.connect(self.toggleExport)
 
+        # init some attributes
+        self.userMeta = {}
+
     def toggleMultiple(self, int):
         """ Toggle the Study LineEdit when multiple studies checkbox is checked """
         if self.ui.cBox_multiple.isChecked():
@@ -122,6 +125,8 @@ class MainWindow(QMainWindow):
             if not [x for x in os.listdir(inputDir) if x[-4:].upper() == "MZML"]:   
                 self.ui.lbl_input_error.setText("Directory contains no mzML files")
                 LEGIT = False
+            else:
+                self.ui.lbl_input_error.setText("")    
         elif self.ui.cBox_export.isChecked() and not os.access(inputDir, os.W_OK):
             self.ui.lbl_input_error.setText("Directory has no write permissions")
             LEGIT = False

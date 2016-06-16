@@ -150,10 +150,7 @@ class ParserThread(QThread):
             # Update progress bar
             # self.ui.pBar_parse.setMaximum(len(mzml_files))
             self.maxFileBar.emit(len(mzml_files))
-
-
-            # QApplication.processEvents()
-            
+           
             # get meta information for all files
             metalist = []
             for mindex, mzml_file in enumerate(mzml_files):

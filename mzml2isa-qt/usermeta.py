@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
 
 import os
+import sys
 import json
+import urllib.request as rq
+import urllib.error
+
 
 from PyQt5.QtWidgets import * #QApplication, QMainWindow
 from PyQt5.QtCore import *
@@ -10,36 +14,40 @@ from PyQt5.QtGui import QPalette
 from mzml2isa.isa import USERMETA
 from mzml2isa.versionutils import dict_update
 
-from scrapers import PSOThread, PROThread
+#from scrapers import PSOThread, PROThread
 from ols import OlsDialog
 
 from qt.usermeta import Ui_Dialog as Ui_UserMeta
+
+
 class UserMetaDialog(QDialog):
 
     SigUpdateMetadata = pyqtSignal('QString')
 
     def __init__(self, parent=None, metadata={}):
-        
-        super(UserMetaDialog, self).__init__(parent)
-        
 
-        self.metadata = dict_update(USERMETA, metadata)
-        
-        # Set up the user interface from Designer.
+        super(UserMetaDialog, self).__init__(parent)
+
         self.ui = Ui_UserMeta()
         self.ui.setupUi(self)
 
-        # Connect buttons
-        self.ui.buttonBox.button(QDialogButtonBox.Save).clicked.connect(self.save)
+        self.metadata = dict_update(USERMETA, metadata)
+
+        self.ui.buttonBox.button(QDialogButtonBox.Apply).clicked.connect(self.save)
         self.ui.buttonBox.button(QDialogButtonBox.Ok).clicked.connect(self.saveandquit)
         self.ui.buttonBox.button(QDialogButtonBox.Cancel).clicked.connect(self.close)
         self.ui.search_organism.clicked.connect(self.searchOrganism)
         self.ui.search_organism_part.clicked.connect(self.searchOrganismPart)
         self.ui.search_organism_variant.clicked.connect(self.searchOrganismVariant)
+        self.ui.rm_organism.clicked.connect(lambda: self.updateOrganism('null'))                # As this get deserialized
+        self.ui.rm_organism_variant.clicked.connect(lambda: self.updateOrganismVariant('null')) # from JSON, nill is the way
+        self.ui.rm_organism_part.clicked.connect(lambda: self.updateOrganismPart('null'))       # to set ontology to None
 
         self.launchScrapers()
         self.setUpDates()
         self.fillFields()
+
+        self.ui.buttonBox.button(QDialogButtonBox.Apply).setFocus()
 
     def launchScrapers(self):
         self.PSOscraper = PSOThread()
@@ -89,14 +97,14 @@ class UserMetaDialog(QDialog):
         self.ui.pub_title.setText(self.metadata['study_publication']['title'])
         self.ui.authors_list.setPlainText(self.metadata['study_publication']['author_list'])        
         ### Contact
-        self.ui.first_name.setText(self.metadata['study_contacts']['first_name'])
-        self.ui.mid.setText(self.metadata['study_contacts']['mid_initials'])
-        self.ui.last_name.setText(self.metadata['study_contacts']['last_name'])
-        self.ui.mail.setText(self.metadata['study_contacts']['email'])
-        self.ui.phone.setText(self.metadata['study_contacts']['phone'])
-        self.ui.fax.setText(self.metadata['study_contacts']['fax'])
-        self.ui.adress.setPlainText(self.metadata['study_contacts']['adress'])
-        self.ui.affiliation.setText(self.metadata['study_contacts']['affiliation'])
+        self.ui.first_name.setText(self.metadata['study_contacts'][0]['first_name'])
+        self.ui.mid.setText(self.metadata['study_contacts'][0]['mid_initials'])
+        self.ui.last_name.setText(self.metadata['study_contacts'][0]['last_name'])
+        self.ui.mail.setText(self.metadata['study_contacts'][0]['email'])
+        self.ui.phone.setText(self.metadata['study_contacts'][0]['phone'])
+        self.ui.fax.setText(self.metadata['study_contacts'][0]['fax'])
+        self.ui.adress.setPlainText(self.metadata['study_contacts'][0]['adress'])
+        self.ui.affiliation.setText(self.metadata['study_contacts'][0]['affiliation'])
 
         ## INVESTIGATION
         ### General
@@ -114,18 +122,28 @@ class UserMetaDialog(QDialog):
         self.ui.pub_title_2.setText(self.metadata['investigation_publication']['title'])
         self.ui.authors_list_2.setPlainText(self.metadata['investigation_publication']['author_list'])
         ### Contact
-        self.ui.first_name_2.setText(self.metadata['investigation_contacts']['first_name'])
-        self.ui.mid_2.setText(self.metadata['investigation_contacts']['mid_initials'])
-        self.ui.last_name_2.setText(self.metadata['investigation_contacts']['last_name'])
-        self.ui.mail_2.setText(self.metadata['investigation_contacts']['email'])
-        self.ui.phone_2.setText(self.metadata['investigation_contacts']['phone'])
-        self.ui.fax_2.setText(self.metadata['investigation_contacts']['fax'])
-        self.ui.adress_2.setPlainText(self.metadata['investigation_contacts']['adress'])
-        self.ui.affiliation_2.setText(self.metadata['investigation_contacts']['affiliation'])
+        self.ui.first_name_2.setText(self.metadata['investigation_contacts'][0]['first_name'])
+        self.ui.mid_2.setText(self.metadata['investigation_contacts'][0]['mid_initials'])
+        self.ui.last_name_2.setText(self.metadata['investigation_contacts'][0]['last_name'])
+        self.ui.mail_2.setText(self.metadata['investigation_contacts'][0]['email'])
+        self.ui.phone_2.setText(self.metadata['investigation_contacts'][0]['phone'])
+        self.ui.fax_2.setText(self.metadata['investigation_contacts'][0]['fax'])
+        self.ui.adress_2.setPlainText(self.metadata['investigation_contacts'][0]['adress'])
+        self.ui.affiliation_2.setText(self.metadata['investigation_contacts'][0]['affiliation'])
 
         ## EXPERIMENTS
         ## Characteristics
-
+        self.ui.name_organism.setText(self.metadata['characteristics']['organism']['value'])
+        self.ui.iri_organism.setText(self.metadata['characteristics']['organism']['accession'])
+        self.ui.ref_organism.setText(self.metadata['characteristics']['organism']['ref'])
+        
+        self.ui.name_organism_part.setText(self.metadata['characteristics']['part']['value'])
+        self.ui.iri_organism_part.setText(self.metadata['characteristics']['part']['accession'])
+        self.ui.ref_organism_part.setText(self.metadata['characteristics']['part']['ref'])
+        
+        self.ui.name_organism_variant.setText(self.metadata['characteristics']['variant']['value'])
+        self.ui.iri_organism_variant.setText(self.metadata['characteristics']['variant']['accession'])
+        self.ui.ref_organism_variant.setText(self.metadata['characteristics']['variant']['ref'])
         ### Descriptions
         self.ui.sample_collect_desc.setPlainText(self.metadata['description']['sample_collect'])
         self.ui.extraction_desc.setPlainText(self.metadata['description']['extraction'])
@@ -153,18 +171,17 @@ class UserMetaDialog(QDialog):
         self.metadata['study_publication']['status']['accession'] = self.ui.status.text()
         self.metadata['study_publication']['status']['ref'] = 'PSO' if self.ui.status.text() else ''
         ### Contact
-        self.metadata['study_contacts']['first_name'] = self.ui.first_name.text()
-        self.metadata['study_contacts']['mid_initials'] = self.ui.mid.text()
-        self.metadata['study_contacts']['last_name'] = self.ui.last_name.text()
-        self.metadata['study_contacts']['email'] = self.ui.mail.text()
-        self.metadata['study_contacts']['phone'] = self.ui.phone.text()
-        self.metadata['study_contacts']['fax'] = self.ui.fax.text()
-        self.metadata['study_contacts']['adress'] = self.ui.adress.toPlainText()
-        self.metadata['study_contacts']['affiliation'] = self.ui.affiliation.text()
-
-        self.metadata['study_contacts']['roles']['value'] = self.ui.combo_roles.currentText() if self.ui.roles.text() else ''
-        self.metadata['study_contacts']['roles']['accession'] = self.ui.roles.text()
-        self.metadata['study_contacts']['roles']['ref'] = 'PRO' if self.ui.roles.text() else ''
+        self.metadata['study_contacts'][0]['first_name'] = self.ui.first_name.text()
+        self.metadata['study_contacts'][0]['mid_initials'] = self.ui.mid.text()
+        self.metadata['study_contacts'][0]['last_name'] = self.ui.last_name.text()
+        self.metadata['study_contacts'][0]['email'] = self.ui.mail.text()
+        self.metadata['study_contacts'][0]['phone'] = self.ui.phone.text()
+        self.metadata['study_contacts'][0]['fax'] = self.ui.fax.text()
+        self.metadata['study_contacts'][0]['adress'] = self.ui.adress.toPlainText()
+        self.metadata['study_contacts'][0]['affiliation'] = self.ui.affiliation.text()
+        self.metadata['study_contacts'][0]['roles']['value'] = self.ui.combo_roles.currentText() if self.ui.roles.text() else ''
+        self.metadata['study_contacts'][0]['roles']['accession'] = self.ui.roles.text()
+        self.metadata['study_contacts'][0]['roles']['ref'] = 'PRO' if self.ui.roles.text() else ''
 
         ## INVESTIGATION
         ### General
@@ -179,24 +196,31 @@ class UserMetaDialog(QDialog):
         self.metadata['investigation_publication']['author_list'] = self.ui.authors_list_2.toPlainText()
         self.metadata['investigation_publication']['status']['value'] = self.ui.combo_status_2.currentText() if self.ui.status_2.text() else ""
         self.metadata['investigation_publication']['status']['accession'] = self.ui.status_2.text()
-        print(self.ui.status_2.text())
         self.metadata['investigation_publication']['status']['ref'] = 'PSO' if self.ui.status_2.text() else ''
         ### Contact
-        self.metadata['investigation_contacts']['first_name'] = self.ui.first_name_2.text()
-        self.metadata['investigation_contacts']['mid_initials'] = self.ui.mid_2.text()
-        self.metadata['investigation_contacts']['last_name'] = self.ui.last_name_2.text()
-        self.metadata['investigation_contacts']['email'] = self.ui.mail_2.text()
-        self.metadata['investigation_contacts']['phone'] = self.ui.phone_2.text()
-        self.metadata['investigation_contacts']['fax'] = self.ui.fax_2.text()
-        self.metadata['investigation_contacts']['adress'] = self.ui.adress_2.toPlainText()
-        self.metadata['investigation_contacts']['affiliation'] = self.ui.affiliation_2.text()
-        self.metadata['investigation_contacts']['roles']['value'] = self.ui.combo_roles_2.currentText() if self.ui.roles_2.text() else ''
-        self.metadata['investigation_contacts']['roles']['accession'] = self.ui.roles_2.text()
-        self.metadata['investigation_contacts']['roles']['ref'] = 'PRO' if self.ui.roles_2.text() else ''
+        self.metadata['investigation_contacts'][0]['first_name'] = self.ui.first_name_2.text()
+        self.metadata['investigation_contacts'][0]['mid_initials'] = self.ui.mid_2.text()
+        self.metadata['investigation_contacts'][0]['last_name'] = self.ui.last_name_2.text()
+        self.metadata['investigation_contacts'][0]['email'] = self.ui.mail_2.text()
+        self.metadata['investigation_contacts'][0]['phone'] = self.ui.phone_2.text()
+        self.metadata['investigation_contacts'][0]['fax'] = self.ui.fax_2.text()
+        self.metadata['investigation_contacts'][0]['adress'] = self.ui.adress_2.toPlainText()
+        self.metadata['investigation_contacts'][0]['affiliation'] = self.ui.affiliation_2.text()
+        self.metadata['investigation_contacts'][0]['roles']['value'] = self.ui.combo_roles_2.currentText() if self.ui.roles_2.text() else ''
+        self.metadata['investigation_contacts'][0]['roles']['accession'] = self.ui.roles_2.text()
+        self.metadata['investigation_contacts'][0]['roles']['ref'] = 'PRO' if self.ui.roles_2.text() else ''
 
         ## EXPERIMENTS
         ## Characteristics
-
+        self.metadata['characteristics']['organism']['value'] = self.ui.name_organism.text()
+        self.metadata['characteristics']['organism']['accession'] = self.ui.iri_organism.text()
+        self.metadata['characteristics']['organism']['ref'] = self.ui.ref_organism.text()
+        self.metadata['characteristics']['part']['value'] = self.ui.name_organism_part.text()
+        self.metadata['characteristics']['part']['accession'] = self.ui.iri_organism_part.text()
+        self.metadata['characteristics']['part']['ref'] = self.ui.ref_organism_part.text()
+        self.metadata['characteristics']['variant']['value'] = self.ui.name_organism_variant.text()
+        self.metadata['characteristics']['variant']['accession'] = self.ui.iri_organism_variant.text()
+        self.metadata['characteristics']['variant']['ref'] = self.ui.ref_organism_variant.text()
         ### Descriptions
         self.metadata['description']['sample_collect'] = self.ui.sample_collect_desc.toPlainText()
         self.metadata['description']['extraction'] = self.ui.extraction_desc.toPlainText()
@@ -214,6 +238,9 @@ class UserMetaDialog(QDialog):
         # Hide status fields (they ARE useful, though !)
         self.ui.status.hide()
         self.ui.status_2.hide()
+        # Hide "connecting to PSO" labels
+        self.ui.label_pso.hide()
+        self.ui.label_pso_2.hide()
         # Add status to combo box
         for i, status in enumerate(self.ontoPSOk):
             self.ui.combo_status.addItem("")
@@ -248,6 +275,9 @@ class UserMetaDialog(QDialog):
         # Hide roles fields (they ARE useful, though !)
         self.ui.roles.hide()
         self.ui.roles_2.hide()
+        # Hide "connecting to PRO" labels
+        self.ui.label_pro.hide()
+        self.ui.label_pro_2.hide()
         # Add status to combo box
         for i, status in enumerate(self.ontoPROk):
             self.ui.combo_roles.addItem("")
@@ -255,15 +285,15 @@ class UserMetaDialog(QDialog):
             self.ui.combo_roles_2.addItem("")
             self.ui.combo_roles_2.setItemText(i, _translate("Dialog", status))
         # Check if value to display
-        if self.metadata['study_contacts']['roles']['value']:
-            self.ui.combo_roles.setCurrentText(self.metadata['study_contacts']['roles']['value'])
-            self.ui.roles.setText(self.metadata['study_contacts']['roles']['accession'])
+        if self.metadata['study_contacts'][0]['roles']['value']:
+            self.ui.combo_roles.setCurrentText(self.metadata['study_contacts'][0]['roles']['value'])
+            self.ui.roles.setText(self.metadata['study_contacts'][0]['roles']['accession'])
         else:
             self.ui.combo_roles.setCurrentIndex(-1)
             
-        if self.metadata['investigation_contacts']['roles']['value']:
-            self.ui.combo_roles_2.setCurrentText(self.metadata['investigation_contacts']['roles']['value'])
-            self.ui.roles_2.setText(self.metadata['investigation_contacts']['roles']['accession'])
+        if self.metadata['investigation_contacts'][0]['roles']['value']:
+            self.ui.combo_roles_2.setCurrentText(self.metadata['investigation_contacts'][0]['roles']['value'])
+            self.ui.roles_2.setText(self.metadata['investigation_contacts'][0]['roles']['accession'])
         else:
             self.ui.combo_roles_2.setCurrentIndex(-1)
         # Link comboboxes and display fields
@@ -281,25 +311,102 @@ class UserMetaDialog(QDialog):
 
     def searchOrganism(self, *args):
         self.ols = OlsDialog(self)
-        self.ols.SearchCompleted.connect(self.updateOrganism)
-        self.ols.show()
+        self.ols.SigSelected.connect(self.updateOrganism)
+        x = self.ols.show()
 
     def searchOrganismPart(self):
         self.ols = OlsDialog(self)
-        self.ols.SearchCompleted.connect(self.updateOrganismPart)
+        self.ols.SigSelected.connect(self.updateOrganismPart)
         self.ols.show()
 
     def searchOrganismVariant(self):
         self.ols = OlsDialog(self)
-        self.ols.SearchCompleted.connect(self.updateOrganismVariant)
+        self.ols.SigSelected.connect(self.updateOrganismVariant)
         self.ols.show()
 
-
     def updateOrganism(self, jsontology):
-        pass
-
+        ontology = json.loads(jsontology)
+        if ontology is not None:
+            self.ui.name_organism.setText(ontology['label'])
+            self.ui.ref_organism.setText(ontology['ontology_prefix'].upper())
+            self.ui.iri_organism.setText(ontology['iri'])
+        else:
+            self.ui.name_organism.setText('')
+            self.ui.ref_organism.setText('')
+            self.ui.iri_organism.setText('')
+        
     def updateOrganismPart(self, jsontology):
-        pass
+        ontology = json.loads(jsontology)
+        if ontology is not None:
+            self.ui.name_organism_part.setText(ontology['label'])
+            self.ui.ref_organism_part.setText(ontology['ontology_prefix'])
+            self.ui.iri_organism_part.setText(ontology['iri'])
+        else:
+            self.ui.name_organism_part.setText('')
+            self.ui.ref_organism_part.setText('')
+            self.ui.iri_organism_part.setText('')
 
     def updateOrganismVariant(self, jsontology):
-        pass
+        ontology = json.loads(jsontology)
+        if ontology is not None:
+            self.ui.name_organism_variant.setText(ontology['label'])
+            self.ui.ref_organism_variant.setText(ontology['ontology_prefix'])
+            self.ui.iri_organism_variant.setText(ontology['iri'])
+        else:
+            self.ui.name_organism_variant.setText('')
+            self.ui.ref_organism_variant.setText('')
+            self.ui.iri_organism_variant.setText('')
+
+
+
+class SparOntologyThread(QThread):
+
+    Finished = pyqtSignal('QString')
+
+    def __init__(self):
+        super(SparOntologyThread, self).__init__()
+
+    def run(self):
+        try:
+            onto = json.loads(rq.urlopen(self.jsonSourceUrl).read().decode('utf-8'))
+            info = []
+            for x in onto:
+                if '@type' in x:
+                    if self.ontoClass in x['@type']:
+                        info.append(x)
+            info = [ (x['http://www.w3.org/2000/01/rdf-schema#label'],x['@id']) for x in info ]
+            info = json.dumps({x[0]['@value'].capitalize():y for (x,y) in info})
+        except urllib.error:
+            with open(os.path.join(os.path.dirname(__file__), os.path.join("ontologies", self.sparName + os.path.extsep + 'json')), 'r') as f:
+                info = f.read()
+        finally:
+            self.Finished.emit(info)
+
+
+class PSOThread(SparOntologyThread):
+    """A thread to scrape the Publishing Status Ontology"""
+
+    def __init__(self):
+        super(PSOThread, self).__init__()
+        self.jsonSourceUrl = "http://www.sparontologies.net/ontologies/pso/source.json"
+        self.sparName = "pso"
+        self.ontoClass = "http://purl.org/spar/pso/PublicationStatus"
+
+
+class PROThread(SparOntologyThread):
+    """A thread to scrape the Publishing Roles Ontology"""
+    def __init__(self):
+        super(PROThread, self).__init__()
+        self.jsonSourceUrl = "http://www.sparontologies.net/ontologies/pro/source.json"
+        self.sparName = "pro"
+        self.ontoClass = "http://purl.org/spar/pro/PublishingRole"
+
+
+
+if __name__=='__main__':
+
+    app = QApplication(sys.argv)
+    um = UserMetaDialog()
+    um.SigUpdateMetadata.connect(lambda x: print(x))
+    um.show()
+    sys.exit(app.exec_())

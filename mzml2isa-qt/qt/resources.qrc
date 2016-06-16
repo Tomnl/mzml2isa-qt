@@ -1,10 +1,8 @@
 <RCC>
   <qresource prefix="graphics">
     <file>assets/graphics/ebi_icon.png</file>
-    <file>assets/graphics/add_icon.png</file>
-    <file>assets/graphics/ontologies_symbolic.png</file>
-    <file>assets/graphics/browse_icon.png</file>
     <file>assets/graphics/ebi-logo.jpg</file>
+    <file>assets/graphics/loading.gif</file>
   </qresource>
   <qresource prefix="fonts">
     <file>assets/fonts/EBI-Conceptual.ttf</file>
