@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import * #QApplication, QMainWindow
 from PyQt5.QtCore import *
 from PyQt5.QtGui import QPalette, QStandardItemModel, QStandardItem
 
-from qt.ols import Ui_Dialog as Ui_Ols
+from mzml2isaqt.qt.ols import Ui_Dialog as Ui_Ols
 
 
 

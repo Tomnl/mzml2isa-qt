@@ -44,7 +44,7 @@
     <enum>QTabWidget::Rounded</enum>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>1</number>
    </property>
    <property name="usesScrollButtons">
     <bool>true</bool>
@@ -318,9 +318,11 @@
        <height>25</height>
       </rect>
      </property>
-     <property name="currentText">
-      <string/>
-     </property>
+     <item>
+      <property name="text">
+       <string>connecting to PSO &lt;sparontologies.net/ontologies/pso&gt;</string>
+      </property>
+     </item>
     </widget>
     <widget class="QLabel" name="label_10">
      <property name="geometry">
@@ -532,6 +534,11 @@
        <height>25</height>
       </rect>
      </property>
+     <item>
+      <property name="text">
+       <string>connecting to PRO &lt;...&gt;</string>
+      </property>
+     </item>
     </widget>
     <widget class="QLabel" name="label_20">
      <property name="geometry">
@@ -566,6 +573,16 @@
        <y>379</y>
        <width>195</width>
        <height>131</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="description">
+     <property name="geometry">
+      <rect>
+       <x>470</x>
+       <y>70</y>
+       <width>411</width>
+       <height>121</height>
       </rect>
      </property>
     </widget>
@@ -660,45 +677,6 @@
       <bool>false</bool>
      </property>
     </widget>
-    <widget class="QLabel" name="label_pso">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>380</y>
-       <width>401</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>connecting to PSO &lt;sparontologies.net/ontologies/pso&gt;</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_pro">
-     <property name="geometry">
-      <rect>
-       <x>480</x>
-       <y>480</y>
-       <width>241</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>connecting to PRO &lt;...&gt;</string>
-     </property>
-     <property name="wordWrap">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QPlainTextEdit" name="description">
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>70</y>
-       <width>401</width>
-       <height>121</height>
-      </rect>
-     </property>
-    </widget>
     <zorder>roles</zorder>
     <zorder>status</zorder>
     <zorder>identifier</zorder>
@@ -735,6 +713,7 @@
     <zorder>label_20</zorder>
     <zorder>label_21</zorder>
     <zorder>adress</zorder>
+    <zorder>description</zorder>
     <zorder>fax</zorder>
     <zorder>label_23</zorder>
     <zorder>affiliation</zorder>
@@ -742,9 +721,6 @@
     <zorder>authors_list</zorder>
     <zorder>combo_status</zorder>
     <zorder>label_10</zorder>
-    <zorder>label_pso</zorder>
-    <zorder>label_pro</zorder>
-    <zorder>description</zorder>
    </widget>
    <widget class="QWidget" name="tab_investigation">
     <attribute name="title">
@@ -841,6 +817,16 @@
      </property>
      <property name="placeholderText">
       <string>will use study identifier name from main window</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="description_2">
+     <property name="geometry">
+      <rect>
+       <x>470</x>
+       <y>70</y>
+       <width>411</width>
+       <height>121</height>
+      </rect>
      </property>
     </widget>
     <widget class="QLabel" name="label_26">
@@ -1021,14 +1007,19 @@
       </rect>
      </property>
      <property name="currentText">
-      <string/>
+      <string>connecting to PSO &lt;sparontologies.net/ontologies/pso&gt;</string>
      </property>
      <property name="currentIndex">
-      <number>-1</number>
+      <number>0</number>
      </property>
      <property name="maxVisibleItems">
       <number>10</number>
      </property>
+     <item>
+      <property name="text">
+       <string>connecting to PSO &lt;sparontologies.net/ontologies/pso&gt;</string>
+      </property>
+     </item>
     </widget>
     <widget class="QLabel" name="label_32">
      <property name="geometry">
@@ -1241,6 +1232,11 @@
        <height>25</height>
       </rect>
      </property>
+     <item>
+      <property name="text">
+       <string>connecting to PRO &lt;...&gt;</string>
+      </property>
+     </item>
     </widget>
     <widget class="QLabel" name="label_41">
      <property name="geometry">
@@ -1371,45 +1367,6 @@
       <bool>false</bool>
      </property>
     </widget>
-    <widget class="QLabel" name="label_pso_2">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>380</y>
-       <width>401</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>connecting to PSO &lt;sparontologies.net/ontologies/pso&gt;</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_pro_2">
-     <property name="geometry">
-      <rect>
-       <x>480</x>
-       <y>480</y>
-       <width>241</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>connecting to PRO &lt;...&gt;</string>
-     </property>
-     <property name="wordWrap">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QPlainTextEdit" name="description_2">
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>70</y>
-       <width>401</width>
-       <height>121</height>
-      </rect>
-     </property>
-    </widget>
     <zorder>roles_2</zorder>
     <zorder>status_2</zorder>
     <zorder>label_19</zorder>
@@ -1418,6 +1375,7 @@
     <zorder>label_24</zorder>
     <zorder>label_25</zorder>
     <zorder>identifier_2</zorder>
+    <zorder>description_2</zorder>
     <zorder>label_26</zorder>
     <zorder>label_27</zorder>
     <zorder>title_2</zorder>
@@ -1455,9 +1413,6 @@
     <zorder>pub_sameas</zorder>
     <zorder>label_52</zorder>
     <zorder>authors_list_2</zorder>
-    <zorder>label_pso_2</zorder>
-    <zorder>label_pro_2</zorder>
-    <zorder>description_2</zorder>
    </widget>
    <widget class="QWidget" name="tab_misc">
     <property name="enabled">
@@ -1487,26 +1442,20 @@
       <rect>
        <x>20</x>
        <y>50</y>
-       <width>70</width>
-       <height>55</height>
+       <width>130</width>
+       <height>16</height>
       </rect>
      </property>
      <property name="text">
       <string>Organism</string>
      </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
     </widget>
-    <widget class="QLineEdit" name="name_organism">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
+    <widget class="QLineEdit" name="id_organism">
      <property name="geometry">
       <rect>
-       <x>160</x>
-       <y>50</y>
-       <width>610</width>
+       <x>190</x>
+       <y>70</y>
+       <width>181</width>
        <height>25</height>
       </rect>
      </property>
@@ -1514,37 +1463,28 @@
       <string/>
      </property>
      <property name="placeholderText">
-      <string/>
+      <string>ID (numbers only)</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_46">
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>115</y>
-       <width>70</width>
-       <height>55</height>
+       <y>110</y>
+       <width>131</width>
+       <height>16</height>
       </rect>
      </property>
      <property name="text">
       <string>Organism variant</string>
      </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-     <property name="wordWrap">
-      <bool>true</bool>
-     </property>
     </widget>
-    <widget class="QLineEdit" name="name_organism_variant">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
+    <widget class="QLineEdit" name="id_organism_variant">
      <property name="geometry">
       <rect>
-       <x>159</x>
-       <y>115</y>
-       <width>611</width>
+       <x>190</x>
+       <y>130</y>
+       <width>181</width>
        <height>25</height>
       </rect>
      </property>
@@ -1552,18 +1492,15 @@
       <string/>
      </property>
      <property name="placeholderText">
-      <string/>
+      <string>ID (numbers only)</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="name_organism_part">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
+    <widget class="QLineEdit" name="id_organism_part">
      <property name="geometry">
       <rect>
-       <x>159</x>
-       <y>180</y>
-       <width>611</width>
+       <x>190</x>
+       <y>190</y>
+       <width>181</width>
        <height>25</height>
       </rect>
      </property>
@@ -1571,26 +1508,20 @@
       <string/>
      </property>
      <property name="placeholderText">
-      <string/>
+      <string>ID (numbers only)</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_47">
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>180</y>
-       <width>70</width>
-       <height>55</height>
+       <y>170</y>
+       <width>131</width>
+       <height>16</height>
       </rect>
      </property>
      <property name="text">
       <string>Organism part</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-     <property name="wordWrap">
-      <bool>true</bool>
      </property>
     </widget>
     <widget class="QLabel" name="label_50">
@@ -1622,7 +1553,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>3</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="sample_collect">
       <attribute name="title">
@@ -1790,10 +1721,10 @@
     <widget class="QPushButton" name="search_organism">
      <property name="geometry">
       <rect>
-       <x>780</x>
-       <y>50</y>
-       <width>40</width>
-       <height>51</height>
+       <x>380</x>
+       <y>70</y>
+       <width>41</width>
+       <height>26</height>
       </rect>
      </property>
      <property name="font">
@@ -1816,10 +1747,10 @@ font-family: &quot;EBI-Conceptual&quot;;</string>
     <widget class="QPushButton" name="search_organism_variant">
      <property name="geometry">
       <rect>
-       <x>780</x>
-       <y>115</y>
-       <width>40</width>
-       <height>51</height>
+       <x>380</x>
+       <y>130</y>
+       <width>41</width>
+       <height>26</height>
       </rect>
      </property>
      <property name="font">
@@ -1842,10 +1773,10 @@ font-family: &quot;EBI-Conceptual&quot;;</string>
     <widget class="QPushButton" name="search_organism_part">
      <property name="geometry">
       <rect>
-       <x>780</x>
-       <y>180</y>
-       <width>40</width>
-       <height>50</height>
+       <x>380</x>
+       <y>190</y>
+       <width>41</width>
+       <height>26</height>
       </rect>
      </property>
      <property name="font">
@@ -1865,681 +1796,34 @@ font-family: &quot;EBI-Conceptual&quot;;</string>
       <string>o</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="iri_organism">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>399</x>
-       <y>75</y>
-       <width>371</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="placeholderText">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="iri_organism_variant">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>399</x>
-       <y>140</y>
-       <width>371</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="placeholderText">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="iri_organism_part">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>399</x>
-       <y>205</y>
-       <width>371</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="placeholderText">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="ref_organism_part">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>160</x>
-       <y>205</y>
-       <width>205</width>
-       <height>25</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="ref_organism_variant">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>160</x>
-       <y>140</y>
-       <width>205</width>
-       <height>25</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="ref_organism">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>160</x>
-       <y>75</y>
-       <width>205</width>
-       <height>25</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="rm_organism">
-     <property name="geometry">
-      <rect>
-       <x>830</x>
-       <y>50</y>
-       <width>40</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>EBI-Functional</family>
-       <pointsize>12</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 12pt &quot;:/fonts/assets/fonts/EBI-Functional.ttf&quot;;
-font-family: &quot;EBI-Functional&quot;;</string>
-     </property>
-     <property name="text">
-      <string>d</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="rm_organism_variant">
-     <property name="geometry">
-      <rect>
-       <x>830</x>
-       <y>115</y>
-       <width>40</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>EBI-Functional</family>
-       <pointsize>12</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 12pt &quot;:/fonts/assets/fonts/EBI-Functional.ttf&quot;;
-font-family: &quot;EBI-Functional&quot;;</string>
-     </property>
-     <property name="text">
-      <string>d</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="rm_organism_part">
-     <property name="geometry">
-      <rect>
-       <x>830</x>
-       <y>180</y>
-       <width>40</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>EBI-Functional</family>
-       <pointsize>12</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 12pt &quot;:/fonts/assets/fonts/EBI-Functional.ttf&quot;;
-font-family: &quot;EBI-Functional&quot;;</string>
-     </property>
-     <property name="text">
-      <string>d</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_59">
-     <property name="geometry">
-      <rect>
-       <x>90</x>
-       <y>50</y>
-       <width>64</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Name:</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_60">
-     <property name="geometry">
-      <rect>
-       <x>90</x>
-       <y>75</y>
-       <width>64</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Ref:</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_61">
-     <property name="geometry">
-      <rect>
-       <x>370</x>
-       <y>80</y>
-       <width>64</width>
-       <height>15</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>IRI:</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_62">
-     <property name="geometry">
-      <rect>
-       <x>370</x>
-       <y>140</y>
-       <width>64</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>IRI:</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_63">
-     <property name="geometry">
-      <rect>
-       <x>370</x>
-       <y>210</y>
-       <width>64</width>
-       <height>15</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>IRI:</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_64">
-     <property name="geometry">
-      <rect>
-       <x>90</x>
-       <y>115</y>
-       <width>64</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Name:</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_65">
-     <property name="geometry">
-      <rect>
-       <x>90</x>
-       <y>140</y>
-       <width>64</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Ref:</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_66">
-     <property name="geometry">
-      <rect>
-       <x>90</x>
-       <y>180</y>
-       <width>64</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Name:</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_67">
-     <property name="geometry">
-      <rect>
-       <x>90</x>
-       <y>206</y>
-       <width>64</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Ref:</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QWidget" name="tab">
-    <attribute name="title">
-     <string>Details</string>
-    </attribute>
-    <widget class="QListWidget" name="design_list">
+    <widget class="QComboBox" name="comboBox">
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>60</y>
-       <width>381</width>
-       <height>81</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btn_add_design">
-     <property name="geometry">
-      <rect>
-       <x>330</x>
-       <y>40</y>
-       <width>31</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>+</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_54">
-     <property name="geometry">
-      <rect>
-       <x>430</x>
-       <y>60</y>
-       <width>41</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 10pt &quot;Sans&quot;;</string>
-     </property>
-     <property name="text">
-      <string>Name</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="design_name">
-     <property name="geometry">
-      <rect>
-       <x>480</x>
-       <y>60</y>
-       <width>281</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 10pt &quot;Sans&quot;;</string>
-     </property>
-     <property name="placeholderText">
-      <string>e.g blood metabolome</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="design_ref">
-     <property name="geometry">
-      <rect>
-       <x>480</x>
-       <y>90</y>
-       <width>281</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 10pt &quot;Sans&quot;;</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="placeholderText">
-      <string>e.g. CHMO</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_55">
-     <property name="geometry">
-      <rect>
-       <x>460</x>
-       <y>90</y>
-       <width>41</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 10pt &quot;Sans&quot;;</string>
-     </property>
-     <property name="text">
-      <string>ID</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="design_accession">
-     <property name="geometry">
-      <rect>
-       <x>480</x>
-       <y>120</y>
-       <width>281</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 10pt &quot;Sans&quot;;</string>
-     </property>
-     <property name="placeholderText">
-      <string>e.g. http://purl.obolibrary.org/obo/CHMO_0000796</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_56">
-     <property name="geometry">
-      <rect>
-       <x>450</x>
-       <y>120</y>
-       <width>41</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 10pt &quot;Sans&quot;;</string>
-     </property>
-     <property name="text">
-      <string>IRI</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btn_rm_design">
-     <property name="geometry">
-      <rect>
-       <x>370</x>
-       <y>40</y>
-       <width>31</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>-</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="search_factor_2">
-     <property name="geometry">
-      <rect>
-       <x>820</x>
        <y>70</y>
-       <width>40</width>
+       <width>161</width>
        <height>25</height>
       </rect>
      </property>
-     <property name="font">
-      <font>
-       <family>EBI-Conceptual</family>
-       <pointsize>14</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 14pt &quot;:/fonts/assets/fonts/EBI-Conceptual.ttf&quot;;
-font-family: &quot;EBI-Conceptual&quot;;</string>
-     </property>
-     <property name="text">
-      <string>o</string>
-     </property>
     </widget>
-    <widget class="QListWidget" name="factors_list">
+    <widget class="QComboBox" name="comboBox_2">
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>230</y>
-       <width>381</width>
-       <height>80</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btn_add_factor">
-     <property name="geometry">
-      <rect>
-       <x>330</x>
-       <y>210</y>
-       <width>31</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>+</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btn_rm_factor">
-     <property name="geometry">
-      <rect>
-       <x>370</x>
-       <y>210</y>
-       <width>31</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>-</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="factor_name">
-     <property name="geometry">
-      <rect>
-       <x>480</x>
-       <y>220</y>
-       <width>281</width>
+       <y>130</y>
+       <width>161</width>
        <height>25</height>
       </rect>
      </property>
-     <property name="styleSheet">
-      <string notr="true">font: 10pt &quot;Sans&quot;;</string>
-     </property>
-     <property name="placeholderText">
-      <string>e.g Subject</string>
-     </property>
     </widget>
-    <widget class="QLabel" name="label_49">
-     <property name="geometry">
-      <rect>
-       <x>450</x>
-       <y>250</y>
-       <width>41</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 10pt &quot;Sans&quot;;</string>
-     </property>
-     <property name="text">
-      <string>ID</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="factor_ref">
-     <property name="geometry">
-      <rect>
-       <x>480</x>
-       <y>250</y>
-       <width>281</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 10pt &quot;Sans&quot;;</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="placeholderText">
-      <string>e.g. NCIT</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_48">
-     <property name="geometry">
-      <rect>
-       <x>430</x>
-       <y>220</y>
-       <width>41</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 10pt &quot;Sans&quot;;</string>
-     </property>
-     <property name="text">
-      <string>Name</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="factor_accession">
-     <property name="geometry">
-      <rect>
-       <x>480</x>
-       <y>280</y>
-       <width>281</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 10pt &quot;Sans&quot;;</string>
-     </property>
-     <property name="placeholderText">
-      <string>e.g. http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C70668</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_53">
-     <property name="geometry">
-      <rect>
-       <x>450</x>
-       <y>280</y>
-       <width>41</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 10pt &quot;Sans&quot;;</string>
-     </property>
-     <property name="text">
-      <string>IRI</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="search_factor">
-     <property name="geometry">
-      <rect>
-       <x>820</x>
-       <y>250</y>
-       <width>40</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>EBI-Conceptual</family>
-       <pointsize>14</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 14pt &quot;:/fonts/assets/fonts/EBI-Conceptual.ttf&quot;;
-font-family: &quot;EBI-Conceptual&quot;;</string>
-     </property>
-     <property name="text">
-      <string>o</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_57">
+    <widget class="QComboBox" name="comboBox_3">
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>20</y>
-       <width>261</width>
-       <height>21</height>
+       <y>190</y>
+       <width>161</width>
+       <height>25</height>
       </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 12pt url(:/fonts/assets/fonts/Verdana.ttf);</string>
-     </property>
-     <property name="text">
-      <string>Study Designs</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_58">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>180</y>
-       <width>261</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 12pt url(:/fonts/assets/fonts/Verdana.ttf);</string>
-     </property>
-     <property name="text">
-      <string>Study Factors</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
      </property>
     </widget>
    </widget>
@@ -2579,14 +1863,14 @@ font-family: &quot;EBI-Conceptual&quot;;</string>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
-     <x>440</x>
+     <x>600</x>
      <y>606</y>
-     <width>491</width>
+     <width>331</width>
      <height>26</height>
     </rect>
    </property>
    <property name="standardButtons">
-    <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok|QDialogButtonBox::Save</set>
    </property>
   </widget>
  </widget>
@@ -2595,6 +1879,7 @@ font-family: &quot;EBI-Conceptual&quot;;</string>
   <tabstop>title</tabstop>
   <tabstop>submission_date</tabstop>
   <tabstop>release_date</tabstop>
+  <tabstop>description</tabstop>
   <tabstop>pubmed_id</tabstop>
   <tabstop>doi</tabstop>
   <tabstop>pub_title</tabstop>
@@ -2614,6 +1899,7 @@ font-family: &quot;EBI-Conceptual&quot;;</string>
   <tabstop>title_2</tabstop>
   <tabstop>submission_date_2</tabstop>
   <tabstop>release_date_2</tabstop>
+  <tabstop>description_2</tabstop>
   <tabstop>pub_sameas</tabstop>
   <tabstop>pubmed_id_2</tabstop>
   <tabstop>doi_2</tabstop>
@@ -2630,9 +1916,9 @@ font-family: &quot;EBI-Conceptual&quot;;</string>
   <tabstop>affiliation_2</tabstop>
   <tabstop>combo_roles_2</tabstop>
   <tabstop>adress_2</tabstop>
-  <tabstop>name_organism</tabstop>
-  <tabstop>name_organism_variant</tabstop>
-  <tabstop>name_organism_part</tabstop>
+  <tabstop>id_organism</tabstop>
+  <tabstop>id_organism_variant</tabstop>
+  <tabstop>id_organism_part</tabstop>
   <tabstop>tabWidget_2</tabstop>
   <tabstop>extraction_desc</tabstop>
   <tabstop>chroma_desc</tabstop>

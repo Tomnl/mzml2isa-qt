@@ -14,10 +14,9 @@ from PyQt5.QtGui import QPalette
 from mzml2isa.isa import USERMETA
 from mzml2isa.versionutils import dict_update
 
-#from scrapers import PSOThread, PROThread
-from ols import OlsDialog
+from mzml2isaqt.ols import OlsDialog
 
-from qt.usermeta import Ui_Dialog as Ui_UserMeta
+from mzml2isaqt.qt.usermeta import Ui_Dialog as Ui_UserMeta
 
 
 class UserMetaDialog(QDialog):

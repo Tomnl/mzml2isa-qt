@@ -18,11 +18,11 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import QPalette
 
 ## UI
-from qt.main import Ui_MainWindow
+from mzml2isaqt.qt.main import Ui_MainWindow
 
 ## MODULES
-from usermeta import UserMetaDialog
-from parserprogress import ParserProgressDialog
+from mzml2isaqt.usermeta import UserMetaDialog
+from mzml2isaqt.parserprogress import ParserProgressDialog
 
 
 
@@ -168,12 +168,12 @@ class MainWindow(QMainWindow):
     def updateMetadata(self, json_metadata):
         self.userMeta = json.loads(json_metadata)
 
-    
 
-
-
-if __name__ == '__main__':   
+def main():
     app = QApplication(sys.argv)
     mainwindow = MainWindow()
     mainwindow.show()
     sys.exit(app.exec_())
+
+if __name__ == '__main__':   
+    main()
