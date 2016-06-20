@@ -14,7 +14,7 @@ if sys.version_info[0] != 3:
 
 ## SETUPTOOLS VERSION
 setup(
-    name='mzml2isaqt',
+    name='mzml2isa-qt',
     version=mzml2isa_qt.__version__,
     
     packages=find_packages(),
@@ -27,9 +27,10 @@ setup(
     description="A PyQt interface for mzml2isa parser.",
     long_description=open('README.md').read(),
     
-    install_requires=["PyQt5", "mzml2isa"],
+    install_requires=["PyQt5", "mzml2isa",],
 
     include_package_data=True,
+    package_data={'mzml2isa_qt.ontologies':['*.json']},
 
     url='https://github.com/althonos/mzml2isa-qt',
 

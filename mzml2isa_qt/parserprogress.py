@@ -17,7 +17,7 @@ import mzml2isa.mzml
 
 
 ## UI
-from mzml2isaqt.qt.progress import Ui_Dialog as Ui_Progress
+from mzml2isa_qt.qt.progress import Ui_Dialog as Ui_Progress
 
 
 class ParserProgressDialog(QDialog):

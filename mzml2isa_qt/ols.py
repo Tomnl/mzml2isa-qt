@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import * #QApplication, QMainWindow
 from PyQt5.QtCore import *
 from PyQt5.QtGui import QPalette, QStandardItemModel, QStandardItem
 
-from mzml2isaqt.qt.ols import Ui_Dialog as Ui_Ols
+from mzml2isa_qt.qt.ols import Ui_Dialog as Ui_Ols
 
 
 
@@ -196,7 +196,7 @@ class OlsSearcher(QThread):
                 else:
                     answer = json.dumps(result['response']['docs'])
                     
-        except urllib.error:
+        except:
             answer = ''
         finally:
             self.Finished.emit(answer)

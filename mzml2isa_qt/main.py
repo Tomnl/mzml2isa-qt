@@ -18,11 +18,11 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import QPalette
 
 ## UI
-from mzml2isaqt.qt.main import Ui_MainWindow
+from mzml2isa_qt.qt.main import Ui_MainWindow
 
 ## MODULES
-from mzml2isaqt.usermeta import UserMetaDialog
-from mzml2isaqt.parserprogress import ParserProgressDialog
+from mzml2isa_qt.usermeta import UserMetaDialog
+from mzml2isa_qt.parserprogress import ParserProgressDialog
 
 
 

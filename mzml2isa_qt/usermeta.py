@@ -14,9 +14,9 @@ from PyQt5.QtGui import QPalette
 from mzml2isa.isa import USERMETA
 from mzml2isa.versionutils import dict_update
 
-from mzml2isaqt.ols import OlsDialog
+from mzml2isa_qt.ols import OlsDialog
 
-from mzml2isaqt.qt.usermeta import Ui_Dialog as Ui_UserMeta
+from mzml2isa_qt.qt.usermeta import Ui_Dialog as Ui_UserMeta
 
 
 class UserMetaDialog(QDialog):
@@ -39,7 +39,7 @@ class UserMetaDialog(QDialog):
         self.ui.search_organism_part.clicked.connect(self.searchOrganismPart)
         self.ui.search_organism_variant.clicked.connect(self.searchOrganismVariant)
         self.ui.rm_organism.clicked.connect(lambda: self.updateOrganism('null'))                # As this get deserialized
-        self.ui.rm_organism_variant.clicked.connect(lambda: self.updateOrganismVariant('null')) # from JSON, nill is the way
+        self.ui.rm_organism_variant.clicked.connect(lambda: self.updateOrganismVariant('null')) # from JSON, null is the way
         self.ui.rm_organism_part.clicked.connect(lambda: self.updateOrganismPart('null'))       # to set ontology to None
 
         self.launchScrapers()
@@ -375,7 +375,7 @@ class SparOntologyThread(QThread):
                         info.append(x)
             info = [ (x['http://www.w3.org/2000/01/rdf-schema#label'],x['@id']) for x in info ]
             info = json.dumps({x[0]['@value'].capitalize():y for (x,y) in info})
-        except urllib.error:
+        except: #urllib.error.URLError:
             with open(os.path.join(os.path.dirname(__file__), os.path.join("ontologies", self.sparName + os.path.extsep + 'json')), 'r') as f:
                 info = f.read()
         finally:

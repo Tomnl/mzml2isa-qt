@@ -1,5 +1,5 @@
 # mzml2isa-qt
-####A PyQt interface for mzml2isa parser.
+#####A PyQt interface for mzml2isa parser.
 
 ## Overview
 This program is a Graphical User Interface for the [mzml2isa](https://github.com/althonos/mzml2isa) parser. It provides an easy-to-use interface to convert mzML files to an ISA-Tab Study. It was made with Python3 and PyQt5
