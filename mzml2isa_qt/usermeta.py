@@ -1,22 +1,30 @@
 #!/usr/bin/env python3
 
+## BACKEND
 import os
 import sys
 import json
-import urllib.request as rq
-import urllib.error
 
-
-from PyQt5.QtWidgets import * #QApplication, QMainWindow
-from PyQt5.QtCore import *
-from PyQt5.QtGui import QPalette
-
+## APP
 from mzml2isa.isa import USERMETA
 from mzml2isa.versionutils import dict_update
 
-from mzml2isa_qt.ols import OlsDialog
+## FRONTEND
+from PyQt5.QtWidgets import * #QApplication, QMainWindow
+from PyQt5.QtCore import *
+from PyQt5.QtGui import QPalette, QStandardItemModel, QStandardItem
 
+# UI
 from mzml2isa_qt.qt.usermeta import Ui_Dialog as Ui_UserMeta
+
+# UI_MODULES
+from mzml2isa_qt.ols import OlsDialog
+from mzml2isa_qt.contact import ContactDialog, CONTACT
+from mzml2isa_qt.scrapers import PSOThread
+
+
+# Suffixes for qt fields
+SUFFIX = {'study':'', 'investigation':'_2'}
 
 
 class UserMetaDialog(QDialog):
@@ -30,34 +38,53 @@ class UserMetaDialog(QDialog):
         self.ui = Ui_UserMeta()
         self.ui.setupUi(self)
 
+        # Update metadata with user submitted ones
         self.metadata = dict_update(USERMETA, metadata)
 
+        # Connect dialog buttons
         self.ui.buttonBox.button(QDialogButtonBox.Apply).clicked.connect(self.save)
         self.ui.buttonBox.button(QDialogButtonBox.Ok).clicked.connect(self.saveandquit)
-        self.ui.buttonBox.button(QDialogButtonBox.Cancel).clicked.connect(self.close)
-        self.ui.search_organism.clicked.connect(self.searchOrganism)
-        self.ui.search_organism_part.clicked.connect(self.searchOrganismPart)
-        self.ui.search_organism_variant.clicked.connect(self.searchOrganismVariant)
-        self.ui.rm_organism.clicked.connect(lambda: self.updateOrganism('null'))                # As this get deserialized
-        self.ui.rm_organism_variant.clicked.connect(lambda: self.updateOrganismVariant('null')) # from JSON, null is the way
-        self.ui.rm_organism_part.clicked.connect(lambda: self.updateOrganismPart('null'))       # to set ontology to None
+        self.ui.buttonBox.button(QDialogButtonBox.Cancel).clicked.connect(self.reject)
 
-        self.launchScrapers()
+
+        # Connect Contacts buttons
+        self.ui.add_contact.clicked.connect(lambda: self.addContact('study'))
+        self.ui.rm_contact.clicked.connect(lambda: self.rmContact('study'))
+        self.ui.edit_contact.clicked.connect(lambda: self.editContact('study'))
+        self.ui.add_contact_2.clicked.connect(lambda: self.addContact('investigation'))
+        self.ui.rm_contact_2.clicked.connect(lambda: self.rmContact('investigation'))
+        self.ui.edit_contact_2.clicked.connect(lambda: self.editContact('investigation'))
+
+        # Connect Characteristics buttons
+        self.ui.search_organism.clicked.connect(lambda: self.searchCharacteristics('organism'))
+        self.ui.search_organism_part.clicked.connect(lambda: self.searchCharacteristics('organism_part'))
+        self.ui.search_organism_variant.clicked.connect(lambda: self.searchCharacteristics('organism_variant'))
+        self.ui.rm_organism.clicked.connect(lambda: self.rmCharacteristics('organism'))                
+        self.ui.rm_organism_part.clicked.connect(lambda: self.rmCharacteristics('organism_part'))       
+        self.ui.rm_organism_variant.clicked.connect(lambda: self.rmCharacteristics('organism_variant'))
+
+        # Setup Contacts model / view
+        self.ui.model_contacts = QStandardItemModel(0,11)
+        self.ui.table_contacts.setModel(self.ui.model_contacts)
+        self.ui.table_contacts.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
+        self.ui.model_contacts_2 = QStandardItemModel(0,11)
+        self.ui.table_contacts_2.setModel(self.ui.model_contacts_2)
+        self.ui.table_contacts_2.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
+
+        # Start PSO scraper
+        self.PSOscraper = PSOThread()
+        self.PSOscraper.Finished.connect(self.fillPSOComboBoxes)
+        self.PSOscraper.start()
+
+        # Fill fields with known values
         self.setUpDates()
         self.fillFields()
 
         self.ui.buttonBox.button(QDialogButtonBox.Apply).setFocus()
 
-    def launchScrapers(self):
-        self.PSOscraper = PSOThread()
-        self.PSOscraper.Finished.connect(self.fillPSOComboBoxes)
-        self.PSOscraper.start()
-        
-        self.PROscraper = PROThread()
-        self.PROscraper.Finished.connect(self.fillPROComboBoxes)
-        self.PROscraper.start()
 
     def setUpDates(self):
+        """Connect dates changed events"""
         self.dates_changed = {x:False for x in ('s_rel', 's_sub', 'i_rel', 'i_sub')}
         self.ui.submission_date.editingFinished.connect(lambda: self.setDateChanged('s_sub'))
         self.ui.release_date.editingFinished.connect(lambda: self.setDateChanged('s_rel'))
@@ -65,24 +92,27 @@ class UserMetaDialog(QDialog):
         self.ui.release_date_2.editingFinished.connect(lambda: self.setDateChanged('i_rel'))
 
     def setDateChanged(self, date):
+        """Registers a date was changed."""
         self.dates_changed[date] = True
 
+
     def save(self):
+        """Save values stored in dialog fields"""
         self.getFields()
         self.SigUpdateMetadata.emit(json.dumps(self.metadata))
         
     def saveandquit(self):
+        """Save values and close dialog"""
         self.save()
-        self.close()
-
+        self.accept()
 
 
     def fillFields(self):
+        """Fill dialog fields with known information"""
 
         ## STUDY
         ### General
         self.ui.title.setText(self.metadata['study']['title'])
-        #self.ui.identifier.setText(self.metadata['study']['identifier'])
         self.ui.description.setPlainText(self.metadata['study']['description'])
         if self.metadata['study']['submission_date']:
             self.ui.submission_date.setDate(QDate.fromString(self.metadata['study']['submission_date'], "yyyy-MM-dd"))
@@ -96,14 +126,7 @@ class UserMetaDialog(QDialog):
         self.ui.pub_title.setText(self.metadata['study_publication']['title'])
         self.ui.authors_list.setPlainText(self.metadata['study_publication']['author_list'])        
         ### Contact
-        self.ui.first_name.setText(self.metadata['study_contacts'][0]['first_name'])
-        self.ui.mid.setText(self.metadata['study_contacts'][0]['mid_initials'])
-        self.ui.last_name.setText(self.metadata['study_contacts'][0]['last_name'])
-        self.ui.mail.setText(self.metadata['study_contacts'][0]['email'])
-        self.ui.phone.setText(self.metadata['study_contacts'][0]['phone'])
-        self.ui.fax.setText(self.metadata['study_contacts'][0]['fax'])
-        self.ui.adress.setPlainText(self.metadata['study_contacts'][0]['adress'])
-        self.ui.affiliation.setText(self.metadata['study_contacts'][0]['affiliation'])
+        self.fillContacts(self.metadata['study_contacts'], 'study')
 
         ## INVESTIGATION
         ### General
@@ -116,43 +139,25 @@ class UserMetaDialog(QDialog):
             self.ui.release_date_2.setDate(QDate.fromString(self.metadata['investigation']['release_date'], "yyyy-MM-dd"))
             self.setDateChanged('i_rel')
         ### Publication
-        self.ui.pubmed_id.setText(self.metadata['investigation_publication']['pubmed'])
+        self.ui.pubmed_id_2.setText(self.metadata['investigation_publication']['pubmed'])
         self.ui.doi_2.setText(self.metadata['investigation_publication']['doi'])
         self.ui.pub_title_2.setText(self.metadata['investigation_publication']['title'])
         self.ui.authors_list_2.setPlainText(self.metadata['investigation_publication']['author_list'])
         ### Contact
-        self.ui.first_name_2.setText(self.metadata['investigation_contacts'][0]['first_name'])
-        self.ui.mid_2.setText(self.metadata['investigation_contacts'][0]['mid_initials'])
-        self.ui.last_name_2.setText(self.metadata['investigation_contacts'][0]['last_name'])
-        self.ui.mail_2.setText(self.metadata['investigation_contacts'][0]['email'])
-        self.ui.phone_2.setText(self.metadata['investigation_contacts'][0]['phone'])
-        self.ui.fax_2.setText(self.metadata['investigation_contacts'][0]['fax'])
-        self.ui.adress_2.setPlainText(self.metadata['investigation_contacts'][0]['adress'])
-        self.ui.affiliation_2.setText(self.metadata['investigation_contacts'][0]['affiliation'])
+        self.fillContacts(self.metadata['study_contacts'], 'investigation')
 
         ## EXPERIMENTS
         ## Characteristics
-        self.ui.name_organism.setText(self.metadata['characteristics']['organism']['value'])
-        self.ui.iri_organism.setText(self.metadata['characteristics']['organism']['accession'])
-        self.ui.ref_organism.setText(self.metadata['characteristics']['organism']['ref'])
-        
-        self.ui.name_organism_part.setText(self.metadata['characteristics']['part']['value'])
-        self.ui.iri_organism_part.setText(self.metadata['characteristics']['part']['accession'])
-        self.ui.ref_organism_part.setText(self.metadata['characteristics']['part']['ref'])
-        
-        self.ui.name_organism_variant.setText(self.metadata['characteristics']['variant']['value'])
-        self.ui.iri_organism_variant.setText(self.metadata['characteristics']['variant']['accession'])
-        self.ui.ref_organism_variant.setText(self.metadata['characteristics']['variant']['ref'])
-        ### Descriptions
-        self.ui.sample_collect_desc.setPlainText(self.metadata['description']['sample_collect'])
-        self.ui.extraction_desc.setPlainText(self.metadata['description']['extraction'])
-        self.ui.chroma_desc.setPlainText(self.metadata['description']['chroma'])
-        self.ui.mass_spec_desc.setPlainText(self.metadata['description']['mass_spec'])
-        self.ui.data_trans_desc.setPlainText(self.metadata['description']['data_trans'])
-        self.ui.metabo_id_desc.setPlainText(self.metadata['description']['metabo_id'])
+        for key in self.metadata['characteristics'].keys():
+            for ontokey in ('value', 'accession', 'ref'):
+                getattr(self.ui, ontokey+'_'+key).setText(self.metadata['characteristics'][key][ontokey])
 
+        ### Descriptions
+        for (key, value) in self.metadata['description'].items():
+            getattr(self.ui, key + '_desc').setPlainText(value)
 
     def getFields(self):
+        """Get intel from dialog fields."""
 
         ## STUDY
         ### General
@@ -170,17 +175,7 @@ class UserMetaDialog(QDialog):
         self.metadata['study_publication']['status']['accession'] = self.ui.status.text()
         self.metadata['study_publication']['status']['ref'] = 'PSO' if self.ui.status.text() else ''
         ### Contact
-        self.metadata['study_contacts'][0]['first_name'] = self.ui.first_name.text()
-        self.metadata['study_contacts'][0]['mid_initials'] = self.ui.mid.text()
-        self.metadata['study_contacts'][0]['last_name'] = self.ui.last_name.text()
-        self.metadata['study_contacts'][0]['email'] = self.ui.mail.text()
-        self.metadata['study_contacts'][0]['phone'] = self.ui.phone.text()
-        self.metadata['study_contacts'][0]['fax'] = self.ui.fax.text()
-        self.metadata['study_contacts'][0]['adress'] = self.ui.adress.toPlainText()
-        self.metadata['study_contacts'][0]['affiliation'] = self.ui.affiliation.text()
-        self.metadata['study_contacts'][0]['roles']['value'] = self.ui.combo_roles.currentText() if self.ui.roles.text() else ''
-        self.metadata['study_contacts'][0]['roles']['accession'] = self.ui.roles.text()
-        self.metadata['study_contacts'][0]['roles']['ref'] = 'PRO' if self.ui.roles.text() else ''
+        self.getContactFields('study')
 
         ## INVESTIGATION
         ### General
@@ -197,36 +192,85 @@ class UserMetaDialog(QDialog):
         self.metadata['investigation_publication']['status']['accession'] = self.ui.status_2.text()
         self.metadata['investigation_publication']['status']['ref'] = 'PSO' if self.ui.status_2.text() else ''
         ### Contact
-        self.metadata['investigation_contacts'][0]['first_name'] = self.ui.first_name_2.text()
-        self.metadata['investigation_contacts'][0]['mid_initials'] = self.ui.mid_2.text()
-        self.metadata['investigation_contacts'][0]['last_name'] = self.ui.last_name_2.text()
-        self.metadata['investigation_contacts'][0]['email'] = self.ui.mail_2.text()
-        self.metadata['investigation_contacts'][0]['phone'] = self.ui.phone_2.text()
-        self.metadata['investigation_contacts'][0]['fax'] = self.ui.fax_2.text()
-        self.metadata['investigation_contacts'][0]['adress'] = self.ui.adress_2.toPlainText()
-        self.metadata['investigation_contacts'][0]['affiliation'] = self.ui.affiliation_2.text()
-        self.metadata['investigation_contacts'][0]['roles']['value'] = self.ui.combo_roles_2.currentText() if self.ui.roles_2.text() else ''
-        self.metadata['investigation_contacts'][0]['roles']['accession'] = self.ui.roles_2.text()
-        self.metadata['investigation_contacts'][0]['roles']['ref'] = 'PRO' if self.ui.roles_2.text() else ''
+        self.getContactFields('investigation')
 
         ## EXPERIMENTS
         ## Characteristics
-        self.metadata['characteristics']['organism']['value'] = self.ui.name_organism.text()
-        self.metadata['characteristics']['organism']['accession'] = self.ui.iri_organism.text()
-        self.metadata['characteristics']['organism']['ref'] = self.ui.ref_organism.text()
-        self.metadata['characteristics']['part']['value'] = self.ui.name_organism_part.text()
-        self.metadata['characteristics']['part']['accession'] = self.ui.iri_organism_part.text()
-        self.metadata['characteristics']['part']['ref'] = self.ui.ref_organism_part.text()
-        self.metadata['characteristics']['variant']['value'] = self.ui.name_organism_variant.text()
-        self.metadata['characteristics']['variant']['accession'] = self.ui.iri_organism_variant.text()
-        self.metadata['characteristics']['variant']['ref'] = self.ui.ref_organism_variant.text()
+        for key in self.metadata['characteristics'].keys():
+            for ontokey in ('value', 'accession', 'ref'):
+                self.metadata['characteristics'][key][ontokey] = getattr(self.ui, ontokey+'_'+key).text()
+
         ### Descriptions
-        self.metadata['description']['sample_collect'] = self.ui.sample_collect_desc.toPlainText()
-        self.metadata['description']['extraction'] = self.ui.extraction_desc.toPlainText()
-        self.metadata['description']['chroma'] = self.ui.chroma_desc.toPlainText()
-        self.metadata['description']['mass_spec'] = self.ui.mass_spec_desc.toPlainText()
-        self.metadata['description']['data_trans'] = self.ui.data_trans_desc.toPlainText()
-        self.metadata['description']['metabo_id'] = self.ui.metabo_id_desc.toPlainText()
+        for key in self.metadata['description'].keys():
+            self.metadata['description'][key] = getattr(self.ui, key+'_desc').toPlainText()
+
+
+    def getContactFields(self, contact_type):
+        """Unified method to get either Study contact or Investigation contact fields"""
+
+        # empty metadata
+        self.metadata[contact_type+'_contacts'] = []
+        
+        #either model_contacts or model_contacts_2
+        for row_index in range(getattr(self.ui, 'model_contacts'+SUFFIX[contact_type]).rowCount()):
+            self.metadata[contact_type+'_contacts'].append(self.getContactByRow(row_index, contact_type))
+
+        #add default if empty
+        if not self.metadata[contact_type+'_contacts']:
+            self.metadata[contact_type+'_contacts'].append(dict(CONTACT))
+
+    def getContactByRow(self, row_index, contact_type):
+        contact = CONTACT.copy()
+        model = getattr(self.ui, 'model_contacts' + SUFFIX[contact_type])
+        for (i, key) in enumerate(contact.keys()):
+            if key != 'roles':
+                contact[key] = model.item(row_index, i).text()
+            else:
+                contact[key] = {'accession': model.item(row_index, i).text(),
+                                'ref': model.item(row_index, i+1).text(),
+                                'value': model.item(row_index, i+1).text()
+                               }
+        return contact
+
+    def addContact(self, contact_type):
+        self.contact = ContactDialog(self)
+        self.contact.exec_()
+        getattr(self.ui, 'model_contacts' + SUFFIX[contact_type]).appendRow(
+            [QStandardItem(self.contact.contact[key]) for key in CONTACT.keys() if key != 'roles'] \
+            + [QStandardItem(self.contact.contact['roles'][key]) for key in ('accession', 'ref', 'value')]
+        )
+
+    def rmContact(self, contact_type):
+        indexes = getattr(self.ui, 'table_contacts'+SUFFIX[contact_type]).selectionModel().selection().indexes()
+        if indexes is not None:
+            row_index = indexes[0].row()
+            getattr(self.ui, 'model_contacts'+SUFFIX[contact_type]).removeRow(row_index)
+
+    def editContact(self, contact_type):
+        indexes = getattr(self.ui, 'table_contacts'+SUFFIX[contact_type]).selectionModel().selection().indexes()
+        if indexes is not None:
+            model = getattr(self.ui, 'model_contacts' + SUFFIX[contact_type])
+
+            row_index = indexes[0].row()
+            contact = self.getStudyContactByRow(row_index)
+            
+            self.contact = ContactDialog(self, json.dumps(contact))
+            self.contact.exec_()
+
+            model.removeRow(row_index)
+            model.insertRow(row_index,
+                [QStandardItem(self.contact.contact[key]) for key in CONTACT.keys() if key != 'roles'] \
+                + [QStandardItem(self.contact.contact['roles'][key]) for key in ('accession', 'ref', 'value')]
+            )
+
+    def fillContacts(self, contacts, contact_type):
+        model = getattr(self.ui, 'model_contacts' + SUFFIX[contact_type]) 
+        for contact in contacts:
+            if contact != CONTACT:
+                model.appendRow(
+                    [QStandardItem(contact[key]) for key in CONTACT.keys() if key != 'roles'] \
+                    + [QStandardItem(contact['roles'][key]) for key in ('accession', 'ref', 'value')]
+                )
 
 
     def fillPSOComboBoxes(self, jsontology):
@@ -266,140 +310,20 @@ class UserMetaDialog(QDialog):
         self.ui.combo_status.setEnabled(True)
         self.ui.combo_status_2.setEnabled(True)
 
-    def fillPROComboBoxes(self, jsontology):
-        _translate = QCoreApplication.translate
-        # Get PRO ontology
-        self.ontoPRO = json.loads(jsontology)
-        self.ontoPROk = sorted(self.ontoPRO)
-        # Hide roles fields (they ARE useful, though !)
-        self.ui.roles.hide()
-        self.ui.roles_2.hide()
-        # Hide "connecting to PRO" labels
-        self.ui.label_pro.hide()
-        self.ui.label_pro_2.hide()
-        # Add status to combo box
-        for i, status in enumerate(self.ontoPROk):
-            self.ui.combo_roles.addItem("")
-            self.ui.combo_roles.setItemText(i, _translate("Dialog", status))
-            self.ui.combo_roles_2.addItem("")
-            self.ui.combo_roles_2.setItemText(i, _translate("Dialog", status))
-        # Check if value to display
-        if self.metadata['study_contacts'][0]['roles']['value']:
-            self.ui.combo_roles.setCurrentText(self.metadata['study_contacts'][0]['roles']['value'])
-            self.ui.roles.setText(self.metadata['study_contacts'][0]['roles']['accession'])
-        else:
-            self.ui.combo_roles.setCurrentIndex(-1)
-            
-        if self.metadata['investigation_contacts'][0]['roles']['value']:
-            self.ui.combo_roles_2.setCurrentText(self.metadata['investigation_contacts'][0]['roles']['value'])
-            self.ui.roles_2.setText(self.metadata['investigation_contacts'][0]['roles']['accession'])
-        else:
-            self.ui.combo_roles_2.setCurrentIndex(-1)
-        # Link comboboxes and display fields
-        self.ui.combo_roles.activated.connect(lambda x: self.ui.roles.setText(\
-          self.ontoPRO[self.ui.combo_roles.currentText()]))
-        self.ui.combo_roles_2.activated.connect(lambda x: self.ui.roles_2.setText(\
-          self.ontoPRO[self.ui.combo_roles_2.currentText()]))    
-        # Enable comboboxes
-        self.ui.combo_roles.setEnabled(True)
-        self.ui.combo_roles_2.setEnabled(True)
 
-
-
-        
-
-    def searchOrganism(self, *args):
+    def searchCharacteristics(self, characteristic):
+        """Open an OlsDialog for the right characteristic"""
         self.ols = OlsDialog(self)
-        self.ols.SigSelected.connect(self.updateOrganism)
-        x = self.ols.show()
+        if self.ols.exec_():
+            getattr(self.ui, 'value_'+characteristic).setText(self.ols.entry['label'])
+            getattr(self.ui, 'ref_'+characteristic).setText(self.ols.entry['ontology_prefix'].upper())
+            getattr(self.ui, 'accession_'+characteristic).setText(self.ols.entry['iri'])
 
-    def searchOrganismPart(self):
-        self.ols = OlsDialog(self)
-        self.ols.SigSelected.connect(self.updateOrganismPart)
-        self.ols.show()
-
-    def searchOrganismVariant(self):
-        self.ols = OlsDialog(self)
-        self.ols.SigSelected.connect(self.updateOrganismVariant)
-        self.ols.show()
-
-    def updateOrganism(self, jsontology):
-        ontology = json.loads(jsontology)
-        if ontology is not None:
-            self.ui.name_organism.setText(ontology['label'])
-            self.ui.ref_organism.setText(ontology['ontology_prefix'].upper())
-            self.ui.iri_organism.setText(ontology['iri'])
-        else:
-            self.ui.name_organism.setText('')
-            self.ui.ref_organism.setText('')
-            self.ui.iri_organism.setText('')
-        
-    def updateOrganismPart(self, jsontology):
-        ontology = json.loads(jsontology)
-        if ontology is not None:
-            self.ui.name_organism_part.setText(ontology['label'])
-            self.ui.ref_organism_part.setText(ontology['ontology_prefix'])
-            self.ui.iri_organism_part.setText(ontology['iri'])
-        else:
-            self.ui.name_organism_part.setText('')
-            self.ui.ref_organism_part.setText('')
-            self.ui.iri_organism_part.setText('')
-
-    def updateOrganismVariant(self, jsontology):
-        ontology = json.loads(jsontology)
-        if ontology is not None:
-            self.ui.name_organism_variant.setText(ontology['label'])
-            self.ui.ref_organism_variant.setText(ontology['ontology_prefix'])
-            self.ui.iri_organism_variant.setText(ontology['iri'])
-        else:
-            self.ui.name_organism_variant.setText('')
-            self.ui.ref_organism_variant.setText('')
-            self.ui.iri_organism_variant.setText('')
-
-
-
-class SparOntologyThread(QThread):
-
-    Finished = pyqtSignal('QString')
-
-    def __init__(self):
-        super(SparOntologyThread, self).__init__()
-
-    def run(self):
-        try:
-            onto = json.loads(rq.urlopen(self.jsonSourceUrl).read().decode('utf-8'))
-            info = []
-            for x in onto:
-                if '@type' in x:
-                    if self.ontoClass in x['@type']:
-                        info.append(x)
-            info = [ (x['http://www.w3.org/2000/01/rdf-schema#label'],x['@id']) for x in info ]
-            info = json.dumps({x[0]['@value'].capitalize():y for (x,y) in info})
-        except: #urllib.error.URLError:
-            with open(os.path.join(os.path.dirname(__file__), os.path.join("ontologies", self.sparName + os.path.extsep + 'json')), 'r') as f:
-                info = f.read()
-        finally:
-            self.Finished.emit(info)
-
-
-class PSOThread(SparOntologyThread):
-    """A thread to scrape the Publishing Status Ontology"""
-
-    def __init__(self):
-        super(PSOThread, self).__init__()
-        self.jsonSourceUrl = "http://www.sparontologies.net/ontologies/pso/source.json"
-        self.sparName = "pso"
-        self.ontoClass = "http://purl.org/spar/pso/PublicationStatus"
-
-
-class PROThread(SparOntologyThread):
-    """A thread to scrape the Publishing Roles Ontology"""
-    def __init__(self):
-        super(PROThread, self).__init__()
-        self.jsonSourceUrl = "http://www.sparontologies.net/ontologies/pro/source.json"
-        self.sparName = "pro"
-        self.ontoClass = "http://purl.org/spar/pro/PublishingRole"
-
+    def rmCharacteristics(self, characteristic):
+        """Empty given characteristic fields."""
+        getattr(self.ui, 'name_'+characteristic).setText('')
+        getattr(self.ui, 'ref_'+characteristic).setText('')
+        getattr(self.ui, 'iri_'+characteristic).setText('')
 
 
 if __name__=='__main__':

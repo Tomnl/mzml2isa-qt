@@ -15,7 +15,6 @@ from PyQt5.QtGui import QPalette
 import mzml2isa.isa
 import mzml2isa.mzml
 
-
 ## UI
 from mzml2isa_qt.qt.progress import Ui_Dialog as Ui_Progress
 
@@ -230,14 +229,14 @@ class ParserThread(QThread):
 
         # Create the isa Tab
         self.Console.emit("> Creating ISA-Tab files")
-        #try:
-        isa_tab_create = mzml2isa.isa.ISA_Tab(metalist, self.outputDir, self.studyName, self.userMeta)
-        #except Exception as e:
-        #    self.ErrorSig.emit('An error was encountered while writing ISA-Tab in {}:\n\n{}'.format(self.outputDir, 
-        #                                                                                            str(type(e).__name__)+" "+str(e)
-        #                                                                                           )
-        #                      )
-        #    return 0
+        try:
+            isa_tab_create = mzml2isa.isa.ISA_Tab(metalist, self.outputDir, self.studyName, self.userMeta)
+        except Exception as e:
+            self.ErrorSig.emit('An error was encountered while writing ISA-Tab in {}:\n\n{}'.format(self.outputDir, 
+                                                                                                    str(type(e).__name__)+" "+str(e)
+                                                                                                   )
+                              )
+            return 0
             
 
 

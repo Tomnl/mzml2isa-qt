@@ -42,7 +42,6 @@ Missing information required for MetaboLights upload are at the moment:
 * Study Designs
 
 ## TODO
-* Change the adress widget to allow multiple contacts for publication & study (maybe with a ListView + QDialog because of limited place)
 * Either add a `metabolite assignment file` field to main window or change the **mzml2isa** parser behaviour so that it successfully detects metabolite assignment files and add them to the study file.
 
 ## License

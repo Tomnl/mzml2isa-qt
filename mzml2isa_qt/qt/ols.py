@@ -90,7 +90,7 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        Dialog.setWindowTitle(_translate("Dialog", "Ontology Lookup Service"))
         self.queryLine.setPlaceholderText(_translate("Dialog", "e.g. Mus Musculus,  spleen primordium, rhodopsin..."))
         self.labelQuery.setText(_translate("Dialog", "Query"))
         self.searchButton.setText(_translate("Dialog", "1"))

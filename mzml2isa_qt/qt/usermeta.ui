@@ -44,7 +44,7 @@
     <enum>QTabWidget::Rounded</enum>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>2</number>
    </property>
    <property name="usesScrollButtons">
     <bool>true</bool>
@@ -361,150 +361,10 @@
       <string notr="true">font: 12pt url(:/fonts/assets/fonts/Verdana.ttf);</string>
      </property>
      <property name="text">
-      <string>Study Contact *</string>
+      <string>Study Contacts *</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="first_name">
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>280</y>
-       <width>130</width>
-       <height>25</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="mid">
-     <property name="geometry">
-      <rect>
-       <x>620</x>
-       <y>280</y>
-       <width>45</width>
-       <height>25</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="last_name">
-     <property name="geometry">
-      <rect>
-       <x>685</x>
-       <y>280</y>
-       <width>195</width>
-       <height>25</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_13">
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>260</y>
-       <width>131</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>First Name</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_14">
-     <property name="geometry">
-      <rect>
-       <x>685</x>
-       <y>260</y>
-       <width>131</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Last Name</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_15">
-     <property name="geometry">
-      <rect>
-       <x>600</x>
-       <y>260</y>
-       <width>71</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Mid Initials</string>
-     </property>
-     <property name="scaledContents">
-      <bool>false</bool>
-     </property>
-     <property name="wordWrap">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="phone">
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>330</y>
-       <width>195</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="inputMethodHints">
-      <set>Qt::ImhDialableCharactersOnly</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_16">
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>310</y>
-       <width>131</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Telephone</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="mail">
-     <property name="geometry">
-      <rect>
-       <x>685</x>
-       <y>330</y>
-       <width>195</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="inputMethodHints">
-      <set>Qt::ImhEmailCharactersOnly</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_17">
-     <property name="geometry">
-      <rect>
-       <x>685</x>
-       <y>310</y>
-       <width>131</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Mail</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_18">
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>360</y>
-       <width>131</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Fax</string>
      </property>
     </widget>
     <widget class="Line" name="line">
@@ -518,91 +378,6 @@
      </property>
      <property name="orientation">
       <enum>Qt::Vertical</enum>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="combo_roles">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>480</y>
-       <width>195</width>
-       <height>25</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_20">
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>460</y>
-       <width>131</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Role</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_21">
-     <property name="geometry">
-      <rect>
-       <x>685</x>
-       <y>360</y>
-       <width>131</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Adress</string>
-     </property>
-    </widget>
-    <widget class="QPlainTextEdit" name="adress">
-     <property name="geometry">
-      <rect>
-       <x>685</x>
-       <y>379</y>
-       <width>195</width>
-       <height>131</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="fax">
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>380</y>
-       <width>195</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="inputMethodHints">
-      <set>Qt::ImhDialableCharactersOnly</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_23">
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>410</y>
-       <width>131</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Affiliation</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="affiliation">
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>430</y>
-       <width>195</width>
-       <height>25</height>
-      </rect>
      </property>
     </widget>
     <widget class="QLabel" name="label_51">
@@ -641,25 +416,6 @@
       <bool>false</bool>
      </property>
     </widget>
-    <widget class="QLineEdit" name="roles">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>480</y>
-       <width>195</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(0, 0, 0);</string>
-     </property>
-     <property name="frame">
-      <bool>false</bool>
-     </property>
-    </widget>
     <widget class="QLabel" name="label_pso">
      <property name="geometry">
       <rect>
@@ -673,22 +429,6 @@
       <string>connecting to PSO &lt;sparontologies.net/ontologies/pso&gt;</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_pro">
-     <property name="geometry">
-      <rect>
-       <x>480</x>
-       <y>480</y>
-       <width>241</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>connecting to PRO &lt;...&gt;</string>
-     </property>
-     <property name="wordWrap">
-      <bool>true</bool>
-     </property>
-    </widget>
     <widget class="QPlainTextEdit" name="description">
      <property name="geometry">
       <rect>
@@ -699,7 +439,103 @@
       </rect>
      </property>
     </widget>
-    <zorder>roles</zorder>
+    <widget class="QPushButton" name="rm_contact">
+     <property name="geometry">
+      <rect>
+       <x>840</x>
+       <y>250</y>
+       <width>31</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>-</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="add_contact">
+     <property name="geometry">
+      <rect>
+       <x>800</x>
+       <y>250</y>
+       <width>31</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>+</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="edit_contact">
+     <property name="geometry">
+      <rect>
+       <x>760</x>
+       <y>250</y>
+       <width>31</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>edit</string>
+     </property>
+    </widget>
+    <widget class="QTableView" name="table_contacts">
+     <property name="geometry">
+      <rect>
+       <x>470</x>
+       <y>280</y>
+       <width>401</width>
+       <height>231</height>
+      </rect>
+     </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="dragDropOverwriteMode">
+      <bool>false</bool>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::SingleSelection</enum>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+     <property name="showGrid">
+      <bool>false</bool>
+     </property>
+     <attribute name="horizontalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="horizontalHeaderCascadingSectionResizes">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="horizontalHeaderDefaultSectionSize">
+      <number>0</number>
+     </attribute>
+     <attribute name="horizontalHeaderHighlightSections">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="horizontalHeaderMinimumSectionSize">
+      <number>0</number>
+     </attribute>
+     <attribute name="horizontalHeaderStretchLastSection">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderDefaultSectionSize">
+      <number>25</number>
+     </attribute>
+     <attribute name="verticalHeaderHighlightSections">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderMinimumSectionSize">
+      <number>25</number>
+     </attribute>
+    </widget>
     <zorder>status</zorder>
     <zorder>identifier</zorder>
     <zorder>title</zorder>
@@ -719,32 +555,17 @@
     <zorder>label_9</zorder>
     <zorder>label_11</zorder>
     <zorder>label_12</zorder>
-    <zorder>first_name</zorder>
-    <zorder>mid</zorder>
-    <zorder>last_name</zorder>
-    <zorder>label_13</zorder>
-    <zorder>label_14</zorder>
-    <zorder>label_15</zorder>
-    <zorder>phone</zorder>
-    <zorder>label_16</zorder>
-    <zorder>mail</zorder>
-    <zorder>label_17</zorder>
-    <zorder>label_18</zorder>
     <zorder>line</zorder>
-    <zorder>combo_roles</zorder>
-    <zorder>label_20</zorder>
-    <zorder>label_21</zorder>
-    <zorder>adress</zorder>
-    <zorder>fax</zorder>
-    <zorder>label_23</zorder>
-    <zorder>affiliation</zorder>
     <zorder>label_51</zorder>
     <zorder>authors_list</zorder>
     <zorder>combo_status</zorder>
     <zorder>label_10</zorder>
     <zorder>label_pso</zorder>
-    <zorder>label_pro</zorder>
     <zorder>description</zorder>
+    <zorder>rm_contact</zorder>
+    <zorder>add_contact</zorder>
+    <zorder>edit_contact</zorder>
+    <zorder>table_contacts</zorder>
    </widget>
    <widget class="QWidget" name="tab_investigation">
     <attribute name="title">
@@ -946,68 +767,6 @@
       <enum>Qt::Vertical</enum>
      </property>
     </widget>
-    <widget class="QLabel" name="label_30">
-     <property name="geometry">
-      <rect>
-       <x>600</x>
-       <y>260</y>
-       <width>71</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Mid Initials</string>
-     </property>
-     <property name="scaledContents">
-      <bool>false</bool>
-     </property>
-     <property name="wordWrap">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="last_name_2">
-     <property name="geometry">
-      <rect>
-       <x>685</x>
-       <y>280</y>
-       <width>195</width>
-       <height>25</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="affiliation_2">
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>430</y>
-       <width>195</width>
-       <height>25</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="first_name_2">
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>280</y>
-       <width>131</width>
-       <height>25</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_31">
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>260</y>
-       <width>131</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>First Name</string>
-     </property>
-    </widget>
     <widget class="QComboBox" name="combo_status_2">
      <property name="enabled">
       <bool>false</bool>
@@ -1062,52 +821,6 @@
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
      </property>
     </widget>
-    <widget class="QLabel" name="label_34">
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>460</y>
-       <width>131</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Role</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="phone_2">
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>330</y>
-       <width>195</width>
-       <height>25</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_35">
-     <property name="geometry">
-      <rect>
-       <x>685</x>
-       <y>360</y>
-       <width>131</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Adress</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="mid_2">
-     <property name="geometry">
-      <rect>
-       <x>620</x>
-       <y>280</y>
-       <width>45</width>
-       <height>25</height>
-      </rect>
-     </property>
-    </widget>
     <widget class="QLabel" name="label_36">
      <property name="geometry">
       <rect>
@@ -1121,29 +834,6 @@
       <string>PubMed identifier</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_37">
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>410</y>
-       <width>131</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Affiliation</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="mail_2">
-     <property name="geometry">
-      <rect>
-       <x>685</x>
-       <y>330</y>
-       <width>195</width>
-       <height>25</height>
-      </rect>
-     </property>
-    </widget>
     <widget class="QLineEdit" name="doi_2">
      <property name="geometry">
       <rect>
@@ -1155,29 +845,6 @@
      </property>
      <property name="placeholderText">
       <string>e.g.  10.1016/j.jhep.2013.12.002</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="fax_2">
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>380</y>
-       <width>195</width>
-       <height>25</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_38">
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>310</y>
-       <width>131</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Telephone</string>
      </property>
     </widget>
     <widget class="QLineEdit" name="pub_title_2">
@@ -1206,87 +873,6 @@
       <string>Title</string>
      </property>
     </widget>
-    <widget class="QPlainTextEdit" name="adress_2">
-     <property name="geometry">
-      <rect>
-       <x>685</x>
-       <y>379</y>
-       <width>195</width>
-       <height>131</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_40">
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>360</y>
-       <width>131</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Fax</string>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="combo_roles_2">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>480</y>
-       <width>195</width>
-       <height>25</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_41">
-     <property name="geometry">
-      <rect>
-       <x>685</x>
-       <y>260</y>
-       <width>131</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Last Name</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_42">
-     <property name="geometry">
-      <rect>
-       <x>685</x>
-       <y>310</y>
-       <width>131</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Mail</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="roles_2">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>480</y>
-       <width>195</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(0, 0, 0);</string>
-     </property>
-     <property name="frame">
-      <bool>false</bool>
-     </property>
-    </widget>
     <widget class="QLabel" name="label_43">
      <property name="geometry">
       <rect>
@@ -1298,35 +884,6 @@
      </property>
      <property name="text">
       <string>DOI</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="contact_sameas">
-     <property name="geometry">
-      <rect>
-       <x>710</x>
-       <y>230</y>
-       <width>171</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Same as Study</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="pub_sameas">
-     <property name="geometry">
-      <rect>
-       <x>270</x>
-       <y>230</y>
-       <width>171</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Same as Study</string>
-     </property>
-     <property name="checked">
-      <bool>false</bool>
      </property>
     </widget>
     <widget class="QLabel" name="label_52">
@@ -1384,22 +941,6 @@
       <string>connecting to PSO &lt;sparontologies.net/ontologies/pso&gt;</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_pro_2">
-     <property name="geometry">
-      <rect>
-       <x>480</x>
-       <y>480</y>
-       <width>241</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>connecting to PRO &lt;...&gt;</string>
-     </property>
-     <property name="wordWrap">
-      <bool>true</bool>
-     </property>
-    </widget>
     <widget class="QPlainTextEdit" name="description_2">
      <property name="geometry">
       <rect>
@@ -1410,7 +951,103 @@
       </rect>
      </property>
     </widget>
-    <zorder>roles_2</zorder>
+    <widget class="QPushButton" name="add_contact_2">
+     <property name="geometry">
+      <rect>
+       <x>800</x>
+       <y>250</y>
+       <width>31</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>+</string>
+     </property>
+    </widget>
+    <widget class="QTableView" name="table_contacts_2">
+     <property name="geometry">
+      <rect>
+       <x>470</x>
+       <y>280</y>
+       <width>401</width>
+       <height>231</height>
+      </rect>
+     </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="dragDropOverwriteMode">
+      <bool>false</bool>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::SingleSelection</enum>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+     <property name="showGrid">
+      <bool>false</bool>
+     </property>
+     <attribute name="horizontalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="horizontalHeaderCascadingSectionResizes">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="horizontalHeaderDefaultSectionSize">
+      <number>0</number>
+     </attribute>
+     <attribute name="horizontalHeaderHighlightSections">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="horizontalHeaderMinimumSectionSize">
+      <number>0</number>
+     </attribute>
+     <attribute name="horizontalHeaderStretchLastSection">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderDefaultSectionSize">
+      <number>25</number>
+     </attribute>
+     <attribute name="verticalHeaderHighlightSections">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderMinimumSectionSize">
+      <number>25</number>
+     </attribute>
+    </widget>
+    <widget class="QPushButton" name="rm_contact_2">
+     <property name="geometry">
+      <rect>
+       <x>840</x>
+       <y>250</y>
+       <width>31</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>-</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="edit_contact_2">
+     <property name="geometry">
+      <rect>
+       <x>760</x>
+       <y>250</y>
+       <width>31</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>edit</string>
+     </property>
+    </widget>
     <zorder>status_2</zorder>
     <zorder>label_19</zorder>
     <zorder>submission_date_2</zorder>
@@ -1425,39 +1062,22 @@
     <zorder>label_29</zorder>
     <zorder>pubmed_id_2</zorder>
     <zorder>line_2</zorder>
-    <zorder>label_30</zorder>
-    <zorder>last_name_2</zorder>
-    <zorder>affiliation_2</zorder>
-    <zorder>first_name_2</zorder>
-    <zorder>label_31</zorder>
     <zorder>combo_status_2</zorder>
     <zorder>label_32</zorder>
     <zorder>label_33</zorder>
-    <zorder>label_34</zorder>
-    <zorder>phone_2</zorder>
-    <zorder>label_35</zorder>
-    <zorder>mid_2</zorder>
     <zorder>label_36</zorder>
-    <zorder>label_37</zorder>
-    <zorder>mail_2</zorder>
     <zorder>doi_2</zorder>
-    <zorder>fax_2</zorder>
-    <zorder>label_38</zorder>
     <zorder>pub_title_2</zorder>
     <zorder>label_39</zorder>
-    <zorder>adress_2</zorder>
-    <zorder>label_40</zorder>
-    <zorder>combo_roles_2</zorder>
-    <zorder>label_41</zorder>
-    <zorder>label_42</zorder>
     <zorder>label_43</zorder>
-    <zorder>contact_sameas</zorder>
-    <zorder>pub_sameas</zorder>
     <zorder>label_52</zorder>
     <zorder>authors_list_2</zorder>
     <zorder>label_pso_2</zorder>
-    <zorder>label_pro_2</zorder>
     <zorder>description_2</zorder>
+    <zorder>add_contact_2</zorder>
+    <zorder>table_contacts_2</zorder>
+    <zorder>rm_contact_2</zorder>
+    <zorder>edit_contact_2</zorder>
    </widget>
    <widget class="QWidget" name="tab_misc">
     <property name="enabled">
@@ -1498,7 +1118,7 @@
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLineEdit" name="name_organism">
+    <widget class="QLineEdit" name="value_organism">
      <property name="enabled">
       <bool>true</bool>
      </property>
@@ -1536,7 +1156,7 @@
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QLineEdit" name="name_organism_variant">
+    <widget class="QLineEdit" name="value_organism_variant">
      <property name="enabled">
       <bool>true</bool>
      </property>
@@ -1555,7 +1175,7 @@
       <string>e.g. Saccharomyces cerevisiae LAN211</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="name_organism_part">
+    <widget class="QLineEdit" name="value_organism_part">
      <property name="enabled">
       <bool>true</bool>
      </property>
@@ -1793,7 +1413,7 @@ font-family: &quot;EBI-Conceptual&quot;;</string>
       <string>o</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="iri_organism">
+    <widget class="QLineEdit" name="accession_organism">
      <property name="enabled">
       <bool>true</bool>
      </property>
@@ -1812,7 +1432,7 @@ font-family: &quot;EBI-Conceptual&quot;;</string>
       <string>e.g. http://purl.obolibrary.org/obo/VTO_0011993</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="iri_organism_variant">
+    <widget class="QLineEdit" name="accession_organism_variant">
      <property name="enabled">
       <bool>true</bool>
      </property>
@@ -1834,7 +1454,7 @@ font-family: &quot;EBI-Conceptual&quot;;</string>
       <string>e.g. http://purl.obolibrary.org/obo/NCBITaxon_1216859</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="iri_organism_part">
+    <widget class="QLineEdit" name="accession_organism_part">
      <property name="enabled">
       <bool>true</bool>
      </property>
@@ -2537,41 +2157,20 @@ font-family: &quot;EBI-Conceptual&quot;;</string>
   <tabstop>pub_title</tabstop>
   <tabstop>combo_status</tabstop>
   <tabstop>authors_list</tabstop>
-  <tabstop>first_name</tabstop>
-  <tabstop>mid</tabstop>
-  <tabstop>last_name</tabstop>
-  <tabstop>phone</tabstop>
-  <tabstop>mail</tabstop>
-  <tabstop>fax</tabstop>
-  <tabstop>affiliation</tabstop>
-  <tabstop>combo_roles</tabstop>
-  <tabstop>adress</tabstop>
   <tabstop>tabWidget</tabstop>
   <tabstop>identifier_2</tabstop>
   <tabstop>title_2</tabstop>
   <tabstop>submission_date_2</tabstop>
   <tabstop>release_date_2</tabstop>
-  <tabstop>pub_sameas</tabstop>
   <tabstop>pubmed_id_2</tabstop>
   <tabstop>doi_2</tabstop>
   <tabstop>pub_title_2</tabstop>
   <tabstop>combo_status_2</tabstop>
   <tabstop>authors_list_2</tabstop>
-  <tabstop>contact_sameas</tabstop>
-  <tabstop>first_name_2</tabstop>
-  <tabstop>mid_2</tabstop>
-  <tabstop>last_name_2</tabstop>
-  <tabstop>phone_2</tabstop>
-  <tabstop>mail_2</tabstop>
-  <tabstop>fax_2</tabstop>
-  <tabstop>affiliation_2</tabstop>
-  <tabstop>combo_roles_2</tabstop>
-  <tabstop>adress_2</tabstop>
-  <tabstop>name_organism</tabstop>
-  <tabstop>name_organism_variant</tabstop>
-  <tabstop>name_organism_part</tabstop>
+  <tabstop>value_organism</tabstop>
+  <tabstop>value_organism_variant</tabstop>
+  <tabstop>value_organism_part</tabstop>
   <tabstop>tabWidget_2</tabstop>
-  <tabstop>roles_2</tabstop>
  </tabstops>
  <resources>
   <include location="resources.qrc"/>

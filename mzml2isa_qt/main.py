@@ -20,7 +20,7 @@ from PyQt5.QtGui import QPalette
 ## UI
 from mzml2isa_qt.qt.main import Ui_MainWindow
 
-## MODULES
+## UI MODULES
 from mzml2isa_qt.usermeta import UserMetaDialog
 from mzml2isa_qt.parserprogress import ParserProgressDialog
 
