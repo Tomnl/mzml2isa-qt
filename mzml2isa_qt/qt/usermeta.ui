@@ -44,7 +44,7 @@
     <enum>QTabWidget::Rounded</enum>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>0</number>
    </property>
    <property name="usesScrollButtons">
     <bool>true</bool>
@@ -152,7 +152,7 @@
       <string>yyyy-MM-dd</string>
      </property>
      <property name="calendarPopup">
-      <bool>true</bool>
+      <bool>false</bool>
      </property>
     </widget>
     <widget class="QLabel" name="label_4">
@@ -184,7 +184,14 @@
       <string>yyyy-MM-dd</string>
      </property>
      <property name="calendarPopup">
-      <bool>true</bool>
+      <bool>false</bool>
+     </property>
+     <property name="date">
+      <date>
+       <year>2000</year>
+       <month>1</month>
+       <day>1</day>
+      </date>
      </property>
     </widget>
     <widget class="QLabel" name="label_5">
@@ -448,6 +455,10 @@
        <height>20</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">font: 9pt url(:/fonts/assets/fonts/EBI-Functional.ttf);
+font-family: &quot;EBI-Functional&quot;;</string>
+     </property>
      <property name="text">
       <string>-</string>
      </property>
@@ -458,8 +469,12 @@
        <x>800</x>
        <y>250</y>
        <width>31</width>
-       <height>20</height>
+       <height>21</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 9pt url(:/fonts/assets/fonts/EBI-Functional.ttf);
+font-family: &quot;EBI-Functional&quot;;</string>
      </property>
      <property name="text">
       <string>+</string>
@@ -474,8 +489,12 @@
        <height>20</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">font: 9pt url(:/fonts/assets/fonts/EBI-Functional.ttf);
+font-family: &quot;EBI-Functional&quot;;</string>
+     </property>
      <property name="text">
-      <string>edit</string>
+      <string>e</string>
      </property>
     </widget>
     <widget class="QTableView" name="table_contacts">
@@ -596,6 +615,9 @@
      <property name="displayFormat">
       <string>yyyy-MM-dd</string>
      </property>
+     <property name="calendarPopup">
+      <bool>false</bool>
+     </property>
     </widget>
     <widget class="QDateEdit" name="release_date_2">
      <property name="geometry">
@@ -608,6 +630,9 @@
      </property>
      <property name="displayFormat">
       <string>yyyy-MM-dd</string>
+     </property>
+     <property name="calendarPopup">
+      <bool>false</bool>
      </property>
     </widget>
     <widget class="QLabel" name="label_24">
@@ -960,6 +985,10 @@
        <height>20</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">font: 9pt url(:/fonts/assets/fonts/EBI-Functional.ttf);
+font-family: &quot;EBI-Functional&quot;;</string>
+     </property>
      <property name="text">
       <string>+</string>
      </property>
@@ -1031,6 +1060,10 @@
        <height>20</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">font: 9pt url(:/fonts/assets/fonts/EBI-Functional.ttf);
+font-family: &quot;EBI-Functional&quot;;</string>
+     </property>
      <property name="text">
       <string>-</string>
      </property>
@@ -1044,8 +1077,12 @@
        <height>20</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">font: 9pt url(:/fonts/assets/fonts/EBI-Functional.ttf);
+font-family: &quot;EBI-Functional&quot;;</string>
+     </property>
      <property name="text">
-      <string>edit</string>
+      <string>e</string>
      </property>
     </widget>
     <zorder>status_2</zorder>
@@ -1758,6 +1795,10 @@ font-family: &quot;EBI-Functional&quot;;</string>
        <height>20</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">font: 10pt url(:/fonts/assets/fonts/EBI-Functional.ttf);
+font-family: &quot;EBI-Functional&quot;;</string>
+     </property>
      <property name="text">
       <string>+</string>
      </property>
@@ -1870,6 +1911,10 @@ font-family: &quot;EBI-Functional&quot;;</string>
        <height>20</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">font: 10pt url(:/fonts/assets/fonts/EBI-Functional.ttf);
+font-family: &quot;EBI-Functional&quot;;</string>
+     </property>
      <property name="text">
       <string>-</string>
      </property>
@@ -1919,6 +1964,10 @@ font-family: &quot;EBI-Conceptual&quot;;</string>
        <height>20</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">font: 10pt url(:/fonts/assets/fonts/EBI-Functional.ttf);
+font-family: &quot;EBI-Functional&quot;;</string>
+     </property>
      <property name="text">
       <string>+</string>
      </property>
@@ -1931,6 +1980,10 @@ font-family: &quot;EBI-Conceptual&quot;;</string>
        <width>31</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 10pt url(:/fonts/assets/fonts/EBI-Functional.ttf);
+font-family: &quot;EBI-Functional&quot;;</string>
      </property>
      <property name="text">
       <string>-</string>

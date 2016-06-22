@@ -55,14 +55,6 @@ class PROThread(SparOntologyThread):
 
 
 
-
-
-
-
-
-
-
-
 class OlsSearcher(QThread):
     """A thread that searches the Ontology Lookup Service."""
 
@@ -90,7 +82,6 @@ class OlsSearcher(QThread):
             self.Finished.emit(answer)
 
 
-
 class OlsExplorer(QThread):
     """A thread that get the informations of a class based on its iri."""
   
@@ -114,7 +105,6 @@ class OlsExplorer(QThread):
             self.result = ''
         finally:
             self.Finished.emit(self.ref, self.result)
-
 
 
 class OlsOntologist(QThread):

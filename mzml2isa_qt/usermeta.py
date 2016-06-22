@@ -4,6 +4,7 @@
 import os
 import sys
 import json
+from copy import deepcopy
 
 ## APP
 from mzml2isa.isa import USERMETA
@@ -217,10 +218,11 @@ class UserMetaDialog(QDialog):
 
         #add default if empty
         if not self.metadata[contact_type+'_contacts']:
-            self.metadata[contact_type+'_contacts'].append(dict(CONTACT))
+            self.metadata[contact_type+'_contacts'].append(dict(deepcopy(CONTACT)))
+
 
     def getContactByRow(self, row_index, contact_type):
-        contact = CONTACT.copy()
+        contact = deepcopy(CONTACT)
         model = getattr(self.ui, 'model_contacts' + SUFFIX[contact_type])
         for (i, key) in enumerate(contact.keys()):
             if key != 'roles':
@@ -228,7 +230,7 @@ class UserMetaDialog(QDialog):
             else:
                 contact[key] = {'accession': model.item(row_index, i).text(),
                                 'ref': model.item(row_index, i+1).text(),
-                                'value': model.item(row_index, i+1).text()
+                                'value': model.item(row_index, i+2).text()
                                }
         return contact
 

@@ -4,12 +4,16 @@
 import sys
 import os
 import json
+from copy import deepcopy
 from collections import OrderedDict
 
 ## FRONTEND
 from PyQt5.QtWidgets import * 
 from PyQt5.QtCore import *
 from PyQt5.QtGui import QPalette
+
+## APP
+from mzml2isa.versionutils import dict_update
 
 ## UI
 from mzml2isa_qt.qt.contact import Ui_Dialog as Ui_Contact
@@ -47,7 +51,7 @@ class ContactDialog(QDialog):
         self.ui.buttonBox.button(QDialogButtonBox.Cancel).clicked.connect(self.reject)
 
         # Try to load existing contact info & fill fields
-        self.contact = json.loads(jsoncontact) if jsoncontact is not None else CONTACT.copy()
+        self.contact = json.loads(jsoncontact) if jsoncontact is not None else dict(deepcopy(CONTACT))
         self.fillFields()
 
         self.ui.first_name.setFocus()
@@ -80,6 +84,7 @@ class ContactDialog(QDialog):
             self.ui.roles.setText(self.contact['roles']['accession'])
         else:
             self.ui.combo_roles.setCurrentIndex(-1)
+            self.ui.roles.setText('')
         # Link comboboxes and display fields
         self.ui.combo_roles.activated.connect(lambda x: self.ui.roles.setText(\
           self.ontoPRO[self.ui.combo_roles.currentText()]))
@@ -105,6 +110,8 @@ class ContactDialog(QDialog):
 if __name__ == '__main__':
 
     app = QApplication(sys.argv)
+    um = ContactDialog()
+    um.exec_()
     um = ContactDialog()
     um.exec_()
     print(um.contact)
