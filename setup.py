@@ -30,7 +30,6 @@ setup(
     install_requires=["PyQt5", "mzml2isa",],
 
     include_package_data=True,
-    package_data={'mzml2isa_qt.ontologies':['*.json']},
 
     url='https://github.com/althonos/mzml2isa-qt',
 

@@ -1,0 +1,2 @@
+include mzml2isa_qt/ontologies/*.json
+include README.md

@@ -9,8 +9,7 @@ This program is a Graphical User Interface for the [mzml2isa](https://github.com
 ### With PIP
 If `pip` is present on your system (comes along most of Python install / releases), it can be used to install the program and its dependencies:
 ```bash
-pip3 install PyQt5 git+git://github.com/althonos/mzml2isa 
-pip3 install git+git://github.com/althonos/mzml2isa-qt
+pip3 install mzml2isa-qt
 ```
 
 ### Without PIP
@@ -21,17 +20,16 @@ git clone git://github.com/althonos/mzml2isa-qt
 
 After that, either run the GUI directly: 
 ```bash
-python3 mzml2isa-qt/mzml2isa_qt/main.py
+python3 run.py
 ```
 
 Or install it locally to run with `mzmlisa-qt` command:
-```
+```bash
 cd mzml2isa-qt && python3 setup.py install
-mzml2isa-qt
 ```
 
 ## Use
-To simply parse **.mzML** files to **ISA**, select the directory containing your files. With default settings, the program will create the new ISA files in that folder, assuming the folder's name is the study identifier (_MTBSLxxx_ for instance for MetaboLights studies). This can be changed by unticking the `Export result to directory of each study` box. Once parameters are set up, click the `Convert` button to start the parser.
+Open the GUI with the `mzml2isa-qt` command. To simply parse **.mzML** files to **ISA**, select the directory containing your files. With default settings, the program will create the new ISA files in that folder, assuming the folder's name is the study identifier (_MTBSLxxx_ for instance for MetaboLights studies). This can be changed by unticking the `Export result to directory of each study` box. Once parameters are set up, click the `Convert` button to start the parser.
 
 ## MetaboLights
 Generating a study to upload on MetaboLights requires pieces of information the parser cannot guess from the mzML file alone. To provide more metadata to your final ISA-Tab files, use the `Add Metadata` button to open a new window and update details about your study. Still, even with all the required fields filled, **the generated ISA needs to be enhanced after the end of the parsing** (using for instance [Metabolight pre-packaged ISA Creator](http://www.ebi.ac.uk/metabolights/) to add missing fields).
