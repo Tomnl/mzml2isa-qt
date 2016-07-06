@@ -218,7 +218,7 @@ class ParserThread(QThread):
             # Parse file
             try:
                 metalist.append(mzml2isa.mzml.mzMLmeta(mzml_file).meta_isa)                
-            except Exception as e:                
+            except Exception as e:             
                 self.ErrorSig.emit('An error was encountered while parsing {}:\n\n{}'.format(os.path.basename(mzml_file), 
                                                                                              str(type(e).__name__)+" "+str(e)
                                                                                              )
