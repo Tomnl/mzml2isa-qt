@@ -30,7 +30,7 @@ class ParserProgressDialog(QDialog):
         self.outputDir = outputDir
         self.studyName = studyName
         self.userMeta = userMeta
-      
+
         if studyName or ('MZML' in [x[-4:].upper() for x in os.listdir(inputDir)]) :
             self.ui.label_study.setText(studyName)
             self.ui.pBar_studies.hide()
@@ -39,7 +39,7 @@ class ParserProgressDialog(QDialog):
         else:
             self.ui.label_study.hide()
             self.parse_thread = ParserThread(inputDir, outputDir, studyName, False, userMeta)
-        
+
         self.parse_thread.maxFileBar.connect(self.setFilesMaximum)
         self.parse_thread.maxStudyBar.connect(self.setStudiesMaximum)
         self.parse_thread.setFileBar.connect(self.setFilesValue)
@@ -50,15 +50,15 @@ class ParserProgressDialog(QDialog):
         self.parse_thread.ErrorSig.connect(self.openErrorDialog)
 
         self.parse()
-    
+
     def parse(self):
-        self.parse_thread.start()   
+        self.parse_thread.start()
 
     def closeEvent(self, event):
         """Closes window when close button is clicked, stopping threads"""
         self.parse_thread.ForceQuitSig.emit()
         self.parse_thread.quit()
-        self.reject() 
+        self.reject()
 
     def setLabelStudy(self, study):
         self.ui.label_study.setText("Study: " + study)
@@ -97,11 +97,11 @@ class ParserThread(QThread):
 
     setFileBar = pyqtSignal(int)
     setStudyBar = pyqtSignal(int)
-    
-    LabelStudy = pyqtSignal('QString')
-    Console = pyqtSignal('QString') 
 
-    Finish = pyqtSignal()      
+    LabelStudy = pyqtSignal('QString')
+    Console = pyqtSignal('QString')
+
+    Finish = pyqtSignal()
 
     ForceQuitSig = pyqtSignal()
 
@@ -122,17 +122,17 @@ class ParserThread(QThread):
         self.wait()
 
     def _parseMultipleStudies(self):
-        
+
         # Export studies in input folder
-        if self.outputDir == "": 
+        if self.outputDir == "":
             self.outputDir = self.inputDir
 
         # Grabs every directory in input directory
         study_dirs = [d for d in os.listdir(self.inputDir)]# if os.path.isdir(d)]
 
         # Grabs every directory in input directory containing mzML files
-        study_dirs = [d for d in study_dirs if 'MZML' in [ f.split(os.extsep)[-1].upper() for f in os.listdir(os.path.join(self.inputDir, d)) ] ]     
-        
+        study_dirs = [d for d in study_dirs if 'MZML' in [ f.split(os.extsep)[-1].upper() for f in os.listdir(os.path.join(self.inputDir, d)) ] ]
+
         # set maximum
         self.maxStudyBar.emit(len(study_dirs))
 
@@ -140,7 +140,7 @@ class ParserThread(QThread):
 
             # Update progress bar
             self.setStudyBar.emit(sindex)
-              
+
             # Find all mzml files
             mzml_path = os.path.join(os.path.join(self.inputDir, study), "*.mzML")
             mzml_files = [mzML for mzML in glob.glob(mzml_path)]
@@ -149,35 +149,35 @@ class ParserThread(QThread):
             # Update progress bar
             # self.ui.pBar_parse.setMaximum(len(mzml_files))
             self.maxFileBar.emit(len(mzml_files))
-           
+
             # get meta information for all files
             metalist = []
             for mindex, mzml_file in enumerate(mzml_files):
                 # Update progress bar
                 self.setFileBar.emit(mindex+1)
                 self.Console.emit(os.path.basename(mzml_file))
-               
+
                 # Insure the thread will stop if window is closed
-                if self.force_quit: 
+                if self.force_quit:
                     return 0
 
                 # Parse file
                 try:
-                    metalist.append(mzml2isa.mzml.mzMLmeta(mzml_file).meta_isa)
-                except Exception as e:                
-                    self.ErrorSig.emit('An error was encountered while parsing {} (study {}):\n\n{}'.format(os.path.basename(mzml_file), 
+                    metalist.append(mzml2isa.mzml.mzMLmeta(mzml_file).meta)
+                except Exception as e:
+                    self.ErrorSig.emit('An error was encountered while parsing {} (study {}):\n\n{}'.format(os.path.basename(mzml_file),
                                                                                                             study,
                                                                                                             str(type(e).__name__)+" "+str(e),
                                                                                                      )
                                       )
                     self.force_quit = True
-                    return 0                
+                    return 0
 
             # Create the isa Tab
             try:
-                isa_tab_create = mzml2isa.isa.ISA_Tab(metalist, self.outputDir, study, self.userMeta)
+                isa_tab_create = mzml2isa.isa.ISA_Tab(self.outputDir, study, self.userMeta).write(metalist, 'mzML')
             except Exception as e:
-                self.ErrorSig.emit('An error was encountered while writing ISA-Tab (study {}):\n\n{}'.format(study, 
+                self.ErrorSig.emit('An error was encountered while writing ISA-Tab (study {}):\n\n{}'.format(study,
                                                                                                              str(type(e).__name__)+" "+str(e)
                                                                                                        )
                                   )
@@ -188,7 +188,7 @@ class ParserThread(QThread):
 
 
     def _parseSingleStudy(self):
-        
+
         # Export in input study folder
         if self.outputDir == "": # Case were studies are saved in input directory
             self.outputDir = os.path.dirname(self.inputDir)
@@ -212,14 +212,14 @@ class ParserThread(QThread):
             self.Console.emit("> Parsing " + os.path.basename(mzml_file))
 
             # Insure the thread will stop if window is closed
-            if self.force_quit: 
+            if self.force_quit:
                 return 0
 
             # Parse file
             try:
-                metalist.append(mzml2isa.mzml.mzMLmeta(mzml_file).meta_isa)                
-            except Exception as e:             
-                self.ErrorSig.emit('An error was encountered while parsing {}:\n\n{}'.format(os.path.basename(mzml_file), 
+                metalist.append(mzml2isa.mzml.mzMLmeta(mzml_file).meta)
+            except Exception as e:
+                self.ErrorSig.emit('An error was encountered while parsing {}:\n\n{}'.format(os.path.basename(mzml_file),
                                                                                              str(type(e).__name__)+" "+str(e)
                                                                                              )
                                   )
@@ -230,19 +230,20 @@ class ParserThread(QThread):
         # Create the isa Tab
         self.Console.emit("> Creating ISA-Tab files")
         try:
-            isa_tab_create = mzml2isa.isa.ISA_Tab(metalist, self.outputDir, self.studyName, self.userMeta)
+            mzml2isa.isa.ISA_Tab( self.outputDir, self.studyName, self.userMeta).write(metalist, 'mzML')
+
         except Exception as e:
-            self.ErrorSig.emit('An error was encountered while writing ISA-Tab in {}:\n\n{}'.format(self.outputDir, 
+            self.ErrorSig.emit('An error was encountered while writing ISA-Tab in {}:\n\n{}'.format(self.outputDir,
                                                                                                     str(type(e).__name__)+" "+str(e)
                                                                                                    )
                               )
             return 0
-            
+
 
 
         # Return Accepted if no errors were encountered
         return 1
-        
+
 
     def run(self):
         time.sleep(1)

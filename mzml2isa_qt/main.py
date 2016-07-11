@@ -27,7 +27,7 @@ from mzml2isa_qt.parserprogress import ParserProgressDialog
 
 
 class MainWindow(QMainWindow):
- 
+
 
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
@@ -67,7 +67,7 @@ class MainWindow(QMainWindow):
             self.ui.lineEdit_output.setText("")
             self.ui.lbl_output_error.setText("")
             self.ui.toolButton_output_explore.setEnabled(False)
- 
+
             self.ui.lineEdit_study.setEnabled(False)
             self.ui.lineEdit_study.setText("")
             self.ui.lbl_study_error.setText("")
@@ -77,13 +77,13 @@ class MainWindow(QMainWindow):
             self.ui.toolButton_output_explore.setEnabled(True)
             if not self.ui.cBox_multiple.isChecked():
                 self.ui.lineEdit_study.setEnabled(True)
-            
+
     def launchParser(self):
         """Checks if arguments are ok, then launches the parser window"""
 
         LEGIT, inputDir, outputDir, studyName = self.checkArgs()
         if not LEGIT: return
-                
+
         # Open the progress window
         self.progress = ParserProgressDialog(inputDir, outputDir, studyName, self.userMeta)
         self.progress.exec_()
@@ -96,13 +96,13 @@ class MainWindow(QMainWindow):
     def exploreInput(self):
         """Open file explorer and fills the input field"""
         directory = str(QFileDialog.getExistingDirectory(self, "Select Directory"))
-        self.ui.lineEdit_input.setText(directory)  
+        self.ui.lineEdit_input.setText(directory)
 
     def exploreOutput(self):
         """Open file explorer and fills the output field"""
         directory = str(QFileDialog.getExistingDirectory(self, "Select Directory"))
-        self.ui.lineEdit_output.setText(directory)  
-        
+        self.ui.lineEdit_output.setText(directory)
+
     def checkArgs(self):
         """Check for arguments and displays errors if any"""
         inputDir = os.path.expanduser(self.ui.lineEdit_input.text())
@@ -120,13 +120,13 @@ class MainWindow(QMainWindow):
         elif not os.access(inputDir, os.R_OK):
             self.ui.lbl_input_error.setText("Directory has no read permissions")
             LEGIT = False
-        elif not self.ui.cBox_multiple.isChecked(): 
+        elif not self.ui.cBox_multiple.isChecked():
             # list mzML files in study folder
-            if not [x for x in os.listdir(inputDir) if x[-4:].upper() == "MZML"]:   
+            if not [x for x in os.listdir(inputDir) if x[-4:].upper() == "MZML"]:
                 self.ui.lbl_input_error.setText("Directory contains no mzML files")
                 LEGIT = False
             else:
-                self.ui.lbl_input_error.setText("")    
+                self.ui.lbl_input_error.setText("")
         elif self.ui.cBox_export.isChecked() and not os.access(inputDir, os.W_OK):
             self.ui.lbl_input_error.setText("Directory has no write permissions")
             LEGIT = False
@@ -150,7 +150,7 @@ class MainWindow(QMainWindow):
             self.ui.lbl_output_error.setText("")
 
         # StudyName errors checking
-        if self.ui.lineEdit_study.isEnabled() and not studyName:	
+        if self.ui.lineEdit_study.isEnabled() and not studyName:
             self.ui.lbl_study_error.setText("Please provide a study name")
             LEGIT = False
         else:
@@ -175,5 +175,5 @@ def main():
     mainwindow.show()
     sys.exit(app.exec_())
 
-if __name__ == '__main__':   
+if __name__ == '__main__':
     main()

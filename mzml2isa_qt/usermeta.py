@@ -7,7 +7,6 @@ import json
 from copy import deepcopy
 
 ## APP
-from mzml2isa.isa import USERMETA
 from mzml2isa.versionutils import dict_update
 
 ## FRONTEND
@@ -26,6 +25,63 @@ from mzml2isa_qt.scrapers import PSOThread
 
 # Suffixes for qt fields
 SUFFIX = {'study':'', 'investigation':'_2'}
+
+
+USERMETA = {'characteristics':           {'organism': {'value':'', 'accession':'', 'ref':''},
+                                          'organism_variant':  {'value':'', 'accession':'', 'ref':''},
+                                          'organism_part':     {'value':'', 'accession':'', 'ref':''},
+                                         },
+            'investigation':             {'identifier': '', 'title': 'Investigation', 'description': '',
+                                          'submission_date':'', 'release_date':''
+                                         },
+            'investigation_publication': {'pubmed': '', 'doi': '', 'author_list': '', 'title':'',
+                                          'status': {'value':'', 'accession':'', 'ref':'PSO'},
+                                         },
+
+            'study':                     {
+                                          'title': '', 'description': '', 'submission_date':'', 'release_date':'',
+                                         },
+            'study_publication':         {'pubmed': '', 'doi': '', 'author_list': '', 'title':'',
+                                          'status': {'value':'', 'accession':'', 'ref':'PSO'},
+                                         },
+
+            'description':               {'sample_collect':'', 'extraction':'', 'chroma':'', 'mass_spec':'',
+                                          'data_trans':'', 'metabo_id':''
+                                         },
+
+
+
+
+            #Multiple Values Parameters
+            'study_contacts':            [
+                                            {'first_name': '', 'last_name': '', 'mid':'', 'email':'',
+                                             'fax': '', 'phone':'', 'adress':'', 'affiliation':'',
+                                             'roles': {'value':'', 'accession':'', 'ref':''},
+                                            },
+                                         ],
+
+            'investigation_contacts':    [
+                                            {'first_name': '', 'last_name': '', 'mid':'', 'email':'',
+                                             'fax': '', 'phone':'', 'adress':'', 'affiliation':'',
+                                             'roles': {'value':'', 'accession':'', 'ref':''},
+                                            },
+                                         ],
+
+            'study_factors':             [
+                                            {'name': '',
+                                             'type': {'value':'', 'accession':'', 'ref':''},
+                                            },
+                                         ],
+
+            'study_designs':              [
+                                            {
+                                             'type': {'value':'', 'accession':'', 'ref':''},
+                                            },
+
+                                         ]
+
+}
+
 
 
 class UserMetaDialog(QDialog):
@@ -60,8 +116,8 @@ class UserMetaDialog(QDialog):
         self.ui.search_organism.clicked.connect(lambda: self.searchCharacteristics('organism'))
         self.ui.search_organism_part.clicked.connect(lambda: self.searchCharacteristics('organism_part'))
         self.ui.search_organism_variant.clicked.connect(lambda: self.searchCharacteristics('organism_variant'))
-        self.ui.rm_organism.clicked.connect(lambda: self.rmCharacteristics('organism'))                
-        self.ui.rm_organism_part.clicked.connect(lambda: self.rmCharacteristics('organism_part'))       
+        self.ui.rm_organism.clicked.connect(lambda: self.rmCharacteristics('organism'))
+        self.ui.rm_organism_part.clicked.connect(lambda: self.rmCharacteristics('organism_part'))
         self.ui.rm_organism_variant.clicked.connect(lambda: self.rmCharacteristics('organism_variant'))
 
         # Setup Contacts model / view
@@ -101,7 +157,7 @@ class UserMetaDialog(QDialog):
         """Save values stored in dialog fields"""
         self.getFields()
         self.SigUpdateMetadata.emit(json.dumps(self.metadata))
-        
+
     def saveandquit(self):
         """Save values and close dialog"""
         self.save()
@@ -125,7 +181,7 @@ class UserMetaDialog(QDialog):
         self.ui.pubmed_id.setText(self.metadata['study_publication']['pubmed'])
         self.ui.doi.setText(self.metadata['study_publication']['doi'])
         self.ui.pub_title.setText(self.metadata['study_publication']['title'])
-        self.ui.authors_list.setPlainText(self.metadata['study_publication']['author_list'])        
+        self.ui.authors_list.setPlainText(self.metadata['study_publication']['author_list'])
         ### Contact
         self.fillContacts(self.metadata['study_contacts'], 'study')
 
@@ -211,7 +267,7 @@ class UserMetaDialog(QDialog):
 
         # empty metadata
         self.metadata[contact_type+'_contacts'] = []
-        
+
         #either model_contacts or model_contacts_2
         for row_index in range(getattr(self.ui, 'model_contacts'+SUFFIX[contact_type]).rowCount()):
             self.metadata[contact_type+'_contacts'].append(self.getContactByRow(row_index, contact_type))
@@ -255,7 +311,7 @@ class UserMetaDialog(QDialog):
 
             row_index = indexes[0].row()
             contact = self.getStudyContactByRow(row_index)
-            
+
             self.contact = ContactDialog(self, json.dumps(contact))
             self.contact.exec_()
 
@@ -266,7 +322,7 @@ class UserMetaDialog(QDialog):
             )
 
     def fillContacts(self, contacts, contact_type):
-        model = getattr(self.ui, 'model_contacts' + SUFFIX[contact_type]) 
+        model = getattr(self.ui, 'model_contacts' + SUFFIX[contact_type])
         for contact in contacts:
             if contact != CONTACT:
                 model.appendRow(
@@ -295,19 +351,19 @@ class UserMetaDialog(QDialog):
         # Chek if value to display
         if self.metadata['study_publication']['status']['value']:
             self.ui.combo_status.setCurrentText(self.metadata['study_publication']['status']['value'])
-            self.ui.status.setText(self.metadata['study_publication']['status']['accession'])    
+            self.ui.status.setText(self.metadata['study_publication']['status']['accession'])
         else:
-            self.ui.combo_status.setCurrentIndex(-1)   
+            self.ui.combo_status.setCurrentIndex(-1)
         if self.metadata['investigation_publication']['status']['value']:
             self.ui.combo_status_2.setCurrentText(self.metadata['investigation_publication']['status']['value'])
             self.ui.status_2.setText(self.metadata['investigation_publication']['status']['accession'])
         else:
-            self.ui.combo_status_2.setCurrentIndex(-1)    
+            self.ui.combo_status_2.setCurrentIndex(-1)
         # Link comboboxes and display fields
         self.ui.combo_status.activated.connect(lambda x: self.ui.status.setText(\
           self.ontoPSO[self.ui.combo_status.currentText()]))
         self.ui.combo_status_2.activated.connect(lambda x: self.ui.status_2.setText(\
-          self.ontoPSO[self.ui.combo_status_2.currentText()])) 
+          self.ontoPSO[self.ui.combo_status_2.currentText()]))
         # Enable comboboxes
         self.ui.combo_status.setEnabled(True)
         self.ui.combo_status_2.setEnabled(True)
