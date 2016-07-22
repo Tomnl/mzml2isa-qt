@@ -1155,7 +1155,7 @@ font-family: &quot;EBI-Functional&quot;;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLineEdit" name="value_organism">
+    <widget class="QLineEdit" name="name_organism">
      <property name="enabled">
       <bool>true</bool>
      </property>
@@ -1193,7 +1193,7 @@ font-family: &quot;EBI-Functional&quot;;</string>
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QLineEdit" name="value_organism_variant">
+    <widget class="QLineEdit" name="name_organism_variant">
      <property name="enabled">
       <bool>true</bool>
      </property>
@@ -1212,7 +1212,7 @@ font-family: &quot;EBI-Functional&quot;;</string>
       <string>e.g. Saccharomyces cerevisiae LAN211</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="value_organism_part">
+    <widget class="QLineEdit" name="name_organism_part">
      <property name="enabled">
       <bool>true</bool>
      </property>
@@ -1279,7 +1279,7 @@ font-family: &quot;EBI-Functional&quot;;</string>
       </rect>
      </property>
      <property name="currentIndex">
-      <number>5</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="sample_collect">
       <attribute name="title">
@@ -2021,17 +2021,17 @@ font-family: &quot;EBI-Functional&quot;;</string>
   <tabstop>edit_contact_2</tabstop>
   <tabstop>add_contact_2</tabstop>
   <tabstop>rm_contact_2</tabstop>
-  <tabstop>value_organism</tabstop>
+  <tabstop>name_organism</tabstop>
   <tabstop>ref_organism</tabstop>
   <tabstop>accession_organism</tabstop>
   <tabstop>search_organism</tabstop>
   <tabstop>rm_organism</tabstop>
-  <tabstop>value_organism_variant</tabstop>
+  <tabstop>name_organism_variant</tabstop>
   <tabstop>ref_organism_variant</tabstop>
   <tabstop>accession_organism_variant</tabstop>
   <tabstop>search_organism_variant</tabstop>
   <tabstop>rm_organism_variant</tabstop>
-  <tabstop>value_organism_part</tabstop>
+  <tabstop>name_organism_part</tabstop>
   <tabstop>ref_organism_part</tabstop>
   <tabstop>accession_organism_part</tabstop>
   <tabstop>search_organism_part</tabstop>

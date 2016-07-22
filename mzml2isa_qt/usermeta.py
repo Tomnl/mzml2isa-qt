@@ -27,22 +27,22 @@ from mzml2isa_qt.scrapers import PSOThread
 SUFFIX = {'study':'', 'investigation':'_2'}
 
 
-USERMETA = {'characteristics':           {'organism': {'value':'', 'accession':'', 'ref':''},
-                                          'organism_variant':  {'value':'', 'accession':'', 'ref':''},
-                                          'organism_part':     {'value':'', 'accession':'', 'ref':''},
+USERMETA = {'characteristics':           {'organism': {'name':'', 'accession':'', 'ref':''},
+                                          'organism_variant':  {'name':'', 'accession':'', 'ref':''},
+                                          'organism_part':     {'name':'', 'accession':'', 'ref':''},
                                          },
             'investigation':             {'identifier': '', 'title': 'Investigation', 'description': '',
                                           'submission_date':'', 'release_date':''
                                          },
             'investigation_publication': {'pubmed': '', 'doi': '', 'author_list': '', 'title':'',
-                                          'status': {'value':'', 'accession':'', 'ref':'PSO'},
+                                          'status': {'name':'', 'accession':'', 'ref':'PSO'},
                                          },
 
             'study':                     {
                                           'title': '', 'description': '', 'submission_date':'', 'release_date':'',
                                          },
             'study_publication':         {'pubmed': '', 'doi': '', 'author_list': '', 'title':'',
-                                          'status': {'value':'', 'accession':'', 'ref':'PSO'},
+                                          'status': {'name':'', 'accession':'', 'ref':'PSO'},
                                          },
 
             'description':               {'sample_collect':'', 'extraction':'', 'chroma':'', 'mass_spec':'',
@@ -56,14 +56,14 @@ USERMETA = {'characteristics':           {'organism': {'value':'', 'accession':'
             'study_contacts':            [
                                             {'first_name': '', 'last_name': '', 'mid':'', 'email':'',
                                              'fax': '', 'phone':'', 'adress':'', 'affiliation':'',
-                                             'roles': {'value':'', 'accession':'', 'ref':''},
+                                             'roles': {'name':'', 'accession':'', 'ref':''},
                                             },
                                          ],
 
             'investigation_contacts':    [
                                             {'first_name': '', 'last_name': '', 'mid':'', 'email':'',
                                              'fax': '', 'phone':'', 'adress':'', 'affiliation':'',
-                                             'roles': {'value':'', 'accession':'', 'ref':''},
+                                             'roles': {'name':'', 'accession':'', 'ref':''},
                                             },
                                          ],
 
@@ -196,7 +196,7 @@ class UserMetaDialog(QDialog):
         ## EXPERIMENTS
         ## Characteristics
         for key in self.metadata['characteristics'].keys():
-            for ontokey in ('value', 'accession', 'ref'):
+            for ontokey in ('name', 'accession', 'ref'):
                 getattr(self.ui, ontokey+'_'+key).setText(self.metadata['characteristics'][key][ontokey])
 
         ### Descriptions
@@ -229,7 +229,7 @@ class UserMetaDialog(QDialog):
         self.metadata['study_publication']['doi'] = self.ui.doi.text()
         self.metadata['study_publication']['title'] = self.ui.pub_title.text()
         self.metadata['study_publication']['author_list'] = self.ui.authors_list.toPlainText()
-        self.metadata['study_publication']['status']['value'] = self.ui.combo_status.currentText() if self.ui.status.text() else ''
+        self.metadata['study_publication']['status']['name'] = self.ui.combo_status.currentText() if self.ui.status.text() else ''
         self.metadata['study_publication']['status']['accession'] = self.ui.status.text()
         self.metadata['study_publication']['status']['ref'] = 'PSO' if self.ui.status.text() else ''
         ### Contact
@@ -246,7 +246,7 @@ class UserMetaDialog(QDialog):
         self.metadata['investigation_publication']['doi'] = self.ui.doi_2.text()
         self.metadata['investigation_publication']['title'] = self.ui.pub_title_2.text()
         self.metadata['investigation_publication']['author_list'] = self.ui.authors_list_2.toPlainText()
-        self.metadata['investigation_publication']['status']['value'] = self.ui.combo_status_2.currentText() if self.ui.status_2.text() else ""
+        self.metadata['investigation_publication']['status']['name'] = self.ui.combo_status_2.currentText() if self.ui.status_2.text() else ""
         self.metadata['investigation_publication']['status']['accession'] = self.ui.status_2.text()
         self.metadata['investigation_publication']['status']['ref'] = 'PSO' if self.ui.status_2.text() else ''
         ### Contact
@@ -255,7 +255,7 @@ class UserMetaDialog(QDialog):
         ## EXPERIMENTS
         ## Characteristics
         for key in self.metadata['characteristics'].keys():
-            for ontokey in ('value', 'accession', 'ref'):
+            for ontokey in ('name', 'accession', 'ref'):
                 self.metadata['characteristics'][key][ontokey] = getattr(self.ui, ontokey+'_'+key).text()
 
         ### Descriptions
@@ -296,7 +296,7 @@ class UserMetaDialog(QDialog):
             else:
                 contact[key] = {'accession': model.item(row_index, i).text(),
                                 'ref': model.item(row_index, i+1).text(),
-                                'value': model.item(row_index, i+2).text()
+                                'name': model.item(row_index, i+2).text()
                                }
         return contact
 
@@ -305,7 +305,7 @@ class UserMetaDialog(QDialog):
         self.contact.exec_()
         getattr(self.ui, 'model_contacts' + SUFFIX[contact_type]).appendRow(
             [QStandardItem(self.contact.contact[key]) for key in CONTACT.keys() if key != 'roles'] \
-            + [QStandardItem(self.contact.contact['roles'][key]) for key in ('accession', 'ref', 'value')]
+            + [QStandardItem(self.contact.contact['roles'][key]) for key in ('accession', 'ref', 'name')]
         )
 
     def rmContact(self, contact_type):
@@ -328,7 +328,7 @@ class UserMetaDialog(QDialog):
             model.removeRow(row_index)
             model.insertRow(row_index,
                 [QStandardItem(self.contact.contact[key]) for key in CONTACT.keys() if key != 'roles'] \
-                + [QStandardItem(self.contact.contact['roles'][key]) for key in ('accession', 'ref', 'value')]
+                + [QStandardItem(self.contact.contact['roles'][key]) for key in ('accession', 'ref', 'name')]
             )
 
     def fillContacts(self, contacts, contact_type):
@@ -337,7 +337,7 @@ class UserMetaDialog(QDialog):
             if contact != CONTACT:
                 model.appendRow(
                     [QStandardItem(contact[key]) for key in CONTACT.keys() if key != 'roles'] \
-                    + [QStandardItem(contact['roles'][key]) for key in ('accession', 'ref', 'value')]
+                    + [QStandardItem(contact['roles'][key]) for key in ('accession', 'ref', 'name')]
                 )
 
 
@@ -359,13 +359,13 @@ class UserMetaDialog(QDialog):
             self.ui.combo_status_2.addItem("")
             self.ui.combo_status_2.setItemText(i, _translate("Dialog", status))
         # Chek if value to display
-        if self.metadata['study_publication']['status']['value']:
-            self.ui.combo_status.setCurrentText(self.metadata['study_publication']['status']['value'])
+        if self.metadata['study_publication']['status']['name']:
+            self.ui.combo_status.setCurrentText(self.metadata['study_publication']['status']['name'])
             self.ui.status.setText(self.metadata['study_publication']['status']['accession'])
         else:
             self.ui.combo_status.setCurrentIndex(-1)
-        if self.metadata['investigation_publication']['status']['value']:
-            self.ui.combo_status_2.setCurrentText(self.metadata['investigation_publication']['status']['value'])
+        if self.metadata['investigation_publication']['status']['name']:
+            self.ui.combo_status_2.setCurrentText(self.metadata['investigation_publication']['status']['name'])
             self.ui.status_2.setText(self.metadata['investigation_publication']['status']['accession'])
         else:
             self.ui.combo_status_2.setCurrentIndex(-1)
@@ -383,7 +383,7 @@ class UserMetaDialog(QDialog):
         """Open an OlsDialog for the right characteristic"""
         self.ols = OlsDialog(self)
         if self.ols.exec_():
-            getattr(self.ui, 'value_'+characteristic).setText(self.ols.entry['label'])
+            getattr(self.ui, 'name_'+characteristic).setText(self.ols.entry['label'])
             getattr(self.ui, 'ref_'+characteristic).setText(self.ols.entry['ontology_prefix'].upper())
             getattr(self.ui, 'accession_'+characteristic).setText(self.ols.entry['iri'])
 
@@ -391,7 +391,7 @@ class UserMetaDialog(QDialog):
         """Empty given characteristic fields."""
         getattr(self.ui, 'name_'+characteristic).setText('')
         getattr(self.ui, 'ref_'+characteristic).setText('')
-        getattr(self.ui, 'iri_'+characteristic).setText('')
+        getattr(self.ui, 'accession_'+characteristic).setText('')
 
 
 if __name__=='__main__':
