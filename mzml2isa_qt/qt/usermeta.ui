@@ -1279,7 +1279,7 @@ font-family: &quot;EBI-Functional&quot;;</string>
       </rect>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>5</number>
      </property>
      <widget class="QWidget" name="sample_collect">
       <attribute name="title">
@@ -1774,346 +1774,8 @@ font-family: &quot;EBI-Functional&quot;;</string>
    </widget>
    <widget class="QWidget" name="tab">
     <attribute name="title">
-     <string>Details (WIP)</string>
+     <string>Material / Methods</string>
     </attribute>
-    <widget class="QListWidget" name="design_list">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>60</y>
-       <width>381</width>
-       <height>81</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btn_add_design">
-     <property name="geometry">
-      <rect>
-       <x>330</x>
-       <y>40</y>
-       <width>31</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 10pt url(:/fonts/assets/fonts/EBI-Functional.ttf);
-font-family: &quot;EBI-Functional&quot;;</string>
-     </property>
-     <property name="text">
-      <string>+</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_54">
-     <property name="geometry">
-      <rect>
-       <x>430</x>
-       <y>60</y>
-       <width>41</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 10pt &quot;Sans&quot;;</string>
-     </property>
-     <property name="text">
-      <string>Name</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="design_name">
-     <property name="geometry">
-      <rect>
-       <x>480</x>
-       <y>60</y>
-       <width>281</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 10pt &quot;Sans&quot;;</string>
-     </property>
-     <property name="placeholderText">
-      <string>e.g blood metabolome</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="design_ref">
-     <property name="geometry">
-      <rect>
-       <x>480</x>
-       <y>90</y>
-       <width>281</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 10pt &quot;Sans&quot;;</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="placeholderText">
-      <string>e.g. CHMO</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_55">
-     <property name="geometry">
-      <rect>
-       <x>460</x>
-       <y>90</y>
-       <width>41</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 10pt &quot;Sans&quot;;</string>
-     </property>
-     <property name="text">
-      <string>ID</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="design_accession">
-     <property name="geometry">
-      <rect>
-       <x>480</x>
-       <y>120</y>
-       <width>281</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 10pt &quot;Sans&quot;;</string>
-     </property>
-     <property name="placeholderText">
-      <string>e.g. http://purl.obolibrary.org/obo/CHMO_0000796</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_56">
-     <property name="geometry">
-      <rect>
-       <x>450</x>
-       <y>120</y>
-       <width>41</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 10pt &quot;Sans&quot;;</string>
-     </property>
-     <property name="text">
-      <string>IRI</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btn_rm_design">
-     <property name="geometry">
-      <rect>
-       <x>370</x>
-       <y>40</y>
-       <width>31</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 10pt url(:/fonts/assets/fonts/EBI-Functional.ttf);
-font-family: &quot;EBI-Functional&quot;;</string>
-     </property>
-     <property name="text">
-      <string>-</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="search_factor_2">
-     <property name="geometry">
-      <rect>
-       <x>820</x>
-       <y>70</y>
-       <width>40</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>EBI-Conceptual</family>
-       <pointsize>14</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 14pt &quot;:/fonts/assets/fonts/EBI-Conceptual.ttf&quot;;
-font-family: &quot;EBI-Conceptual&quot;;</string>
-     </property>
-     <property name="text">
-      <string>o</string>
-     </property>
-    </widget>
-    <widget class="QListWidget" name="factors_list">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>230</y>
-       <width>381</width>
-       <height>80</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btn_add_factor">
-     <property name="geometry">
-      <rect>
-       <x>330</x>
-       <y>210</y>
-       <width>31</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 10pt url(:/fonts/assets/fonts/EBI-Functional.ttf);
-font-family: &quot;EBI-Functional&quot;;</string>
-     </property>
-     <property name="text">
-      <string>+</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btn_rm_factor">
-     <property name="geometry">
-      <rect>
-       <x>370</x>
-       <y>210</y>
-       <width>31</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 10pt url(:/fonts/assets/fonts/EBI-Functional.ttf);
-font-family: &quot;EBI-Functional&quot;;</string>
-     </property>
-     <property name="text">
-      <string>-</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="factor_name">
-     <property name="geometry">
-      <rect>
-       <x>480</x>
-       <y>220</y>
-       <width>281</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 10pt &quot;Sans&quot;;</string>
-     </property>
-     <property name="placeholderText">
-      <string>e.g Subject</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_49">
-     <property name="geometry">
-      <rect>
-       <x>450</x>
-       <y>250</y>
-       <width>41</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 10pt &quot;Sans&quot;;</string>
-     </property>
-     <property name="text">
-      <string>ID</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="factor_ref">
-     <property name="geometry">
-      <rect>
-       <x>480</x>
-       <y>250</y>
-       <width>281</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 10pt &quot;Sans&quot;;</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="placeholderText">
-      <string>e.g. NCIT</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_48">
-     <property name="geometry">
-      <rect>
-       <x>430</x>
-       <y>220</y>
-       <width>41</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 10pt &quot;Sans&quot;;</string>
-     </property>
-     <property name="text">
-      <string>Name</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="factor_accession">
-     <property name="geometry">
-      <rect>
-       <x>480</x>
-       <y>280</y>
-       <width>281</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 10pt &quot;Sans&quot;;</string>
-     </property>
-     <property name="placeholderText">
-      <string>e.g. http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C70668</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_53">
-     <property name="geometry">
-      <rect>
-       <x>450</x>
-       <y>280</y>
-       <width>41</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 10pt &quot;Sans&quot;;</string>
-     </property>
-     <property name="text">
-      <string>IRI</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="search_factor">
-     <property name="geometry">
-      <rect>
-       <x>820</x>
-       <y>250</y>
-       <width>40</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>EBI-Conceptual</family>
-       <pointsize>14</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 14pt &quot;:/fonts/assets/fonts/EBI-Conceptual.ttf&quot;;
-font-family: &quot;EBI-Conceptual&quot;;</string>
-     </property>
-     <property name="text">
-      <string>o</string>
-     </property>
-    </widget>
     <widget class="QLabel" name="label_57">
      <property name="geometry">
       <rect>
@@ -2127,7 +1789,7 @@ font-family: &quot;EBI-Conceptual&quot;;</string>
       <string notr="true">font: 12pt url(:/fonts/assets/fonts/Verdana.ttf);</string>
      </property>
      <property name="text">
-      <string>Study Designs</string>
+      <string>Extraction</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -2137,7 +1799,7 @@ font-family: &quot;EBI-Conceptual&quot;;</string>
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>180</y>
+       <y>250</y>
        <width>261</width>
        <height>21</height>
       </rect>
@@ -2146,10 +1808,140 @@ font-family: &quot;EBI-Conceptual&quot;;</string>
       <string notr="true">font: 12pt url(:/fonts/assets/fonts/Verdana.ttf);</string>
      </property>
      <property name="text">
-      <string>Study Factors</string>
+      <string>Chromatography</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_48">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>260</y>
+       <width>111</width>
+       <height>55</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Instrument</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_55">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>50</y>
+       <width>111</width>
+       <height>55</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Post Extraction</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_56">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>130</y>
+       <width>111</width>
+       <height>55</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Derivatization</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QPlainTextEdit" name="post_extraction">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>50</y>
+       <width>721</width>
+       <height>61</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPlainTextEdit" name="derivatization">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>130</y>
+       <width>721</width>
+       <height>61</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="ch_instrument">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>300</y>
+       <width>851</width>
+       <height>25</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_49">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>310</y>
+       <width>111</width>
+       <height>55</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Column type</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_53">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>360</y>
+       <width>111</width>
+       <height>55</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Column model</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="ch_type">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>350</y>
+       <width>851</width>
+       <height>25</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="ch_model">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>400</y>
+       <width>851</width>
+       <height>25</height>
+      </rect>
      </property>
     </widget>
    </widget>
@@ -2205,25 +1997,60 @@ font-family: &quot;EBI-Conceptual&quot;;</string>
   <tabstop>title</tabstop>
   <tabstop>submission_date</tabstop>
   <tabstop>release_date</tabstop>
+  <tabstop>description</tabstop>
   <tabstop>pubmed_id</tabstop>
   <tabstop>doi</tabstop>
   <tabstop>pub_title</tabstop>
   <tabstop>combo_status</tabstop>
   <tabstop>authors_list</tabstop>
-  <tabstop>tabWidget</tabstop>
+  <tabstop>table_contacts</tabstop>
+  <tabstop>edit_contact</tabstop>
+  <tabstop>add_contact</tabstop>
+  <tabstop>rm_contact</tabstop>
   <tabstop>identifier_2</tabstop>
   <tabstop>title_2</tabstop>
   <tabstop>submission_date_2</tabstop>
   <tabstop>release_date_2</tabstop>
+  <tabstop>description_2</tabstop>
   <tabstop>pubmed_id_2</tabstop>
   <tabstop>doi_2</tabstop>
   <tabstop>pub_title_2</tabstop>
   <tabstop>combo_status_2</tabstop>
   <tabstop>authors_list_2</tabstop>
+  <tabstop>table_contacts_2</tabstop>
+  <tabstop>edit_contact_2</tabstop>
+  <tabstop>add_contact_2</tabstop>
+  <tabstop>rm_contact_2</tabstop>
   <tabstop>value_organism</tabstop>
+  <tabstop>ref_organism</tabstop>
+  <tabstop>accession_organism</tabstop>
+  <tabstop>search_organism</tabstop>
+  <tabstop>rm_organism</tabstop>
   <tabstop>value_organism_variant</tabstop>
+  <tabstop>ref_organism_variant</tabstop>
+  <tabstop>accession_organism_variant</tabstop>
+  <tabstop>search_organism_variant</tabstop>
+  <tabstop>rm_organism_variant</tabstop>
   <tabstop>value_organism_part</tabstop>
+  <tabstop>ref_organism_part</tabstop>
+  <tabstop>accession_organism_part</tabstop>
+  <tabstop>search_organism_part</tabstop>
+  <tabstop>rm_organism_part</tabstop>
+  <tabstop>sample_collect_desc</tabstop>
+  <tabstop>extraction_desc</tabstop>
+  <tabstop>chroma_desc</tabstop>
+  <tabstop>mass_spec_desc</tabstop>
+  <tabstop>data_trans_desc</tabstop>
+  <tabstop>metabo_id_desc</tabstop>
+  <tabstop>post_extraction</tabstop>
+  <tabstop>derivatization</tabstop>
+  <tabstop>ch_instrument</tabstop>
+  <tabstop>ch_type</tabstop>
+  <tabstop>ch_model</tabstop>
+  <tabstop>tabWidget</tabstop>
   <tabstop>tabWidget_2</tabstop>
+  <tabstop>status</tabstop>
+  <tabstop>status_2</tabstop>
  </tabstops>
  <resources>
   <include location="resources.qrc"/>

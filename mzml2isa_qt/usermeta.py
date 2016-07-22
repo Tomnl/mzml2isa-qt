@@ -67,19 +67,11 @@ USERMETA = {'characteristics':           {'organism': {'value':'', 'accession':'
                                             },
                                          ],
 
-            'study_factors':             [
-                                            {'name': '',
-                                             'type': {'value':'', 'accession':'', 'ref':''},
-                                            },
-                                         ],
-
-            'study_designs':              [
-                                            {
-                                             'type': {'value':'', 'accession':'', 'ref':''},
-                                            },
-
-                                         ]
-
+            'Post Extraction':           {'value': ''},
+            'Derivatization':            {'value': ''},
+            'Chromatography Instrument': {'name':'', 'ref':'', 'accession':''},
+            'Column type':               {'value': ''},
+            'Column model':              {'value': ''},
 }
 
 
@@ -152,7 +144,6 @@ class UserMetaDialog(QDialog):
         """Registers a date was changed."""
         self.dates_changed[date] = True
 
-
     def save(self):
         """Save values stored in dialog fields"""
         self.getFields()
@@ -162,7 +153,6 @@ class UserMetaDialog(QDialog):
         """Save values and close dialog"""
         self.save()
         self.accept()
-
 
     def fillFields(self):
         """Fill dialog fields with known information"""
@@ -213,6 +203,17 @@ class UserMetaDialog(QDialog):
         for (key, value) in self.metadata['description'].items():
             getattr(self.ui, key + '_desc').setPlainText(value)
 
+        ## MATERIAL/METHODS
+        ## Extraction
+        self.ui.post_extraction.setPlainText(self.metadata['Post Extraction']['value'])
+        self.ui.derivatization.setPlainText(self.metadata['Derivatization']['value'])
+
+        ## Chromatography
+        self.ui.ch_instrument.setText(self.metadata['Chromatography Instrument']['name'])
+        self.ui.ch_type.setText(self.metadata['Column type']['value'])
+        self.ui.ch_model.setText(self.metadata['Column model']['value'])
+
+
     def getFields(self):
         """Get intel from dialog fields."""
 
@@ -261,6 +262,15 @@ class UserMetaDialog(QDialog):
         for key in self.metadata['description'].keys():
             self.metadata['description'][key] = getattr(self.ui, key+'_desc').toPlainText()
 
+        ## MATERIAL/METHODS
+        ## Extraction
+        self.metadata['Post Extraction']['value'] = self.ui.post_extraction.toPlainText()
+        self.metadata['Derivatization']['value'] = self.ui.derivatization.toPlainText()
+
+        ## Chromatography
+        self.metadata['Chromatography Instrument']['name'] = self.ui.ch_instrument.text()
+        self.metadata['Column type']['value'] = self.ui.ch_type.text()
+        self.metadata['Column model']['value'] = self.ui.ch_model.text()
 
     def getContactFields(self, contact_type):
         """Unified method to get either Study contact or Investigation contact fields"""
