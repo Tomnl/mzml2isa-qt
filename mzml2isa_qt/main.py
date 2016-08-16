@@ -7,6 +7,7 @@ import glob
 import json
 import textwrap
 import time
+import webbrowser
 
 ## APP
 import mzml2isa.isa
@@ -41,6 +42,7 @@ class MainWindow(QMainWindow):
         self.ui.toolButton_input_explore.clicked.connect(self.exploreInput)
         self.ui.toolButton_output_explore.clicked.connect(self.exploreOutput)
         self.ui.toolButton_metadata.clicked.connect(self.getUserMeta)
+        self.ui.toolButton_help.clicked.connect(self.openHelp)
 
         # Connect up the checkboxes
         self.ui.cBox_multiple.stateChanged.connect(self.toggleMultiple)
@@ -167,6 +169,10 @@ class MainWindow(QMainWindow):
 
     def updateMetadata(self, json_metadata):
         self.userMeta = json.loads(json_metadata)
+
+    def openHelp(self):
+        rtd = "http://2isa.readthedocs.io/en/latest/mzml2isa-qt/"
+        webbrowser.open(rtd, new=2)
 
 
 def main():
