@@ -191,7 +191,7 @@ class UserMetaDialog(QDialog):
         self.ui.pub_title_2.setText(self.metadata['investigation_publication']['title'])
         self.ui.authors_list_2.setPlainText(self.metadata['investigation_publication']['author_list'])
         ### Contact
-        self.fillContacts(self.metadata['study_contacts'], 'investigation')
+        self.fillContacts(self.metadata['investigation_contacts'], 'investigation')
 
         ## EXPERIMENTS
         ## Characteristics
