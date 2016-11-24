@@ -1,6 +1,15 @@
 environment:
   PYTHON: "C:\\Python35"
 
+branches:
+  only:
+    - /v\d+\.\d+\.\d+/
+  except:
+    - master
+    - develop
+
+
+
 install:
   - set PATH=%PYTHON%;%PYTHON%\Scripts;%APPVEYOR_BUILD_FOLDER%;%PATH%
   - pip install pyinstaller
