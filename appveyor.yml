@@ -3,10 +3,7 @@ environment:
 
 branches:
   only:
-    - /v\d+\.\d+\.\d+/
-  except:
     - master
-    - develop
 
 skip_tags: 
   false
