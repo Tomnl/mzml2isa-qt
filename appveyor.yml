@@ -34,7 +34,7 @@ deploy:
   provider: GitHub
   description: 'Release description'
   auth_token:
-    secure: 12489e4b7b744837f645801f66bf4dd0178db505
+    secure: a1VIb788bLXA/fLgAoEJshK1aXtGdj79BNvzPg+YfAIrYhp6yaA4gJa6vp4BpWHS
   artifact: main
   draft: false
   prerelease: true
