@@ -37,7 +37,7 @@ deploy:
     secure: cee86f576dde2a02f3a05320b50c2cd422fd9aa1
   artifact: main
   draft: false
-  prerelease: false
+  prerelease: true
   force_update: true
   on:
     branch: master
