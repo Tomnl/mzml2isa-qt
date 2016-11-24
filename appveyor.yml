@@ -1,0 +1,36 @@
+environment:
+  PYTHON: "C:\\Python35"
+
+install:
+  - set PATH=%PYTHON%;%PYTHON%\Scripts;%APPVEYOR_BUILD_FOLDER%;%PATH%
+  - pip install pyinstaller
+  - git clone https://github.com/ISA-tools/mzml2isa
+  - cd mzml2isa
+  - git checkout dev-althonos
+  - git pull
+  - pip install .
+  - cd ..
+  - "%PYTHON%/Scripts/pip.exe install ."
+
+
+build_script:
+  - cd mzml2isa_qt
+  - pyinstaller -F --paths=qt;ontologies;%PYTHON%\Lib\site-packages\PyQt5\Qt\bin -F --icon=qt\assets\graphics\ebi_icon.ico --noconsole main.py 
+
+artifacts:
+   - path: mzml2isa_qt\dist\main.exe
+     name: main
+
+
+
+deploy:
+  provider: GitHub
+  description: 'Release description'
+  auth_token:
+    secure: cee86f576dde2a02f3a05320b50c2cd422fd9aa1
+  artifact: main
+  draft: false
+  prerelease: false
+  force_update: true
+  on:
+    appveyor_repo_tag: true
