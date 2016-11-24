@@ -7,7 +7,7 @@ import json
 from copy import deepcopy
 
 ## APP
-from mzml2isa.versionutils import dict_update
+from mzml2isa.utils import dict_update
 
 ## FRONTEND
 from PyQt5.QtWidgets import * #QApplication, QMainWindow
