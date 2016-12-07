@@ -13,7 +13,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import QPalette
 
 ## APP
-from mzml2isa.versionutils import dict_update
+from mzml2isa.utils import dict_update
 
 ## UI
 from mzml2isa_qt.qt.contact import Ui_Dialog as Ui_Contact
