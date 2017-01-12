@@ -27,7 +27,7 @@ setup(
     description="A PyQt interface for mzml2isa parser.",
     long_description=open('README.md').read(),
     
-    install_requires=["PyQt5", "mzml2isa",],
+    install_requires=open('requirements.txt').read().splitlines(),
 
     include_package_data=True,
 
