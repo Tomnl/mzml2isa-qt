@@ -15,7 +15,7 @@ install:
   - cd mzml2isa
   - pip install .
   - cd ..
-  - "%PYTHON%/Scripts/pip.exe install ."
+  - pip install .
 
 
 build_script:
