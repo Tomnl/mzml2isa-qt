@@ -25,7 +25,7 @@ setup(
     author_email= 'martin.larralde@ens-cachan.fr',
 
     description="A PyQt interface for mzml2isa parser.",
-    long_description=open('README.md').read(),
+    long_description=open('README.rst').read(),
     
     install_requires=open('requirements.txt').read().splitlines(),
 
