@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['main.py'],
-             pathex=['.','', 'C:\Python35\Lib\site-packages\pronto', 'qt', 'ontologies','%PYTHON%\Lib\site-packages\PyQt5\Qt\bin'],
+             pathex=['.','', 'C:\Python35\Lib\site-packages\pronto', 'qt', 'ontologies','C:\Python35\Lib\site-packages\PyQt5\Qt\bin'],
              binaries=None,
              datas= [ ('..\\mzml2isa\\mzml2isa\\templates\\a_imzML.txt', 'mzml2isa\\templates' ),
 		              ('..\\mzml2isa\\mzml2isa\\templates\\a_mzML.txt', 'mzml2isa\\templates' ),
