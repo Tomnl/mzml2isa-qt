@@ -20,7 +20,6 @@ install:
 
 build_script:
   - cd mzml2isa_qt
-  - %PYTHON%\Scripts\pyinstaller.exe
   - pyinstaller mzml2isa_cli.spec mzml2isa_gui.py
 
 artifacts:
