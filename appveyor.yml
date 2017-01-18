@@ -8,6 +8,8 @@ branches:
 skip_tags: 
   false
 
+  
+
 install:
   - set PATH=%PYTHON%;%PYTHON%\Scripts;%APPVEYOR_BUILD_FOLDER%;%PATH%
   - pip install pyinstaller
