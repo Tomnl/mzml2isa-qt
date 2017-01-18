@@ -20,7 +20,7 @@ install:
 
 build_script:
   - cd mzml2isa_qt
-  - pyinstaller -F --paths=qt;ontologies;%PYTHON%\Lib\site-packages\PyQt5\Qt\bin -F --icon=qt\assets\graphics\ebi_icon.ico main.py 
+  - pyinstaller -F --paths=qt;ontologies;%PYTHON%\Lib\site-packages\PyQt5\Qt\bin;mzml2isa\mzml2isa\templates -F --icon=qt\assets\graphics\ebi_icon.ico main.py
 
 artifacts:
    - path: mzml2isa_qt\dist\main.exe
