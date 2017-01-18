@@ -8,7 +8,7 @@ branches:
 skip_tags: 
   false
 
-  
+
 
 install:
   - set PATH=%PYTHON%;%PYTHON%\Scripts;%APPVEYOR_BUILD_FOLDER%;%PATH%
@@ -22,11 +22,11 @@ install:
 
 build_script:
   - cd mzml2isa_qt
-  - pyinstaller mzml2isa_gui.spec mzml2isa_gui.py
+  - pyinstaller mzml2isa_gui.spec 
 
 artifacts:
-   - path: mzml2isa_qt\dist\main.exe
-     name: main
+   - path: mzml2isa_qt\dist\mzml2isa_gui.exe
+     name: mzml2isa_gui
 
 
 
