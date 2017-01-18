@@ -175,7 +175,7 @@ class ParserThread(QThread):
 
             # Create the isa Tab
             try:
-                isa_tab_create = mzml2isa.isa.ISA_Tab(self.outputDir, study, self.userMeta).write(metalist, 'mzML')
+                isa_tab_create = mzml2isa.isa.ISA_Tab(self.outputDir, study, usermeta=self.userMeta).write(metalist, 'mzML')
             except Exception as e:
                 self.ErrorSig.emit('An error was encountered while writing ISA-Tab (study {}):\n\n{}'.format(study,
                                                                                                              str(type(e).__name__)+" "+str(e)
@@ -230,7 +230,7 @@ class ParserThread(QThread):
         # Create the isa Tab
         self.Console.emit("> Creating ISA-Tab files")
         try:
-            mzml2isa.isa.ISA_Tab( self.outputDir, self.studyName, self.userMeta).write(metalist, 'mzML')
+            mzml2isa.isa.ISA_Tab( self.outputDir, self.studyName, usermeta=self.userMeta).write(metalist, 'mzML')
 
         except Exception as e:
             self.ErrorSig.emit('An error was encountered while writing ISA-Tab in {}:\n\n{}'.format(self.outputDir,
